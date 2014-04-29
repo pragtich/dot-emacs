@@ -1,0 +1,44 @@
+#+TITLE: Emacs Configuration
+#+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+STYLE:    <link rel="stylesheet" type="text/css" href="/static/files/emacs-config.css" />
+
+
+This file is used by [[http://orgmode.org/worg/org-contrib/babel/intro.php#sec-8_2_1][org-babel]] to generate ~emacs.el~ from
+it. ~emacs.el~ is then loaded as my Emacs configuration and only
+re-generated when the org file changes. Ideas taken from from Andi Albrecht https://raw.githubusercontent.com/andialbrecht/emacs-config/master/emacs.org
+
+
+* Globals
+All lisp files needed to run this configuration are either installed
+by system packages. Or found in the same directory where this
+configuration file lives. The path to this configuration directory is
+bound to ~dotfiles-dir~ in the main ~init.el~.
+
+* Look and feel
+** Minimize Emacs' chrome
+Hide a lot of default Emacs chrome, so that we just start with a
+vanilla ~*scratch*~ buffer.
+
+#+begin_src emacs-lisp
+  ;; Remove unused UI elements
+  (tool-bar-mode 0)
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0)
+  (setq inhibit-startup-message t)
+  
+  ;; shhht, give me some time to think, don't blink
+  (blink-cursor-mode 0)
+  
+#+end_src
+
+** Behavior
+These lines configure Emacs' general behavior at certain aspects.
+#+begin_src emacs-lisp
+  ;; show matching parens
+  (show-paren-mode 1)
+  
+  ;; take the short answer, y/n is yes/no
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
