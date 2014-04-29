@@ -15,8 +15,34 @@ All lisp files needed to run this configuration are either installed
 by system packages. Or found in the same directory where this
 configuration file lives. The path to this configuration directory is
 bound to ~dotfiles-dir~ in the main ~init.el~.
+* Packages
+Install packages
+#+begin_src emacs-lisp
+  ;; Add MELPA to packages sources
+  ;; Inspired by http://melpa.milkbox.net/#/getting-started
+  (require 'package)
+  (add-to-list 'package-archives
+    '("melpa" . "http://melpa.milkbox.net/packages/") t)
+  ;; On older emacsen also add the base library
+  (when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))  
+
+  ;; Initialize packages
+  (package-initialize)
+#+end_src
 
 * Look and feel
+** Behavior
+These lines configure Emacs' general behavior at certain aspects.
+#+begin_src emacs-lisp
+  ;; show matching parens
+  (show-paren-mode 1)
+  
+  ;; take the short answer, y/n is yes/no
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+end_src
+
+
 ** Minimize Emacs' chrome
 Hide a lot of default Emacs chrome, so that we just start with a
 vanilla ~*scratch*~ buffer.
@@ -32,13 +58,12 @@ vanilla ~*scratch*~ buffer.
   (blink-cursor-mode 0)
   
 #+end_src
-
-** Behavior
-These lines configure Emacs' general behavior at certain aspects.
-#+begin_src emacs-lisp
-  ;; show matching parens
-  (show-paren-mode 1)
-  
-  ;; take the short answer, y/n is yes/no
-  (defalias 'yes-or-no-p 'y-or-n-p)
-#+end_src
+** Theming
+   (Obsolete) Make use of color-theme to make it pretty.
+   Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
+   #+begin_src emacs-lisp
+;;    (require 'color-theme)
+;;    (color-theme-initialize)
+;;    (color-theme-kingsajz)
+(load-theme 'zenburn t)
+   #+End_src
