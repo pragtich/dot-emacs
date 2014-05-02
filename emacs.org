@@ -193,6 +193,12 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
         regexp-search-ring))
 #+end_src
 * Startup
+** Maximize window (Windows only)
+#+BEGIN_SRC emacs-lisp
+ (if (eq system-type 'windows-nt)
+   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
+
+#+END_SRC
 ** Open a file with agenda on startup (inactive)
   #+begin_src emacs-lisp :tangle no
     (find-file "~/personal/organizer.org")
