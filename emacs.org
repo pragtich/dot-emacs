@@ -236,8 +236,9 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 * Startup
 ** Maximize window (Windows only)
 #+BEGIN_SRC emacs-lisp
- (if (eq system-type 'windows-nt)
-   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
+; (if (eq system-type 'windows-nt)
+;   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
+(setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 #+END_SRC
 ** Open a file with agenda on startup (inactive)
