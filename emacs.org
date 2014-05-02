@@ -83,8 +83,8 @@ sentence navigation commands work for me.
 #+end_src
 *** Prefer to split windows vertically
 #+BEGIN_SRC emacs-lisp
-(setq split-height-threshold nil)
-(setq split-width-threshold 160)
+(setq split-height-threshold 40)
+(setq split-width-threshold 30)
 #+END_SRC
 *** Join lines
 A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
