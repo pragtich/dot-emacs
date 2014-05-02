@@ -45,6 +45,7 @@ This is primarily to ease editing of this single file: enter =<S= and hit =TAB= 
 #+END_SRC
 *** Windows specific
 GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
+**** TODO Check if this works also in OS X
 #+begin_src emacs-lisp
    (setenv "GIT_ASKPASS" "git-gui--askpass")
 #+end_src
@@ -90,8 +91,8 @@ sentence navigation commands work for me.
 #+end_src
 *** Prefer to split windows vertically
 #+BEGIN_SRC emacs-lisp
-(setq split-height-threshold 40)
-(setq split-width-threshold 80)
+(setq split-height-threshold 60)
+(setq split-width-threshold 90)
 #+END_SRC
 *** IDO mode
 **** Basic configuration of the great IDO mode taken from http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/.
