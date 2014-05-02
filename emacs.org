@@ -1,3 +1,4 @@
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -134,7 +135,7 @@ A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comm
   (lambda ()
   (interactive)
   (join-line -1)))
-#+END
+#+END_SRC
   
 ** Minimize Emacs' chrome
 Hide a lot of default Emacs chrome, so that we just start with a
@@ -191,7 +192,8 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
         search-ring
         regexp-search-ring))
 #+end_src
-* Startup (inactive)
+* Startup
+** Open a file with agenda on startup (inactive)
   #+begin_src emacs-lisp :tangle no
     (find-file "~/personal/organizer.org")
     (require 'org-compat)
@@ -199,7 +201,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
   #+end_src
 * Remember for later (inactive)
 ** Switch from horizontal to vertical split
-#+BEGIN_SRC emacs-lisp tangle:no
+#+BEGIN_SRC emacs-lisp :tangle no
 (defun toggle-window-split ()
   (interactive)
   (if (= (count-windows) 2)
@@ -226,4 +228,4 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
           (if this-win-2nd (other-window 1))))))
 
 #+END_SRC
-
+   
