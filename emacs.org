@@ -16,7 +16,7 @@ by system packages. Or found in the same directory where this
 configuration file lives. The path to this configuration directory is
 bound to ~dotfiles-dir~ in the main ~init.el~.
 * Packages
-Install packages
+** Install packages
 #+begin_src emacs-lisp
   ;; Add MELPA to packages sources
   ;; Inspired by http://melpa.milkbox.net/#/getting-started
@@ -30,17 +30,36 @@ Install packages
   ;; Initialize packages
   (package-initialize)
 #+end_src
+** Magit configuration
 
 * Look and feel
 ** Behavior
+*** Small things
 These lines configure Emacs' general behavior at certain aspects.
+**** Show matching parentheses
 #+begin_src emacs-lisp
   ;; show matching parens
   (show-paren-mode 1)
-  
+#+end_src
+**** Change yes or no to y-or-n>
+#+begin_src emacs-lisp
   ;; take the short answer, y/n is yes/no
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
+**** Indentation after RET
+I almost always want to go to the right indentation on the next line.
+#+begin_src emacs-lisp
+(global-set-key (kbd "RET") 'newline-and-indent)
+#+end_src
+*** Sentences end with a single space
+
+In my world, sentences end with a single space. This makes
+sentence navigation commands work for me.
+
+#+begin_src emacs-lisp
+  (setq sentence-end-double-space nil)
+#+end_src
+
 
 
 ** Minimize Emacs' chrome
@@ -67,3 +86,40 @@ vanilla ~*scratch*~ buffer.
 ;;    (color-theme-kingsajz)
 (load-theme 'zenburn t)
    #+End_src
+* Backups and History
+** Backups
+  
+From Sacha Chua (https://raw.githubusercontent.com/sachac/.emacs.d/gh-pages/Sacha.org).
+This is one of the things people usually want to change right away. By default, Emacs saves backup files in the current directory. These are the files ending in =~= that are cluttering up your directory lists. The following code stashes them all in =~/.emacs.d/backups=, where I can find them with =C-x C-f= (=find-file=) if I really need to.
+
+#+begin_src emacs-lisp
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+#+end_src
+
+Disk space is cheap. Save lots.
+
+#+begin_src emacs-lisp
+(setq delete-old-versions -1)
+(setq version-control t)
+(setq vc-make-backup-files t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list" t)))
+#+end_src
+** History
+From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.html
+#+begin_src emacs-lisp
+(setq savehist-file "~/.emacs.d/savehist")
+(savehist-mode 1)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq savehist-save-minibuffer-history 1)
+(setq savehist-additional-variables
+      '(kill-ring
+        search-ring
+        regexp-search-ring))
+#+end_src
+* Startup (inactive)
+  #+begin_src emacs-lisp :tangle no
+    (find-file "~/personal/organizer.org")
+    (require 'org-compat)
+    (org-agenda nil "a")
+  #+end_src
