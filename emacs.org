@@ -112,6 +112,20 @@ sentence navigation commands work for me.
 (setq ido-ignore-extensions t) 
 
 #+END_SRC
+**** M-x mode
+Adding =M-x= mode to IDO:
+#+BEGIN_SRC emacs-lisp
+  (global-set-key
+     "\M-x"
+     (lambda ()
+       (interactive)
+       (call-interactively
+        (intern
+         (ido-completing-read
+          "M-x "
+          (all-completions "" obarray 'commandp))))))
+
+#+END_SRC
 *** Join lines
 A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
 
