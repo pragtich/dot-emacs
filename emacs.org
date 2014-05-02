@@ -34,6 +34,7 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
 *** Key binding
 #+BEGIN_SRC emacs-lisp
 (global-set-key (kbd "C-x g") 'magit-status) 
+(global-set-key (kbd "<f12>") 'magit-status) 
 #+END_SRC
 *** Windows specific
 GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
