@@ -36,6 +36,11 @@ GIT on Windows does not play nicely with EMACS. This is a hack to fix that and s
    (setenv "GIT_ASKPASS" "git-gui--askpass")
 #+end_src
 
+Adding the following to =.git/config= helps to avoid typing the username over and over:
+#+begin_src 
+[credential "https://github.com"]
+	username = pragtich
+#+end_src
 Also, it is very slow when the PATH is not clear. This may help: (https://stackoverflow.com/questions/16884377/magit-is-very-slow-when-committing-on-windows)
 #+begin_src emacs-lisp
  (if (eq system-type 'windows-nt)
