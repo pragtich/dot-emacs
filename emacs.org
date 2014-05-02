@@ -15,6 +15,12 @@ All lisp files needed to run this configuration are either installed
 by system packages. Or found in the same directory where this
 configuration file lives. The path to this configuration directory is
 bound to ~dotfiles-dir~ in the main ~init.el~.
+** Org mode easy templates: source code with emacs list tag. 
+This is primarily to ease editing of this single file: enter =<S= and hit =TAB= to make a source template with the =emacs-lisp= language.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
+#+END_SRC
+
 * Packages
 ** Install packages
 #+begin_src emacs-lisp
@@ -157,3 +163,33 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
     (require 'org-compat)
     (org-agenda nil "a")
   #+end_src
+* Remember for later (inactive)
+** Switch from horizontal to vertical split
+#+BEGIN_SRC emacs-lisp tangle:no
+(defun toggle-window-split ()
+  (interactive)
+  (if (= (count-windows) 2)
+      (let* ((this-win-buffer (window-buffer))
+             (next-win-buffer (window-buffer (next-window)))
+             (this-win-edges (window-edges (selected-window)))
+             (next-win-edges (window-edges (next-window)))
+             (this-win-2nd (not (and (<= (car this-win-edges)
+                                         (car next-win-edges))
+                                     (<= (cadr this-win-edges)
+                                         (cadr next-win-edges)))))
+             (splitter
+              (if (= (car this-win-edges)
+                     (car (window-edges (next-window))))
+                  'split-window-horizontally
+                'split-window-vertically)))
+        (delete-other-windows)
+        (let ((first-win (selected-window)))
+          (funcall splitter)
+          (if this-win-2nd (other-window 1))
+          (set-window-buffer (selected-window) this-win-buffer)
+          (set-window-buffer (next-window) next-win-buffer)
+          (select-window first-win)
+          (if this-win-2nd (other-window 1))))))
+
+#+END_SRC
+
