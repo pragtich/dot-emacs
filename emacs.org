@@ -31,11 +31,15 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
   (package-initialize)
 #+end_src
 ** Magit configuration
+*** Key binding
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x g") 'magit-status) 
+#+END_SRC
+*** Windows specific
 GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
 #+begin_src emacs-lisp
    (setenv "GIT_ASKPASS" "git-gui--askpass")
 #+end_src
-
 Adding the following to =.git/config= helps to avoid typing the username over and over:
 #+begin_src 
 [credential "https://github.com"]
@@ -48,7 +52,7 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
       (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
      ))
 #+end_src
-*** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
+**** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 * Look and feel
 ** Behavior
 *** Small things
@@ -76,8 +80,15 @@ sentence navigation commands work for me.
 #+begin_src emacs-lisp
   (setq sentence-end-double-space nil)
 #+end_src
+*** Join lines
+A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
 
-
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-j")
+  (lambda ()
+  (interactive)
+  (join-line -1)))
+#+END
 
 ** Minimize Emacs' chrome
 Hide a lot of default Emacs chrome, so that we just start with a
