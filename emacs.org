@@ -93,11 +93,24 @@ sentence navigation commands work for me.
 (setq split-width-threshold 80)
 #+END_SRC
 *** IDO mode
-Basic configuration of the great IDO mode taken from http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/.
+**** Basic configuration of the great IDO mode taken from http://www.masteringemacs.org/articles/2010/10/10/introduction-to-ido-mode/.
 #+BEGIN_SRC emacs-lisp
   (setq ido-enable-flex-matching t)
   (setq ido-everywhere t)
   (ido-mode 1) 
+#+END_SRC
+**** Prevent IDO from asking when I just want to make a scratch buffer.
+#+BEGIN_SRC emacs-lisp
+ 	
+(setq ido-create-new-buffer 'always)
+
+#+END_SRC
+**** Ignore predefined useless extensions
+     Which are defined in =completion-ignored-extensions=.
+#+BEGIN_SRC emacs-lisp
+
+(setq ido-ignore-extensions t) 
+
 #+END_SRC
 *** Join lines
 A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
