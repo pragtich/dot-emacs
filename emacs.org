@@ -31,7 +31,11 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
   (package-initialize)
 #+end_src
 ** Magit configuration
-
+GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
+#+begin_src emacs-lisp
+   (setenv "GIT_ASKPASS" "git-gui--askpass")
+#+end_src
+*** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 * Look and feel
 ** Behavior
 *** Small things
