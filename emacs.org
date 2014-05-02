@@ -35,6 +35,14 @@ GIT on Windows does not play nicely with EMACS. This is a hack to fix that and s
 #+begin_src emacs-lisp
    (setenv "GIT_ASKPASS" "git-gui--askpass")
 #+end_src
+
+Also, it is very slow when the PATH is not clear. This may help: (https://stackoverflow.com/questions/16884377/magit-is-very-slow-when-committing-on-windows)
+#+begin_src emacs-lisp
+ (if (eq system-type 'windows-nt)
+    (progn
+      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
+     ))
+#+end_src
 *** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 * Look and feel
 ** Behavior
