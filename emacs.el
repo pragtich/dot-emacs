@@ -10,6 +10,13 @@
 ;; Initialize packages
 (package-initialize)
 
+(setenv "GIT_ASKPASS" "git-gui--askpass")
+
+(if (eq system-type 'windows-nt)
+   (progn
+     (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
+    ))
+
 ;; show matching parens
 (show-paren-mode 1)
 
