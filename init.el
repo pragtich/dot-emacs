@@ -11,6 +11,7 @@
 ;; Add load paths
 ; TODO use dotfiles-dir
 (add-to-list 'load-path "~/.emacs.d/lisp/org-mode/lisp")
+(add-to-list 'load-path "~/.emacs.d/lisp/org-mode/contrib/lisp")
 
 ;; Load up Org Mode and Babel
 (require 'org)
