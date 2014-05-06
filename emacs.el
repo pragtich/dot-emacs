@@ -1,5 +1,3 @@
-(add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
-
 ;; Add MELPA to packages sources
 ;; Inspired by http://melpa.milkbox.net/#/getting-started
 (require 'package)
@@ -21,6 +19,13 @@
    (progn
      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
     ))
+
+(add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
+
+(setq org-M-RET-may-split-line nil)
+
+(setq org-todo-keywords
+      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
 
 ;; show matching parens
 (show-paren-mode 1)

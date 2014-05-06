@@ -1,4 +1,5 @@
 
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -16,11 +17,6 @@ All lisp files needed to run this configuration are either installed
 by system packages. Or found in the same directory where this
 configuration file lives. The path to this configuration directory is
 bound to ~dotfiles-dir~ in the main ~init.el~.
-** Org mode easy templates: source code with emacs list tag. 
-This is primarily to ease editing of this single file: enter =<S= and hit =TAB= to make a source template with the =emacs-lisp= language.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
-#+END_SRC
 
 * Packages
 ** Install packages
@@ -62,6 +58,27 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
      ))
 #+end_src
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
+
+* Org-mode
+** Notes on updating org
+I am using git, so org updating is something to do with =git submodule=. Google to find it. Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
+** Org mode easy templates: source code with emacs list tag. 
+This is primarily to ease editing of this single file: enter =<S= and hit =TAB= to make a source template with the =emacs-lisp= language.
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
+#+END_SRC
+
+** Prevent M-RET from splitting lines
+I hate it when =<M-RET>= splits a line in the middle, something I never do.
+#+BEGIN_SRC emacs-lisp
+(setq org-M-RET-may-split-line nil)
+
+#+END_SRC
+** Configure TODO states
+#+BEGIN_SRC emacs-lisp
+ (setq org-todo-keywords
+       '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
