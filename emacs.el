@@ -20,6 +20,11 @@
      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
     ))
 
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
 (add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
 
 (setq org-M-RET-may-split-line nil)

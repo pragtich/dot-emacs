@@ -60,8 +60,29 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 
 * Org-mode
+
+** Locations
+Need to set system-specific locations for org, as I keep everything in Dropbox and cannot do symlinks in Windows. So I set =org-directory= as a home location. I can then use this as a base for the file named in =org-agenda-files=, which lists files on each line relative to this folder.
+#+BEGIN_SRC emacs-lisp
+(if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
+  (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
+)
+
+(setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
+#+END_SRC
 ** Notes on updating org
 I am using git, so org updating is something to do with =git submodule=. Google to find it. Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
+** Keybindings
+We need some keybindings for org-mode. These are the suggested defaults.
+#+BEGIN_SRC emacs-lisp
+(global-set-key "\C-cl" 'org-store-link)
+(global-set-key "\C-ca" 'org-agenda)
+#+END_SRC
+** Start org-mode for all .org files
+Somewhat superfluous since recent Emacsen have this as default, but just in case:
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+#+END_SRC
 ** Org mode easy templates: source code with emacs list tag. 
 This is primarily to ease editing of this single file: enter =<S= and hit =TAB= to make a source template with the =emacs-lisp= language.
 #+BEGIN_SRC emacs-lisp
