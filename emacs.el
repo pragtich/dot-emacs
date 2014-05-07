@@ -20,6 +20,12 @@
      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
     ))
 
+(if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
+  (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
+)
+
+(setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
+
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
 

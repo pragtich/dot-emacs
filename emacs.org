@@ -100,6 +100,23 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
  (setq org-todo-keywords
        '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
 #+END_SRC
+** Custom agenda commands
+#+BEGIN_SRC emacs-lisp
+;  (add-to-list 'org-agenda-custom-commands 
+  (set 'org-agenda-custom-commands 
+    '(("A" "Joris' daily agenda view" (
+      (todo "A" ((org-agenda-overriding-header "Wat moet er vandaag in ieder geval gebeuren:"))) 
+      (tags "NEXT" ((org-agenda-overriding-header "Volgende acties voor de projecten:")))) 
+     ((org-agenda-prefix-format 
+'((agenda . " %i %-12:c%?-12t% s")
+ (timeline . "  % s")
+ (todo . "%(concat \"[\" (org-format-outline-path (org-get-outline-path)) \"] \")")
+ (tags . "%(concat \"[\" (org-format-outline-path (org-get-outline-path)) \"] \")")
+ (search . " %i %-8:c"))
+)) ())))       ;(settings) (files)
+;  ((org-agenda-prefix-format '((todo . "%i %-12c")))) ())) ; (settings) (files)
+  
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
