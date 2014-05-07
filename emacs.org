@@ -106,11 +106,12 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 #+END_SRC
 *** Daily agenda view
 #+BEGIN_SRC emacs-lisp
-;  (set 'org-agenda-custom-commands 
+;  (set 'org-agenda-custom-commands ())
   (push 
     '("A" "Joris' daily agenda view" (
       (todo "A" ((org-agenda-overriding-header "Wat moet er vandaag in ieder geval gebeuren:"))) 
-      (tags "NEXT" ((org-agenda-overriding-header "Volgende acties voor de projecten:")))) 
+      (tags "NEXT" ((org-agenda-overriding-header "Volgende acties voor de projecten:")))
+      (stuck "" nil)) 
      ((org-agenda-prefix-format 
        '((agenda . " %i %-12:c%?-12t% s")
        (timeline . "  % s")
@@ -119,7 +120,7 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 ;       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
        (tags . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path) ))) \"\") \"] \")")
        (search . " %i %-8:c"))
-      )) ())        ;(settings) (files))
+      )) ())       
       org-agenda-custom-commands )
 
 #+END_SRC
