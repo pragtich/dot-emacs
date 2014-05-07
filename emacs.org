@@ -110,8 +110,8 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
      ((org-agenda-prefix-format 
        '((agenda . " %i %-12:c%?-12t% s")
        (timeline . "  % s")
-       (todo . "%(concat \"[\" (format \"%-20s\" (org-format-outline-path (org-get-outline-path))) \"] \")")
-       (tags . "%(concat \"[\" (format \"%-20s\" (org-format-outline-path (org-get-outline-path))) \"] \")")
+       (todo . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
        (search . " %i %-8:c"))
       )) ())))       ;(settings) (files)
   
