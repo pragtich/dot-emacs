@@ -1,5 +1,4 @@
 
-
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -110,8 +109,10 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
      ((org-agenda-prefix-format 
        '((agenda . " %i %-12:c%?-12t% s")
        (timeline . "  % s")
-       (todo . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
-       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+;       (todo . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+       (todo . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path)))) \"\") \"] \")")
+;       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+       (tags . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path) ))) \"\") \"] \")")
        (search . " %i %-8:c"))
       )) ())))       ;(settings) (files)
   
