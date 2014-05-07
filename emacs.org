@@ -115,8 +115,8 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 ;       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
        (tags . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path) ))) \"\") \"] \")")
        (search . " %i %-8:c"))
-      )) ())
-      org-agenda-custom-commands )       ;(settings) (files)
+      )) ())        ;(settings) (files))
+      org-agenda-custom-commands )
   
 #+END_SRC
 * Look and feel
