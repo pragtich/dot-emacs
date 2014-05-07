@@ -38,6 +38,26 @@
 (setq org-todo-keywords
       '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
 
+(setq org-stuck-projects '("Project/-DONE" nil ("NEXT") ""))
+
+(if (not (boundp 'org-agenda-custom-commands)) (set 'org-agenda-custom-commands ()) )
+
+  (push 
+    '("A" "Joris' daily agenda view" (
+      (todo "A" ((org-agenda-overriding-header "Wat moet er vandaag in ieder geval gebeuren:"))) 
+      (tags "NEXT" ((org-agenda-overriding-header "Volgende acties voor de projecten:")))
+      (stuck "" nil)) 
+     ((org-agenda-prefix-format 
+       '((agenda . " %i %-12:c%?-12t% s")
+       (timeline . "  % s")
+;       (todo . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+       (todo . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path)))) \"\") \"] \")")
+;       (tags . "%(concat \"[\" (format \"%-15s\" (org-format-outline-path (org-get-outline-path) 13)) \"] \")")
+       (tags . "%(concat \"[\" (format \"%-15s\" (or (car (last (org-get-outline-path) ))) \"\") \"] \")")
+       (search . " %i %-8:c"))
+      )) ())       
+      org-agenda-custom-commands )
+
 ;; show matching parens
 (show-paren-mode 1)
 

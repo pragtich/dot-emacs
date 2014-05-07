@@ -106,7 +106,8 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 #+END_SRC
 *** Daily agenda view
 #+BEGIN_SRC emacs-lisp
-;  (set 'org-agenda-custom-commands ())
+  (if (not (boundp 'org-agenda-custom-commands)) (set 'org-agenda-custom-commands ()) )
+
   (push 
     '("A" "Joris' daily agenda view" (
       (todo "A" ((org-agenda-overriding-header "Wat moet er vandaag in ieder geval gebeuren:"))) 
