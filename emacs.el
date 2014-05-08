@@ -171,5 +171,5 @@
 
 ;    (find-file "~/personal/organizer.org")
 ;    (require 'org-compat)
-    (run-at-time (format "%d sec" 1) nil '(lambda () (org-agenda nil "A")))
+    (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))

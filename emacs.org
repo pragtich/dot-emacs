@@ -65,6 +65,7 @@ Need to set system-specific locations for org, as I keep everything in Dropbox a
 #+BEGIN_SRC emacs-lisp
 (if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
   (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
+  (setq org-directory "~/org/")
 )
 
 (setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
@@ -315,6 +316,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
   #+begin_src emacs-lisp 
 ;    (find-file "~/personal/organizer.org")
 ;    (require 'org-compat)
+    (find-file (expand-file-name "jpg.org" org-directory))
     (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
   #+end_src
