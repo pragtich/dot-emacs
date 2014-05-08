@@ -129,13 +129,14 @@
 (join-line -1)))
 
 ;; Remove unused UI elements
-(tool-bar-mode 0)
-(menu-bar-mode 0)
-(scroll-bar-mode 0)
-(setq inhibit-startup-message t)
-
-;; shhht, give me some time to think, don't blink
-(blink-cursor-mode 0)
+ (add-hook 'window-setup-hook (lambda () (tool-bar-mode -1))) 
+;  (tool-bar-mode 0) Conflicts with maximization on windows, so need the hook above
+  (menu-bar-mode 0)
+  (scroll-bar-mode 0)
+  (setq inhibit-startup-message t)
+  
+  ;; shhht, give me some time to think, don't blink
+  (blink-cursor-mode 0)
 
 ;;    (require 'color-theme)
 ;;    (color-theme-initialize)
@@ -159,6 +160,16 @@
         search-ring
         regexp-search-ring))
 
-; (if (eq system-type 'windows-nt)
+(if (eq system-type 'windows-nt)
+   (tool-bar-mode 1)
+   (w32-send-sys-command 61488) ; Does not work with toolbar diabled, so put that on a hook above
+  )
+
 ;   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
+
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
+
+;    (find-file "~/personal/organizer.org")
+;    (require 'org-compat)
+    (run-at-time (format "%d sec" 1) nil '(lambda () (org-agenda nil "A")))
+;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))

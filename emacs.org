@@ -247,7 +247,8 @@ vanilla ~*scratch*~ buffer.
 
 #+begin_src emacs-lisp
   ;; Remove unused UI elements
-  (tool-bar-mode 0)
+ (add-hook 'window-setup-hook (lambda () (tool-bar-mode -1))) 
+;  (tool-bar-mode 0) Conflicts with maximization on windows, so need the hook above
   (menu-bar-mode 0)
   (scroll-bar-mode 0)
   (setq inhibit-startup-message t)
@@ -299,16 +300,23 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 * Startup
 ** Maximize window (Windows only)
 #+BEGIN_SRC emacs-lisp
-; (if (eq system-type 'windows-nt)
+
+ (if (eq system-type 'windows-nt)
+   (tool-bar-mode 1)
+   (w32-send-sys-command 61488) ; Does not work with toolbar diabled, so put that on a hook above
+  )
+
 ;   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
+
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
 
 #+END_SRC
-** Open a file with agenda on startup (inactive)
-  #+begin_src emacs-lisp :tangle no
-    (find-file "~/personal/organizer.org")
-    (require 'org-compat)
-    (org-agenda nil "a")
+** Open a file with agenda on startup 
+  #+begin_src emacs-lisp 
+;    (find-file "~/personal/organizer.org")
+;    (require 'org-compat)
+    (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
+;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
   #+end_src
 * Remember for later (inactive)
 ** Switch from horizontal to vertical split
