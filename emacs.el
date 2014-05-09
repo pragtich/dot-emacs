@@ -22,6 +22,7 @@
 
 (if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
   (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
+  (setq org-directory "~/org/")
 )
 
 (setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
@@ -171,5 +172,14 @@
 
 ;    (find-file "~/personal/organizer.org")
 ;    (require 'org-compat)
+    (find-file (expand-file-name "jpg.org" org-directory))
     (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
+
+(if (eq system-type 'windows-nt)
+   (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode"))
+   (autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil)
+   (setq vr-command "C:/Users/jpg/Progs/VR-mode/vr.exe")
+
+   (setq vr-win-class "Emacs")
+)

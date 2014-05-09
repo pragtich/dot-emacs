@@ -1,4 +1,5 @@
 
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -320,6 +321,16 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
     (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
   #+end_src
+* Voice recognition (VR-mode)
+Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sourceforge.net/)
+#+BEGIN_SRC emacs-lisp
+ (if (eq system-type 'windows-nt)
+    (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
+    (autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil)
+    (setq vr-command "C:\\Users\\jpg\\Progs\\VR-mode\\vr.exe")
+    (setq vr-win-class "Emacs")
+ )
+#+END_SRC
 * Remember for later (inactive)
 ** Switch from horizontal to vertical split
 #+BEGIN_SRC emacs-lisp :tangle no
