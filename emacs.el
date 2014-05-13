@@ -36,8 +36,11 @@
 
 (setq org-M-RET-may-split-line nil)
 
-(setq org-todo-keywords
-      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
+(setq org-completion-use-ido t)
+
+(setq org-hide-leading-stars t)
+
+(setq org-src-fontify-natively t)
 
 (setq org-stuck-projects '("Project/-DONE" nil ("NEXT") ""))
 

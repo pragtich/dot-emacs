@@ -136,6 +136,11 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
       org-agenda-custom-commands )
 
 #+END_SRC
+** Custom TODO headers
+#+BEGIN_SRC emacs-lisp
+(setq org-todo-keywords
+      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
