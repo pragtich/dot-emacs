@@ -196,6 +196,11 @@ sentence navigation commands work for me.
 **** M-x mode
 Adding =M-x= mode to IDO:
 #+BEGIN_SRC emacs-lisp
+;; Reenable ido for M-x
+(setq ido-ubiquitous-command-overrides
+  (cons '(enable exact "execute-extended-command") (cdr ido-ubiquitous-default-command-overrides)))
+#+END_SRC
+#+BEGIN_SRC emacs-lisp :tangle no
   (global-set-key
      "\M-x"
      (lambda ()
@@ -207,6 +212,7 @@ Adding =M-x= mode to IDO:
           (all-completions "" obarray 'commandp))))))
 
 #+END_SRC
+
 *** Delete current buffer file
 Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
 #+BEGIN_SRC emacs-lisp
