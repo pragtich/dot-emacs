@@ -139,6 +139,11 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 (setq org-todo-keywords
       '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
 #+END_SRC
+** Fast TAGS selection
+Using +TAGS: NEXT(n) format helps greatly
+#+BEGIN_SRC emacs-lisp
+(setq org-fast-tag-selection-single-key t)
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
