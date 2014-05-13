@@ -1,6 +1,4 @@
 
-
-
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -366,6 +364,8 @@ Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sour
 ))
 #+END_SRC
 * Remember for later (inactive)
+** Auto install packages
+https://github.com/allait/dotfiles/blob/master/emacs/emacs.d/packages.el
 ** Switch from horizontal to vertical split
 #+BEGIN_SRC emacs-lisp :tangle no
 (defun toggle-window-split ()

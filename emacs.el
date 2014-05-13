@@ -86,16 +86,6 @@
 
 (setq ido-ignore-extensions t)
 
-(global-set-key
-   "\M-x"
-   (lambda ()
-     (interactive)
-     (call-interactively
-      (intern
-       (ido-completing-read
-        "M-x "
-        (all-completions "" obarray 'commandp))))))
-
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
   (interactive)
@@ -129,6 +119,8 @@
                    name (file-name-nondirectory new-name)))))))
 
 (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+
+( setq delete-by-moving-to-trash t)
 
 (global-set-key (kbd "M-j")
 (lambda ()
