@@ -193,6 +193,14 @@ sentence navigation commands work for me.
 (setq ido-ignore-extensions t) 
 
 #+END_SRC
+**** Key shortcuts for IDO
+I like being able to move to next and prev hits in IDO
+#+BEGIN_SRC emacs-lisp
+;; Set ido next-previous match keys
+(add-hook 'ido-setup-hook (lambda ()
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+#+END_SRC
 **** M-x mode
 Adding =M-x= mode to IDO:
 #+BEGIN_SRC emacs-lisp
