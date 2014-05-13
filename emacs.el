@@ -62,6 +62,9 @@
       )) ())       
       org-agenda-custom-commands )
 
+(setq org-todo-keywords
+      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
+
 ;; show matching parens
 (show-paren-mode 1)
 
