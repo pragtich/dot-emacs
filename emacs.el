@@ -177,8 +177,10 @@
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
 
 (if (eq system-type 'windows-nt)
-   (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
-   (autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil)
-   (setq vr-command "C:\\Users\\jpg\\Progs\\VR-mode\\vr.exe")
-   (setq vr-win-class "Emacs")
-)
+    (progn (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
+
+      (setq vr-command "C:\\Users\\jpg\\Progs\\VR-mode\\vr.exe")
+      (setq vr-win-class "Emacs")
+      (load "vr")
+    ;(autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil) 
+))

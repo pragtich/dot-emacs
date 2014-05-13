@@ -1,5 +1,6 @@
 
 
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -59,8 +60,7 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
 #+end_src
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 
-* Org-mode
-
+* Org-mode 
 ** Locations
 Need to set system-specific locations for org, as I keep everything in Dropbox and cannot do symlinks in Windows. So I set =org-directory= as a home location. I can then use this as a base for the file named in =org-agenda-files=, which lists files on each line relative to this folder.
 #+BEGIN_SRC emacs-lisp
@@ -94,12 +94,21 @@ This is primarily to ease editing of this single file: enter =<S= and hit =TAB= 
 I hate it when =<M-RET>= splits a line in the middle, something I never do.
 #+BEGIN_SRC emacs-lisp
 (setq org-M-RET-may-split-line nil)
-
 #+END_SRC
-** Configure TODO states
+
+** Use IDO mode for org
 #+BEGIN_SRC emacs-lisp
- (setq org-todo-keywords
-       '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
+(setq org-completion-use-ido t)
+#+END_SRC
+
+** Hide leading stars
+#+BEGIN_SRC emacs-lisp
+(setq org-hide-leading-stars t)
+#+END_SRC
+
+** Fontify src blocks
+#+BEGIN_SRC emacs-lisp
+(setq org-src-fontify-natively t)
 #+END_SRC
 ** Custom agenda commands
 *** Define stuck projects
@@ -325,13 +334,13 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sourceforge.net/)
 #+BEGIN_SRC emacs-lisp
  (if (eq system-type 'windows-nt)
-    (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
-    ;(autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil)
+    (progn (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
+
       (setq vr-command "C:\\Users\\jpg\\Progs\\VR-mode\\vr.exe")
       (setq vr-win-class "Emacs")
       (load "vr")
- 
-)
+    ;(autoload 'vr-mode "C:/Users/jpg/Progs/VR-mode/vr" "" t nil) 
+))
 #+END_SRC
 * Remember for later (inactive)
 ** Switch from horizontal to vertical split
