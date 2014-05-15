@@ -10,6 +10,10 @@
 ;; Initialize packages
 (package-initialize)
 
+;; Use ido everywhere
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode 1)
+
 (global-set-key (kbd "C-x g") 'magit-status) 
 (global-set-key (kbd "<f12>") 'magit-status)
 
@@ -65,6 +69,12 @@
 (setq org-todo-keywords
       '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
 
+(setq org-fast-tag-selection-single-key t)
+
+(setq org-special-ctrl-a/e t)
+
+(setq org-ellipsis " \u22bf" )
+
 ;; show matching parens
 (show-paren-mode 1)
 
@@ -85,6 +95,15 @@
 (setq ido-create-new-buffer 'always)
 
 (setq ido-ignore-extensions t)
+
+;; Set ido next-previous match keys
+(add-hook 'ido-setup-hook (lambda ()
+  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
+
+;; Reenable ido for M-x
+(setq ido-ubiquitous-command-overrides
+  (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))
 
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."

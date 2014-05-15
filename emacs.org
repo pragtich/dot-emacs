@@ -31,6 +31,12 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
   ;; Initialize packages
   (package-initialize)
 #+end_src
+** Enable IDO-ubiquitous
+#+BEGIN_SRC emacs-lisp
+;; Use ido everywhere
+(require 'ido-ubiquitous)
+(ido-ubiquitous-mode 1)
+#+END_SRC
 * Magit configuration
 *** Key binding
 #+BEGIN_SRC emacs-lisp
@@ -213,10 +219,10 @@ I like being able to move to next and prev hits in IDO
 #+END_SRC
 **** M-x mode
 Adding =M-x= mode to IDO:
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp 
 ;; Reenable ido for M-x
 (setq ido-ubiquitous-command-overrides
-  (cons '(enable exact "execute-extended-command") (cdr ido-ubiquitous-default-command-overrides)))
+  (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))
 #+END_SRC
 #+BEGIN_SRC emacs-lisp :tangle no
   (global-set-key
