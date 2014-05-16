@@ -81,6 +81,8 @@ We need some keybindings for org-mode. These are the suggested defaults.
 #+BEGIN_SRC emacs-lisp
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
+
 #+END_SRC
 ** Start org-mode for all .org files
 Somewhat superfluous since recent Emacsen have this as default, but just in case:
