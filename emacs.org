@@ -425,3 +425,27 @@ default.
                         (set-default-font "Monaco")
                       (error nil))))))
 #+end_src
+** yasnippet
+#+begin_src emacs-lisp :tangle no
+  (require 'yasnippet)
+  (yas/global-mode 1)
+#+end_src
+
+Add custom snippets
+#+begin_src emacs-lisp :tangle no
+  (yas/load-directory (expand-file-name "snippets" dotfiles-dir))
+#+end_src
+
+yasnippet and org-mode don't play well together when using TAB for
+completion. This should fix it:
+#+begin_src emacs-lisp :tangle no
+  ;; (defun yas/org-very-safe-expand ()
+  ;;                  (let ((yas/fallback-behavior 'return-nil)) (yas/expand)))
+  ;; (add-hook 'org-mode-hook
+  ;;           (lambda ()
+  ;;             (make-variable-buffer-local 'yas/trigger-key)
+  ;;             (setq yas/trigger-key [tab])
+  ;;             (add-to-list 'org-tab-first-hook 'yas/org-very-safe-expand)
+  ;;             (define-key yas/keymap [tab] 'yas/next-field)))
+  
+#+end_src
