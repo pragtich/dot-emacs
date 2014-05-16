@@ -413,3 +413,15 @@ https://github.com/allait/dotfiles/blob/master/emacs/emacs.d/packages.el
 
 #+END_SRC
    
+** Font
+Run through a list of preferred fonts and set the first available as
+default.
+#+begin_src emacs-lisp :tangle no
+  (condition-case nil
+      (set-default-font "Ubuntu Mono 16")
+    (error (condition-case nil
+               (set-default-font "Cousine")
+             (error (condition-case nil
+                        (set-default-font "Monaco")
+                      (error nil))))))
+#+end_src
