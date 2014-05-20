@@ -31,11 +31,16 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
   ;; Initialize packages
   (package-initialize)
 #+end_src
-** Enable IDO-ubiquitous
+** IDO
+*** Enable IDO-ubiquitous
 #+BEGIN_SRC emacs-lisp
 ;; Use ido everywhere
 (require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
+#+END_SRC
+*** Ido vertical mode
+#+BEGIN_SRC emacs-lisp
+(ido-vertical-mode 1)
 #+END_SRC
 * Magit configuration
 *** Key binding

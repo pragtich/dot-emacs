@@ -14,6 +14,8 @@
 (require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
 
+(ido-vertical-mode 1)
+
 (global-set-key (kbd "C-x g") 'magit-status) 
 (global-set-key (kbd "<f12>") 'magit-status)
 
@@ -33,6 +35,7 @@
 
 (global-set-key "\C-cl" 'org-store-link)
 (global-set-key "\C-ca" 'org-agenda)
+(global-set-key "\C-cb" 'org-iswitchb)
 
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
