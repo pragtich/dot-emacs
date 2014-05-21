@@ -163,6 +163,11 @@ Using +TAGS: NEXT(n) format helps greatly
 #+BEGIN_SRC emacs-lisp
 (setq org-special-ctrl-a/e t)
 #+END_SRC
+** Cycling at beginning of document
+See https://github.com/jwiegley/dot-emacs/blob/master/org-settings.el
+#+BEGIN_SRC emacs-lisp
+(setq org-cycle-global-at-bob t)
+#+END_SRC
 ** Pretty ellipsis
 #+BEGIN_SRC emacs-lisp
 (setq org-ellipsis " \u22bf" )
