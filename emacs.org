@@ -148,8 +148,11 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 #+END_SRC
 ** Custom TODO headers
 #+BEGIN_SRC emacs-lisp
-(setq org-todo-keywords
-      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
+  (setq org-todo-keywords
+        '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
+  (setq org-todo-keyword-faces
+        '(("A" . "yellow")
+          ("WAITING". "orange")))
 #+END_SRC
 ** Fast TAGS selection
 Using +TAGS: NEXT(n) format helps greatly
@@ -432,6 +435,9 @@ default.
                         (set-default-font "Monaco")
                       (error nil))))))
 #+end_src
+** Updating Org
+- Git submodule update (nog op te zoeken)
+- Recompile van hier: [[http://orgmode.org/worg/org-hacks.html#compiling-org-without-make][Compiling without make]]
 ** yasnippet
 #+begin_src emacs-lisp :tangle no
   (require 'yasnippet)
