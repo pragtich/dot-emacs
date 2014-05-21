@@ -1,6 +1,6 @@
 
 ;; Test: proves that this init file is being found 
-(tool-bar-mode -1)
+;(tool-bar-mode -1)
 
 ;; Emacs startup file.
 
