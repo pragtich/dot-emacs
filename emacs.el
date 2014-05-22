@@ -70,11 +70,16 @@
       org-agenda-custom-commands )
 
 (setq org-todo-keywords
-      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" )))
+      '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
+(setq org-todo-keyword-faces
+      '(("A" . "yellow")
+        ("WAITING". "orange")))
 
 (setq org-fast-tag-selection-single-key t)
 
 (setq org-special-ctrl-a/e t)
+
+(setq org-cycle-global-at-bob t)
 
 (setq org-ellipsis " \u22bf" )
 
