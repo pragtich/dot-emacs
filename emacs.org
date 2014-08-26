@@ -42,6 +42,20 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
 #+BEGIN_SRC emacs-lisp
 (ido-vertical-mode 1)
 #+END_SRC
+** Python-mode
+https://launchpad.net/python-mode
+http://www.emacswiki.org/emacs/ProgrammingWithPythonModeDotEl
+*** Locate python-mode
+#+BEGIN_SRC emacs-lisp
+ (add-to-list 'load-path "~/.emacs.d/lisp/python-mode") 
+ 
+#+END_SRC
+*** Activate Python-mode
+#+BEGIN_SRC emacs-lisp
+ (autoload 'python-mode "python-mode" "Python Mode." t)
+ (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
+ (add-to-list 'interpreter-mode-alist '("python" . python-mode))
+#+END_SRC
 * Magit configuration
 *** Key binding
 #+BEGIN_SRC emacs-lisp
