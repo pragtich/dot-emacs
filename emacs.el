@@ -87,7 +87,7 @@
 
 (setq org-cycle-global-at-bob t)
 
-(setq org-ellipsis " \u22bf" )
+(setq org-ellipsis "\u2026")    ;" \u22bf" )
 
 ;; show matching parens
 (show-paren-mode 1)
@@ -173,7 +173,7 @@
 ;;    (require 'color-theme)
 ;;    (color-theme-initialize)
 ;;    (color-theme-kingsajz)
-(load-theme 'zenburn t)
+  (load-theme 'zenburn t)
 
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 

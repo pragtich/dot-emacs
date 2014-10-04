@@ -184,7 +184,8 @@ See https://github.com/jwiegley/dot-emacs/blob/master/org-settings.el
 #+END_SRC
 ** Pretty ellipsis
 #+BEGIN_SRC emacs-lisp
-(setq org-ellipsis " \u22bf" )
+(setq org-ellipsis "\u2026")    ;" \u22bf" )
+;(setq org-ellipsis (quote org-tag))
 #+END_SRC
 * Look and feel
 ** Behavior
@@ -343,7 +344,7 @@ vanilla ~*scratch*~ buffer.
 ;;    (require 'color-theme)
 ;;    (color-theme-initialize)
 ;;    (color-theme-kingsajz)
-(load-theme 'zenburn t)
+  (load-theme 'zenburn t)
    #+End_src
 * Backups and History
 ** Backups
