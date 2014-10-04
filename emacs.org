@@ -93,8 +93,8 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
      ))
 #+end_src
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
-*** Darwin specific
-**** Start emacs server when on OS X
+* Darwin specific
+** Start emacs server when on OS X
 #+BEGIN_SRC emacs-lisp
 
 (when (eq system-type 'darwin)
@@ -247,7 +247,7 @@ sentence navigation commands work for me.
 (setq split-width-threshold 90)
 #+END_SRC
 *** Delete current buffer file
-Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
+    Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
 #+BEGIN_SRC emacs-lisp
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
@@ -357,7 +357,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
         regexp-search-ring))
 #+end_src
 * Startup
-** Maximize window (Windows only)
+** Maximize window 
 #+BEGIN_SRC emacs-lisp
 
  (when (eq system-type 'windows-nt)
@@ -395,8 +395,6 @@ Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sour
 ))
 #+END_SRC
 * Remember for later (inactive)
-** Auto install packages
-https://github.com/allait/dotfiles/blob/master/emacs/emacs.d/packages.el
 ** Switch from horizontal to vertical split
 #+BEGIN_SRC emacs-lisp :tangle no
 (defun toggle-window-split ()
