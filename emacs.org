@@ -35,9 +35,24 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 
 
 #+END_SRC
+*** Defining my customized packages
+#+BEGIN_SRC emacs-lisp
+  (setq el-get-sources
+  '((:name magit                          ;Adds a keybinding to standard magit setup
+    :after (progn
+      (global-set-key (kbd "C-x g") 'magit-status) 
+      (global-set-key (kbd "<f12>") 'magit-status) ))))
+      
+
+#+END_SRC
+*** Defining my default packages
+#+BEGIN_SRC emacs-lisp
+    (setq pragtich/packages
+      (append 
+        '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "magit" "package" "zenburn")))
+#+END_SRC
 *** Loading  packages
     #+BEGIN_SRC emacs-lisp
-    (setq pragtich/packages (append '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "magit" "package" "zenburn")))
     (el-get 'sync pragtich/packages)
     #+END_SRC
 ** Install packages (disabled)
@@ -80,8 +95,8 @@ http://www.emacswiki.org/emacs/ProgrammingWithPythonModeDotEl
  (add-to-list 'interpreter-mode-alist '("python" . python-mode))
 #+END_SRC
 * Magit configuration
-*** Key binding
-#+BEGIN_SRC emacs-lisp
+*** Key binding (disabled)
+#+BEGIN_SRC emacs-lisp :tangle no
 (global-set-key (kbd "C-x g") 'magit-status) 
 (global-set-key (kbd "<f12>") 'magit-status) 
 #+END_SRC

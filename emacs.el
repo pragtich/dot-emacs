@@ -8,7 +8,18 @@
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
+
+(setq el-get-sources
+'((:name magit                          ;Adds a keybinding to standard magit setup
+  :after (progn
+    (global-set-key (kbd "C-x g") 'magit-status) 
+    (global-set-key (kbd "<f12>") 'magit-status) ))))
+
+(setq pragtich/packages
+  (append 
+    '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "magit" "package" "zenburn")))
+
+(el-get 'sync pragtich/packages)
 
 ;; Use ido everywhere
 (require 'ido-ubiquitous)
@@ -21,9 +32,6 @@
 (autoload 'python-mode "python-mode" "Python Mode." t)
 (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
 (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
-(global-set-key (kbd "C-x g") 'magit-status) 
-(global-set-key (kbd "<f12>") 'magit-status)
 
 (setenv "GIT_ASKPASS" "git-gui--askpass")
 
