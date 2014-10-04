@@ -10,13 +10,28 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
 (setq el-get-sources
-'((:name magit                          ;Adds a keybinding to standard magit setup
-  :after (progn
-    (global-set-key (kbd "C-x g") 'magit-status) 
-    (global-set-key (kbd "<f12>") 'magit-status) ))
-(:name ido-vertical-mode                ;Show ido results vertically
- :after (progn
-   (ido-vertical-mode 1)))))
+    '((:name magit                          ;Adds a keybinding to standard magit setup
+      :after (progn
+        (global-set-key (kbd "C-x g") 'magit-status) 
+        (global-set-key (kbd "<f12>") 'magit-status) ))
+    (:name ido-vertical-mode                ;Show ido results vertically
+     :after (progn
+       (ido-mode 1) 
+       (ido-vertical-mode 1)
+       (setq ido-enable-flex-matching t)
+       (setq ido-everywhere t)
+       (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+       (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+  ; M-x mode
+  ;; Reenable ido for M-x
+  ))
+  (:name ido-ubiquitous
+   :features ido-ubiquitous
+   :after (progn
+     (ido-ubiquitous-mode 1)
+     (setq ido-ubiquitous-command-overrides
+       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+)))
 
 (setq pragtich/packages
     (append 
@@ -30,8 +45,7 @@
 (el-get 'sync pragtich/packages)
 
 ;; Use ido everywhere
-(require 'ido-ubiquitous)
-(ido-ubiquitous-mode 1)
+;(require 'ido-ubiquitous)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/python-mode")
 
@@ -116,23 +130,6 @@
 
 (setq split-height-threshold 60)
 (setq split-width-threshold 90)
-
-(setq ido-enable-flex-matching t)
-(setq ido-everywhere t)
-(ido-mode 1)
-
-(setq ido-create-new-buffer 'always)
-
-(setq ido-ignore-extensions t)
-
-;; Set ido next-previous match keys
-(add-hook 'ido-setup-hook (lambda ()
-  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match)))
-
-;; Reenable ido for M-x
-(setq ido-ubiquitous-command-overrides
-  (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))
 
 (defun delete-current-buffer-file ()
   "Removes file connected to current buffer and kills buffer."
