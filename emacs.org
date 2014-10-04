@@ -20,7 +20,7 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
 
 ** Install packages using el-get
 *** Initializing el-get
-Initialize, install if not present
+Initialize, install if not present. For windows, must install GNU texinfo to get the install-info command!
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
