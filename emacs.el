@@ -1,14 +1,14 @@
-;; Add MELPA to packages sources
-;; Inspired by http://melpa.milkbox.net/#/getting-started
-(require 'package)
-(add-to-list 'package-archives
-  '("melpa" . "http://melpa.milkbox.net/packages/") t)
-;; On older emacsen also add the base library
-(when (< emacs-major-version 24)
-  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))  
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-;; Initialize packages
-(package-initialize)
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
 
 ;; Use ido everywhere
 (require 'ido-ubiquitous)
@@ -88,6 +88,7 @@
 (setq org-cycle-global-at-bob t)
 
 (setq org-ellipsis "\u2026")    ;" \u22bf" )
+;(setq org-ellipsis (quote org-tag))
 
 ;; show matching parens
 (show-paren-mode 1)
