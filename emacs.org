@@ -119,7 +119,13 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
   ; Start the emacs server with a predictable pipe name
   (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
   (server-start))
-
+  ; And let me quit with C-c C-c when editing in server mode
+  (add-hook 'server-switch-hook '(lambda ()
+				  (local-set-key [(control c) (control c)]
+						 (lambda ()
+						   (interactive)
+						   (save-buffer)
+						   (server-edit)))))  
 #+END_SRC
 * Org-mode 
 ** Locations
