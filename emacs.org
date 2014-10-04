@@ -60,20 +60,6 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
     #+BEGIN_SRC emacs-lisp
     (el-get 'sync pragtich/packages)
     #+END_SRC
-** Install packages (disabled)
-#+begin_src emacs-lisp :tangle no
-  ;; Add MELPA to packages sources
-  ;; Inspired by http://melpa.milkbox.net/#/getting-started
-  (require 'package)
-  (add-to-list 'package-archives
-    '("melpa" . "http://melpa.milkbox.net/packages/") t)
-  ;; On older emacsen also add the base library
-  (when (< emacs-major-version 24)
-    (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))  
-
-  ;; Initialize packages
-  (package-initialize)
-#+end_src
 ** IDO
 *** Enable IDO-ubiquitous
 #+BEGIN_SRC emacs-lisp
