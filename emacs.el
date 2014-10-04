@@ -203,8 +203,12 @@
 
 ;    (find-file "~/personal/organizer.org")
 ;    (require 'org-compat)
-    (find-file (expand-file-name "jpg.org" org-directory))
-    (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
+    (when (eq system-type 'windows-nt)  ;Only open file when at work: should use system-name or something
+     ; Open file
+     (find-file (expand-file-name "jpg.org" org-directory))
+     ; run agenda command
+     (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
+    )
 ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
 
 (if (eq system-type 'windows-nt)

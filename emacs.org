@@ -392,11 +392,15 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 #+END_SRC
 ** Open a file with agenda on startup 
   #+begin_src emacs-lisp 
-;    (find-file "~/personal/organizer.org")
-;    (require 'org-compat)
-    (find-file (expand-file-name "jpg.org" org-directory))
-    (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
-;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
+    ;    (find-file "~/personal/organizer.org")
+    ;    (require 'org-compat)
+        (when (eq system-type 'windows-nt)  ;Only open file when at work: should use system-name or something
+         ; Open file
+         (find-file (expand-file-name "jpg.org" org-directory))
+         ; run agenda command
+         (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
+        )
+    ;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
   #+end_src
 * Voice recognition (VR-mode)
 Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sourceforge.net/)
