@@ -16,8 +16,13 @@
     (global-set-key (kbd "<f12>") 'magit-status) ))))
 
 (setq pragtich/packages
-  (append 
-    '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "magit" "package" "zenburn")))
+    (append 
+      '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "package" "zenburn")))
+
+  ;; An add the customized packages too:
+(setq pragtich/packages
+      (append pragtich/packages
+              (mapcar #'el-get-source-name el-get-sources)))
 
 (el-get 'sync pragtich/packages)
 
