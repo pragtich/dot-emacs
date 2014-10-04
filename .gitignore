@@ -6,3 +6,5 @@
 /ido.last
 /elpa
 /elpa.orig
+/el-get
+!/el-get/el-get
