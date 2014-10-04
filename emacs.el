@@ -13,7 +13,10 @@
 '((:name magit                          ;Adds a keybinding to standard magit setup
   :after (progn
     (global-set-key (kbd "C-x g") 'magit-status) 
-    (global-set-key (kbd "<f12>") 'magit-status) ))))
+    (global-set-key (kbd "<f12>") 'magit-status) ))
+(:name ido-vertical-mode                ;Show ido results vertically
+ :after (progn
+   (ido-vertical-mode 1)))))
 
 (setq pragtich/packages
     (append 
@@ -29,8 +32,6 @@
 ;; Use ido everywhere
 (require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
-
-(ido-vertical-mode 1)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/python-mode")
 

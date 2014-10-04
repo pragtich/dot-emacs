@@ -41,9 +41,10 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
   '((:name magit                          ;Adds a keybinding to standard magit setup
     :after (progn
       (global-set-key (kbd "C-x g") 'magit-status) 
-      (global-set-key (kbd "<f12>") 'magit-status) ))))
-      
-
+      (global-set-key (kbd "<f12>") 'magit-status) ))
+  (:name ido-vertical-mode                ;Show ido results vertically
+   :after (progn
+     (ido-vertical-mode 1)))))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
@@ -66,10 +67,6 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 ;; Use ido everywhere
 (require 'ido-ubiquitous)
 (ido-ubiquitous-mode 1)
-#+END_SRC
-*** Ido vertical mode
-#+BEGIN_SRC emacs-lisp
-(ido-vertical-mode 1)
 #+END_SRC
 ** Python-mode
 https://launchpad.net/python-mode
