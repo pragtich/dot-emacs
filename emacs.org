@@ -32,9 +32,14 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
     (eval-print-last-sexp)))
 
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
+
 
 #+END_SRC
+*** Loading  packages
+    #+BEGIN_SRC emacs-lisp
+    (setq pragtich/packages (append '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "magit" "package" "zenburn")))
+    (el-get 'sync pragtich/packages)
+    #+END_SRC
 ** Install packages (disabled)
 #+begin_src emacs-lisp :tangle no
   ;; Add MELPA to packages sources
