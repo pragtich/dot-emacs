@@ -102,7 +102,8 @@ http://www.emacswiki.org/emacs/ProgrammingWithPythonModeDotEl
 #+END_SRC
 *** Windows specific
 GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
-**** TODO Check if this works also in OS X
+ TODO Check if this works also in OS X
+
 #+begin_src emacs-lisp
    (setenv "GIT_ASKPASS" "git-gui--askpass")
 #+end_src
