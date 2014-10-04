@@ -35,17 +35,13 @@
 
 (setq pragtich/packages
     (append 
-      '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "ido-ubiquitous" "ido-vertical-mode" "package" "zenburn")))
-
+      '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
               (mapcar #'el-get-source-name el-get-sources)))
 
 (el-get 'sync pragtich/packages)
-
-;; Use ido everywhere
-;(require 'ido-ubiquitous)
 
 (add-to-list 'load-path "~/.emacs.d/lisp/python-mode")
 

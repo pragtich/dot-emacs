@@ -4,12 +4,9 @@
 #+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+STYLE:    <link rel="stylesheet" type="text/css" href="/static/files/emacs-config.css" />
 
-
 This file is used by [[http://orgmode.org/worg/org-contrib/babel/intro.php#sec-8_2_1][org-babel]] to generate ~emacs.el~ from
 it. ~emacs.el~ is then loaded as my Emacs configuration and only
 re-generated when the org file changes. Ideas taken from from Andi Albrecht https://raw.githubusercontent.com/andialbrecht/emacs-config/master/emacs.org
-
-
 * Globals
 All lisp files needed to run this configuration are either installed
 by system packages. Or found in the same directory where this
@@ -114,7 +111,16 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
      ))
 #+end_src
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
+*** Darwin specific
+**** Start emacs server when on OS X
+#+BEGIN_SRC emacs-lisp
 
+(when (eq system-type 'darwin)
+  ; Start the emacs server with a predictable pipe name
+  (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
+  (server-start))
+
+#+END_SRC
 * Org-mode 
 ** Locations
 Need to set system-specific locations for org, as I keep everything in Dropbox and cannot do symlinks in Windows. So I set =org-directory= as a home location. I can then use this as a base for the file named in =org-agenda-files=, which lists files on each line relative to this folder.
