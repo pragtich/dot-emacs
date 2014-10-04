@@ -192,7 +192,7 @@
         search-ring
         regexp-search-ring))
 
-(if (eq system-type 'windows-nt)
+(when (eq system-type 'windows-nt)
    (tool-bar-mode 1)
    (w32-send-sys-command 61488) ; Does not work with toolbar diabled, so put that on a hook above
   )
