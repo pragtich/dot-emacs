@@ -35,7 +35,7 @@
 
 (setq pragtich/packages
     (append 
-      '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -43,18 +43,24 @@
 
 (el-get 'sync pragtich/packages)
 
-(add-to-list 'load-path "~/.emacs.d/lisp/python-mode")
-
-(autoload 'python-mode "python-mode" "Python Mode." t)
-(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
-(add-to-list 'interpreter-mode-alist '("python" . python-mode))
-
 (setenv "GIT_ASKPASS" "git-gui--askpass")
 
 (if (eq system-type 'windows-nt)
    (progn
      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
     ))
+
+(when (eq system-type 'darwin)
+  ; Start the emacs server with a predictable pipe name
+  (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
+  (server-start))
+  ; And let me quit with C-c C-c when editing in server mode
+  (add-hook 'server-switch-hook '(lambda ()
+                                  (local-set-key [(control c) (control c)]
+                                                 (lambda ()
+                                                   (interactive)
+                                                   (save-buffer)
+                                                   (server-edit)))))
 
 (if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
   (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))

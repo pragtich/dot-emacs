@@ -1,3 +1,4 @@
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -61,7 +62,7 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '("cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -71,20 +72,6 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
     #+BEGIN_SRC emacs-lisp
     (el-get 'sync pragtich/packages)
     #+END_SRC
-** Python-mode
-https://launchpad.net/python-mode
-http://www.emacswiki.org/emacs/ProgrammingWithPythonModeDotEl
-*** Locate python-mode
-#+BEGIN_SRC emacs-lisp
- (add-to-list 'load-path "~/.emacs.d/lisp/python-mode") 
- 
-#+END_SRC
-*** Activate Python-mode
-#+BEGIN_SRC emacs-lisp
- (autoload 'python-mode "python-mode" "Python Mode." t)
- (add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))
- (add-to-list 'interpreter-mode-alist '("python" . python-mode))
-#+END_SRC
 * Magit configuration
 *** Key binding (disabled)
 #+BEGIN_SRC emacs-lisp :tangle no
