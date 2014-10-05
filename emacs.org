@@ -58,7 +58,8 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
   (:name smartparens
    :features smartparens-config
    :after (progn
-     (smartparens-global-mode 1)))))
+     (smartparens-global-mode 1)
+     (sp-use-smartparens-bindings)))))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
