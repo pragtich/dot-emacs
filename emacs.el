@@ -10,32 +10,35 @@
 (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
 
 (setq el-get-sources
-    '((:name magit                          ;Adds a keybinding to standard magit setup
-      :after (progn
-        (global-set-key (kbd "C-x g") 'magit-status) 
-        (global-set-key (kbd "<f12>") 'magit-status) ))
-    (:name ido-vertical-mode                ;Show ido results vertically
-     :after (progn
-       (ido-mode 1) 
-       (ido-vertical-mode 1)
-       (setq ido-enable-flex-matching t)
-       (setq ido-everywhere t)
-       (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
-       (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
-  ; M-x mode
-  ;; Reenable ido for M-x
-  ))
-  (:name ido-ubiquitous
-   :features ido-ubiquitous
+  '((:name magit                          ;Adds a keybinding to standard magit setup
+    :after (progn
+      (global-set-key (kbd "C-x g") 'magit-status) 
+      (global-set-key (kbd "<f12>") 'magit-status) ))
+  (:name ido-vertical-mode                ;Show ido results vertically
    :after (progn
-     (ido-ubiquitous-mode 1)
-     (setq ido-ubiquitous-command-overrides
-       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
-)))
+     (ido-mode 1) 
+     (ido-vertical-mode 1)
+     (setq ido-enable-flex-matching t)
+     (setq ido-everywhere t)
+     (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+     (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+; M-x mode
+;; Reenable ido for M-x
+))
+(:name ido-ubiquitous
+ :features ido-ubiquitous
+ :after (progn
+   (ido-ubiquitous-mode 1)
+   (setq ido-ubiquitous-command-overrides
+     (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))))
+(:name smartparens
+ :features smartparens-config
+ :after (progn
+   (smartparens-global-mode 1)))))
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode" )))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages

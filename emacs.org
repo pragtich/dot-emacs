@@ -1,4 +1,3 @@
-
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -55,14 +54,17 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
    :after (progn
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
-       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
-)))
+       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))))
+  (:name smartparens
+   :features smartparens-config
+   :after (progn
+     (smartparens-global-mode 1)))))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode" )))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
