@@ -64,7 +64,7 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
