@@ -34,11 +34,14 @@
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+)
+   (:name python-mode
+    :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
 )))
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -129,7 +132,13 @@
 ;; take the short answer, y/n is yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
 
-(global-set-key (kbd "RET") 'newline-and-indent)
+;; check emacs version
+(if (or 
+     (and (>= emacs-major-version 24) 
+          (>= emacs-minor-version 4))
+     (>= emacs-major-version 25))
+    ()
+   (global-set-key (kbd "RET") 'newline-and-indent))
 
 (setq sentence-end-double-space nil)
 

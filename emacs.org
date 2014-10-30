@@ -58,13 +58,16 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+)
+   (:name python-mode
+    :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
 )))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -231,9 +234,15 @@ These lines configure Emacs' general behavior at certain aspects.
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
 **** Indentation after RET
-I almost always want to go to the right indentation on the next line.
+I almost always want to go to the right indentation on the next line. Disable after version 24.4 because it has a sensible default.
 #+begin_src emacs-lisp
-(global-set-key (kbd "RET") 'newline-and-indent)
+ ;; check emacs version
+(if (or 
+     (and (>= emacs-major-version 24) 
+          (>= emacs-minor-version 4))
+     (>= emacs-major-version 25))
+    ()
+   (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
 *** Sentences end with a single space
 
