@@ -34,7 +34,8 @@
 (:name smartparens
  :features smartparens-config
  :after (progn
-   (smartparens-global-mode 1)))))
+   (smartparens-global-mode 1)
+   (sp-use-smartparens-bindings)))))
 
 (setq pragtich/packages
     (append 
