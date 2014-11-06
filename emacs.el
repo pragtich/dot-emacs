@@ -7,7 +7,10 @@
     (goto-char (point-max))
     (eval-print-last-sexp)))
 
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-pragtich/recipes")
+(setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("gnu" . "http://elpa.gnu.org/packages/")))
+(package-initialize)
 
 (setq el-get-sources
   '((:name magit                          ;Adds a keybinding to standard magit setup
@@ -39,7 +42,7 @@
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "zenburn" "python-mode" )))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package")))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
