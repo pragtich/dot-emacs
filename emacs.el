@@ -13,24 +13,13 @@
 (package-initialize)
 
 (setq el-get-sources
-    '((:name magit                          ;Adds a keybinding to standard magit setup
-      :after (progn
-        (global-set-key (kbd "C-x g") 'magit-status) 
-        (global-set-key (kbd "<f12>") 'magit-status) ))
-    (:name ido-vertical-mode                ;Show ido results vertically
-     :after (progn
-       (ido-mode 1) 
-       (ido-vertical-mode 1)
-       (setq ido-enable-flex-matching t)
-       (setq ido-everywhere t)
-       (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
-       (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
-  ; M-x mode
-  ;; Reenable ido for M-x
-  ))
-  (:name ido-ubiquitous
-   :features ido-ubiquitous
+  '((:name magit                          ;Adds a keybinding to standard magit setup
+    :after (progn
+      (global-set-key (kbd "C-x g") 'magit-status) 
+      (global-set-key (kbd "<f12>") 'magit-status) ))
+  (:name ido-vertical-mode                ;Show ido results vertically
    :after (progn
+<<<<<<< HEAD
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
@@ -43,6 +32,28 @@
      :after (progn (sp-use-smartparens-bindings)
                     (smartparens-global-mode 1))
 )))
+=======
+     (ido-mode 1) 
+     (ido-vertical-mode 1)
+     (setq ido-enable-flex-matching t)
+     (setq ido-everywhere t)
+     (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+     (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+; M-x mode
+;; Reenable ido for M-x
+))
+(:name ido-ubiquitous
+ :features ido-ubiquitous
+ :after (progn
+   (ido-ubiquitous-mode 1)
+   (setq ido-ubiquitous-command-overrides
+     (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))))
+(:name smartparens
+ :features smartparens-config
+ :after (progn
+   (smartparens-global-mode 1)
+   (sp-use-smartparens-bindings)))))
+>>>>>>> ad229fbeb7116bf62c4e7a234b9ff7f84189b52c
 
 (setq pragtich/packages
     (append 
