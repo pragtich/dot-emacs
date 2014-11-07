@@ -37,11 +37,16 @@
 )
    (:name python-mode
     :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
+)
+    (:name smartparens
+     :features smartparens-config
+     :after (progn (sp-use-smartparens-bindings)
+                    (smartparens-global-mode 1))
 )))
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions" )))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages

@@ -61,13 +61,18 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 )
    (:name python-mode
     :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
+)
+    (:name smartparens
+     :features smartparens-config
+     :after (progn (sp-use-smartparens-bindings)
+                    (smartparens-global-mode 1))
 )))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions" )))
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -382,7 +387,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 
 #+END_SRC
 ** Open a file with agenda on startup 
-  #+begin_src emacs-lisp 
+  #+begin_src emacs-lisp  :tangle no
     ;    (find-file "~/personal/organizer.org")
     ;    (require 'org-compat)
         (when (eq system-type 'windows-nt)  ;Only open file when at work: should use system-name or something
