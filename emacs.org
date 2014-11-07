@@ -242,11 +242,7 @@ These lines configure Emacs' general behavior at certain aspects.
 I almost always want to go to the right indentation on the next line. Disable after version 24.4 because it has a sensible default.
 #+begin_src emacs-lisp
  ;; check emacs version
-(if (or 
-     (and (>= emacs-major-version 24) 
-          (>= emacs-minor-version 4))
-     (>= emacs-major-version 25))
-    ()
+(when (version< emacs-version "24.4")
    (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
 *** Sentences end with a single space

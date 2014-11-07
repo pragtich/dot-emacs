@@ -13,13 +13,24 @@
 (package-initialize)
 
 (setq el-get-sources
-  '((:name magit                          ;Adds a keybinding to standard magit setup
-    :after (progn
-      (global-set-key (kbd "C-x g") 'magit-status) 
-      (global-set-key (kbd "<f12>") 'magit-status) ))
-  (:name ido-vertical-mode                ;Show ido results vertically
+    '((:name magit                          ;Adds a keybinding to standard magit setup
+      :after (progn
+        (global-set-key (kbd "C-x g") 'magit-status) 
+        (global-set-key (kbd "<f12>") 'magit-status) ))
+    (:name ido-vertical-mode                ;Show ido results vertically
+     :after (progn
+       (ido-mode 1) 
+       (ido-vertical-mode 1)
+       (setq ido-enable-flex-matching t)
+       (setq ido-everywhere t)
+       (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+       (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+  ; M-x mode
+  ;; Reenable ido for M-x
+  ))
+  (:name ido-ubiquitous
+   :features ido-ubiquitous
    :after (progn
-<<<<<<< HEAD
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
@@ -32,32 +43,11 @@
      :after (progn (sp-use-smartparens-bindings)
                     (smartparens-global-mode 1))
 )))
-=======
-     (ido-mode 1) 
-     (ido-vertical-mode 1)
-     (setq ido-enable-flex-matching t)
-     (setq ido-everywhere t)
-     (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
-     (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
-; M-x mode
-;; Reenable ido for M-x
-))
-(:name ido-ubiquitous
- :features ido-ubiquitous
- :after (progn
-   (ido-ubiquitous-mode 1)
-   (setq ido-ubiquitous-command-overrides
-     (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))))
-(:name smartparens
- :features smartparens-config
- :after (progn
-   (smartparens-global-mode 1)
-   (sp-use-smartparens-bindings)))))
->>>>>>> ad229fbeb7116bf62c4e7a234b9ff7f84189b52c
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions" )))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "versions")))
+
   ;; An add the customized packages too:
 (setq pragtich/packages
       (append pragtich/packages
@@ -149,11 +139,7 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 ;; check emacs version
-(if (or 
-     (and (>= emacs-major-version 24) 
-          (>= emacs-minor-version 4))
-     (>= emacs-major-version 25))
-    ()
+(when (version< emacs-version "24.4")
    (global-set-key (kbd "RET") 'newline-and-indent))
 
 (setq sentence-end-double-space nil)
@@ -242,16 +228,6 @@
 ;   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
 
 (setq initial-frame-alist (quote ((fullscreen . maximized))))
-
-;    (find-file "~/personal/organizer.org")
-;    (require 'org-compat)
-    (when (eq system-type 'windows-nt)  ;Only open file when at work: should use system-name or something
-     ; Open file
-     (find-file (expand-file-name "jpg.org" org-directory))
-     ; run agenda command
-     (run-at-time (format "%d sec" 1) nil '(lambda () (progn (org-agenda nil "A")) (other-window 1)))
-    )
-;    (add-hook 'after-init-hook '(lambda () (progn (org-agenda nil "A") (other-window 1))))
 
 (if (eq system-type 'windows-nt)
     (progn (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
