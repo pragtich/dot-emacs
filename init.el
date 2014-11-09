@@ -1,6 +1,6 @@
 ;; Profiling of emacs init process (see https://github.com/dholm/benchmark-init-el)
-(add-to-list 'load-path "~/.emacs.d/elpa/benchmark-init-20140510.732/")
-(require 'benchmark-init)
+;(add-to-list 'load-path "~/.emacs.d/elpa/benchmark-init-20140510.732/")
+;(require 'benchmark-init)
 
 
 ;; Test: proves that this init file is being found 
