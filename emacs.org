@@ -56,18 +56,22 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
    :after (progn
      (ido-ubiquitous-mode 1)
      (setq ido-ubiquitous-command-overrides
-       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides))))
-  (:name smartparens
-   :features smartparens-config
-   :after (progn
-     (smartparens-global-mode 1)
-     (sp-use-smartparens-bindings)))))
+       (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+)
+   (:name python-mode
+    :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
+)
+    (:name smartparens
+     :features smartparens-config
+     :after (progn (sp-use-smartparens-bindings)
+                    (smartparens-global-mode 1))
+)))
 #+END_SRC
 *** Defining my default packages
 #+BEGIN_SRC emacs-lisp
   (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "benchmark-init")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "versions" "benchmark-init")))
 
   ;; An add the customized packages too:
 (setq pragtich/packages
@@ -235,9 +239,11 @@ These lines configure Emacs' general behavior at certain aspects.
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+end_src
 **** Indentation after RET
-I almost always want to go to the right indentation on the next line.
+I almost always want to go to the right indentation on the next line. Disable after version 24.4 because it has a sensible default.
 #+begin_src emacs-lisp
-(global-set-key (kbd "RET") 'newline-and-indent)
+ ;; check emacs version
+(when (version< emacs-version "24.4")
+   (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
 *** Sentences end with a single space
 
@@ -377,7 +383,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 
 #+END_SRC
 ** Open a file with agenda on startup 
-  #+begin_src emacs-lisp 
+  #+begin_src emacs-lisp  :tangle no
     ;    (find-file "~/personal/organizer.org")
     ;    (require 'org-compat)
         (when (eq system-type 'windows-nt)  ;Only open file when at work: should use system-name or something
