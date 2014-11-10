@@ -1,9 +1,9 @@
 ;; Profiling of emacs init process (see https://github.com/dholm/benchmark-init-el)
-(add-to-list 'load-path "~/.emacs.d/el-get/benchmark-init/")
-(require 'benchmark-init)
-(let ((benchmark-init.el "~/.emacs.d/el-get/benchmark-init/benchmark-init.el"))
-  (when (file-exists-p benchmark-init.el)
-    (load benchmark-init.el)))
+;(add-to-list 'load-path "~/.emacs.d/el-get/benchmark-init/")
+;(require 'benchmark-init)
+;(let ((benchmark-init.el "~/.emacs.d/el-get/benchmark-init/benchmark-init.el"))
+;  (when (file-exists-p benchmark-init.el)
+;    (load benchmark-init.el)))
 
 ;; Test: proves that this init file is being found 
 ;(tool-bar-mode -1)
