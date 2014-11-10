@@ -37,9 +37,7 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
 #+BEGIN_SRC emacs-lisp
   (defun pragtich/magit-commit-save ()
   (interactive)
-  (save-buffer)
-  (server-edit)
-  (delete-window))
+  (git-commit-commit))
 #+END_SRC
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
@@ -48,7 +46,7 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
       :after (progn
         (global-set-key (kbd "C-x g") 'magit-status) 
         (global-set-key (kbd "<f12>") 'magit-status) 
-        (eval-after-load "git-commit-mode"
+        (eval-after-load "magit-commit-mode"
           '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
         ))
     (:name ido-vertical-mode                ;Show ido results vertically
@@ -123,12 +121,12 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
   (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
   (server-start))
   ; And let me quit with C-c C-c when editing in server mode
-  (add-hook 'server-switch-hook '(lambda ()
-				  (local-set-key [(control c) (control c)]
-						 (lambda ()
-						   (interactive)
-						   (save-buffer)
-						   (server-edit)))))  
+;  (add-hook 'server-switch-hook '(lambda ()
+;				  (local-set-key [(control c) (control c)]
+;						 (lambda ()
+;						   (interactive)
+;						   (save-buffer)
+;						   (server-edit)))))  
 #+END_SRC
 * Org-mode 
 ** Locations
