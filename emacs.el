@@ -12,11 +12,18 @@
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(defun pragtich/magit-commit-save ()
+(interactive)
+(git-commit-commit))
+
 (setq el-get-sources
     '((:name magit                          ;Adds a keybinding to standard magit setup
       :after (progn
         (global-set-key (kbd "C-x g") 'magit-status) 
-        (global-set-key (kbd "<f12>") 'magit-status) ))
+        (global-set-key (kbd "<f12>") 'magit-status) 
+        (eval-after-load "magit-commit-mode"
+          '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
+        ))
     (:name ido-vertical-mode                ;Show ido results vertically
      :after (progn
        (ido-mode 1) 
@@ -67,12 +74,12 @@
   (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
   (server-start))
   ; And let me quit with C-c C-c when editing in server mode
-  (add-hook 'server-switch-hook '(lambda ()
-                                  (local-set-key [(control c) (control c)]
-                                                 (lambda ()
-                                                   (interactive)
-                                                   (save-buffer)
-                                                   (server-edit)))))
+;  (add-hook 'server-switch-hook '(lambda ()
+;                                 (local-set-key [(control c) (control c)]
+;                                                (lambda ()
+;                                                  (interactive)
+;                                                  (save-buffer)
+;                                                  (server-edit)))))
 
 (if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
   (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
