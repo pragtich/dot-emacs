@@ -254,6 +254,16 @@ I almost always want to go to the right indentation on the next line. Disable af
 (when (version< emacs-version "24.4")
    (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
+**** S-RET does not break line
+When using S-RET, open a new line below and jump to it
+#+BEGIN_SRC emacs-lisp
+(defun end-of-line-and-indented-new-line ()
+  (interactive)
+  (end-of-line)
+  (comment-indent-new-line))
+(global-set-key (kbd "<S-return>") 'end-of-line-and-indented-new-line)
+
+#+END_SRC
 *** Sentences end with a single space
 
 In my world, sentences end with a single space. This makes

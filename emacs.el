@@ -149,6 +149,12 @@
 (when (version< emacs-version "24.4")
    (global-set-key (kbd "RET") 'newline-and-indent))
 
+(defun end-of-line-and-indented-new-line ()
+  (interactive)
+  (end-of-line)
+  (comment-indent-new-line))
+(global-set-key (kbd "<S-return>") 'end-of-line-and-indented-new-line)
+
 (setq sentence-end-double-space nil)
 
 (setq split-height-threshold 60)
