@@ -117,7 +117,7 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
 						 (lambda ()
 						   (interactive)
 						   (save-buffer)
-						   (server-edit)))))  
+  						   (server-edit)))))  
 #+END_SRC
 * Org-mode 
 ** Locations
@@ -475,4 +475,3 @@ completion. This should fix it:
   ;;             (define-key yas/keymap [tab] 'yas/next-field)))
   
 #+end_src
-
