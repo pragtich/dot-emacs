@@ -330,8 +330,7 @@ A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comm
   (interactive)
   (join-line -1)))
 #+END_SRC
-  
-** Minimize Emacs' chrome
+**** Minimize Emacs' chrome
 Hide a lot of default Emacs chrome, so that we just start with a
 vanilla ~*scratch*~ buffer.
 
@@ -347,6 +346,29 @@ vanilla ~*scratch*~ buffer.
   (blink-cursor-mode 0)
   
 #+end_src
+*** Prefix kills entire line
+Comes from http://endlessparentheses.com/kill-entire-line-with-prefix-argument.html?source=rss: why should we not be able to kill entire line without C-a C-k C-k?
+#+BEGIN_SRC emacs-lisp
+(defmacro bol-with-prefix (function)
+  "Define a new function which calls FUNCTION.
+Except it moves to beginning of line before calling FUNCTION when
+called with a prefix argument. The FUNCTION still receives the
+prefix argument."
+  (let ((name (intern (format "endless/%s-BOL" function))))
+    `(progn
+       (defun ,name (p)
+         ,(format 
+           "Call `%s', but move to BOL when called with a prefix argument."
+           function)
+         (interactive "P")
+         (when p
+           (forward-line 0))
+         (call-interactively ',function))
+       ',name)))
+(global-set-key [remap org-kill-line] (bol-with-prefix org-kill-line))
+(global-set-key [remap kill-line] (bol-with-prefix kill-line))
+
+#+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
    Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
