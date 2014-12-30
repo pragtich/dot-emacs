@@ -74,7 +74,9 @@ Initialize, install if not present. For windows, must install GNU texinfo to get
      :features smartparens-config
      :after (progn (sp-use-smartparens-bindings)
                    ; (smartparens-global-mode 1)
-     )) 
+     ))
+    (:name expand-region
+     :after (progn (global-set-key (kbd "C-=") 'er/expand-region)))
 ))
 #+END_SRC
 *** Defining my default packages
