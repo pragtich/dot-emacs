@@ -54,7 +54,7 @@
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "versions" "benchmark-init")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "versions" "benchmark-init" "markdown-mode")))
 
   ;; An add the customized packages too:
 (setq pragtich/packages
