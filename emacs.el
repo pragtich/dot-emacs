@@ -49,7 +49,9 @@
      :features smartparens-config
      :after (progn (sp-use-smartparens-bindings)
                    ; (smartparens-global-mode 1)
-     )) 
+     ))
+    (:name expand-region
+     :after (progn (global-set-key (kbd "C-=") 'er/expand-region)))
 ))
 
 (setq pragtich/packages
@@ -231,6 +233,10 @@ prefix argument."
 (global-set-key [remap org-kill-line] (bol-with-prefix org-kill-line))
 (global-set-key [remap kill-line] (bol-with-prefix kill-line))
 
+(global-set-key "\M-9" 'backward-sexp)
+(global-set-key "\M-0" 'forward-sexp)
+(global-set-key "\M-1" 'delete-other-windows)
+
 ;;    (require 'color-theme)
 ;;    (color-theme-initialize)
 ;;    (color-theme-kingsajz)
@@ -260,7 +266,10 @@ prefix argument."
 
 ;   (add-hook 'after-init-hook '(lambda () (w32-send-sys-command #xf030))))
 
-(setq initial-frame-alist (quote ((fullscreen . maximized))))
+;(setq initial-frame-alist (quote ((fullscreen . maximized))))
+
+(when (eq system-type 'darwin)
+(run-with-idle-timer 0.1 nil 'toggle-frame-maximized))
 
 (if (eq system-type 'windows-nt)
     (progn (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Progs/VR-mode/"))
