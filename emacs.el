@@ -42,9 +42,9 @@
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
 )
-   (:name python-mode
-    :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
-)
+;;    (:name python-mode
+;;     :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
+;; )
     (:name smartparens
      :features smartparens-config
      :after (progn (sp-use-smartparens-bindings)
@@ -56,7 +56,7 @@
 
 (setq pragtich/packages
     (append 
-      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package" "python-mode" "versions" "benchmark-init" "markdown-mode")))
+      '( "cl-lib" "color-theme-zenburn" "el-get" "git-modes" "package"  "versions" "benchmark-init" "markdown-mode")))
 
   ;; An add the customized packages too:
 (setq pragtich/packages
