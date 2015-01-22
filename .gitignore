@@ -11,3 +11,4 @@
 .DS_Store
 \#*
 /lisp/python-mode-orig/
+emacs.el
