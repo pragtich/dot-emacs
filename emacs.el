@@ -42,6 +42,7 @@
      (setq ido-ubiquitous-command-overrides
        (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
 )
+  ;; Disabled python-mode in favor of python.el (Emacs 24). Will assume that I primarily use emacs 24.
 ;;    (:name python-mode
 ;;     :after (progn (setq-default py-split-windows-on-execute-function 'split-window-horizontally))
 ;; )
