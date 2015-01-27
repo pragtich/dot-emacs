@@ -88,7 +88,8 @@ Initialize the package.el locations
   (use-package benchmark-init
     :ensure t)
   (use-package markdown-mode
-    :ensure t)
+    :ensure t
+    :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
 #+END_SRC
 
 * Magit configuration
