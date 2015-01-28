@@ -33,6 +33,7 @@ Initialize the package.el locations
 #+BEGIN_SRC emacs-lisp
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
+(package-refresh-contents)
 (package-initialize)
 #+END_SRC
 *** Defining functions needed for package config
@@ -50,6 +51,7 @@ Initialize the package.el locations
     :config (eval-after-load "magit-commit-mode"
               '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
     :ensure t
+    :pin melpa
   )
 
   (use-package ido-vertical-mode
