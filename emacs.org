@@ -29,12 +29,14 @@ Load the use-package macro:
 (require 'use-package)
 
 #+END_SRC
-Initialize the package.el locations
+Initialize the package.el locations and load a list of packages if not available, so that use-package will not fail.
 #+BEGIN_SRC emacs-lisp
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
-(package-refresh-contents)
+;(package-refresh-contents)
 (package-initialize)
+(when (not package-archive-contents) (package-refresh-contents))
+
 #+END_SRC
 *** Defining functions needed for package config
 #+BEGIN_SRC emacs-lisp
