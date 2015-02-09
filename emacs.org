@@ -125,6 +125,11 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
       (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Progs/Git/bin"))
      ))
 #+end_src
+Finally, add emacsclientw to git as the editor in git (vim is the present default and does not work nicely with emacs)
+#+BEGIN_SRC 
+git config --global core.editor C:/Users/JPG/Documents/Progs/Emacs/bin/emacsclientw.exe
+Test using git config --global --edit
+#+END_SRC
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 * Darwin specific
 ** Start emacs server when on OS X
