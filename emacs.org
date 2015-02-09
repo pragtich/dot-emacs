@@ -391,7 +391,7 @@ vanilla ~*scratch*~ buffer.
   ;; Remove unused UI elements
  (add-hook 'window-setup-hook (lambda () (tool-bar-mode -1))) 
 ;  (tool-bar-mode 0) Conflicts with maximization on windows, so need the hook above
-  (menu-bar-mode 0)
+  (menu-bar-mode 1)
   (scroll-bar-mode 0)
   (setq inhibit-startup-message t)
   
