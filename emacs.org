@@ -25,7 +25,7 @@ Load the use-package macro:
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path "~/.emacs.d/lisp/use-package")
-
+(setq use-package-verbose t)
 (require 'use-package)
 
 #+END_SRC
@@ -37,6 +37,15 @@ Initialize the package.el locations and load a list of packages if not available
 (package-initialize)
 (when (not package-archive-contents) (package-refresh-contents))
 
+#+END_SRC
+Make all packages be auto-compiled; Load Dash first as a requirement for auto-compile. TODO: Check for other issues to be done [[Here][https://github.com/tarsius/auto-compile]].
+#+BEGIN_SRC emacs-lisp
+  (use-package dash
+    :ensure t)
+  (use-package auto-compile
+    :ensure t
+    :init (auto-compile-on-load-mode))
+  (setq load-prefer-newer t)
 #+END_SRC
 *** Defining functions needed for package config
 #+BEGIN_SRC emacs-lisp
