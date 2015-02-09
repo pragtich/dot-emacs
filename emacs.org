@@ -130,6 +130,12 @@ Finally, add emacsclientw to git as the editor in git (vim is the present defaul
 git config --global core.editor C:/Users/JPG/Documents/Progs/Emacs/bin/emacsclientw.exe
 Test using git config --global --edit
 #+END_SRC
+Start server on Windows
+#+BEGIN_SRC emacs-lisp
+(when (eq system-type 'windows-nt)
+   (server-start))
+
+#+END_SRC
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
 * Darwin specific
 ** Start emacs server when on OS X
