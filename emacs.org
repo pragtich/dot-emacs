@@ -454,6 +454,13 @@ Use the undo-tree package to simplify Undoing. I have never really understood th
     (setq undo-tree-visualizer-diff t)))
 
 #+END_SRC
+*** Pop To Mark
+A great little tool to find previous locations. Configuration from Sacha Chua.
+#+BEGIN_SRC emacs-lisp
+(bind-key "C-x p" 'pop-to-mark-command)
+(setq set-mark-command-repeat-pop t)
+
+#+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
    Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
