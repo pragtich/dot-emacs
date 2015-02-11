@@ -63,6 +63,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
               '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
     :ensure t
     :pin melpa
+    :demand
   )
 
   (use-package ido-vertical-mode
