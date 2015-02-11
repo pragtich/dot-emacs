@@ -440,6 +440,20 @@ From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
 (global-set-key "\M-0" 'forward-sexp)
 (global-set-key "\M-1" 'delete-other-windows)
 #+END_SRC
+*** Undo tree
+Use the undo-tree package to simplify Undoing. I have never really understood the default way op undoing anyway. Tips: C-_ to undo, M-_ to redo, C-x u to see the tree. Configuration from Sacha Chua:
+#+BEGIN_SRC emacs-lisp
+(use-package undo-tree
+  :defer t
+  :ensure t
+  :diminish undo-tree-mode
+  :idle
+  (progn
+    (global-undo-tree-mode)
+    (setq undo-tree-visualizer-timestamps t)
+    (setq undo-tree-visualizer-diff t)))
+
+#+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
    Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
