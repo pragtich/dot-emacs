@@ -122,7 +122,7 @@ Also, it is very slow when the PATH is not clear. This may help: (https://stacko
 #+begin_src emacs-lisp
  (if (eq system-type 'windows-nt)
     (progn
-      (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Documents/Progs/Git/bin"))
+    (setq exec-path (add-to-list 'exec-path "C:/Users/jpg/Documents/Progs/Git/bin"))
      ))
 #+end_src
 Finally, add emacsclientw to git as the editor in git (vim is the present default and does not work nicely with emacs)
@@ -460,6 +460,25 @@ A great little tool to find previous locations. Configuration from Sacha Chua.
 (bind-key "C-x p" 'pop-to-mark-command)
 (setq set-mark-command-repeat-pop t)
 
+#+END_SRC
+*** Split windows open prev window
+As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][a Reddit post]]:
+#+BEGIN_SRC emacs-lisp
+(defun my/vsplit-last-buffer (prefix)
+  "Split the window vertically and display the previous buffer."
+  (interactive "p")
+  (split-window-vertically)
+  (other-window 1 nil)
+  (if (= prefix 1)
+    (switch-to-next-buffer)))
+(defun my/hsplit-last-buffer (prefix)
+  "Split the window horizontally and display the previous buffer."
+  (interactive "p")
+  (split-window-horizontally)
+  (other-window 1 nil)
+  (if (= prefix 1) (switch-to-next-buffer)))
+(bind-key "C-x 2" 'my/vsplit-last-buffer)
+(bind-key "C-x 3" 'my/hsplit-last-buffer)
 #+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
