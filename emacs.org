@@ -93,7 +93,9 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
   (use-package cl-lib
     :ensure t)
   (use-package zenburn-theme
-     :ensure t)
+     :ensure t
+     :defer t
+  )
 ;  (use-package git-modes
 ;    :ensure t)
 ;  (use-package versions)
