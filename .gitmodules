@@ -4,3 +4,6 @@
 [submodule "lisp/org-mode"]
 	path = lisp/org-mode
 	url = http://orgmode.org/org-mode.git
+[submodule "use-package"]
+	path = use-package
+	url = https://github.com/jwiegley/use-package.git

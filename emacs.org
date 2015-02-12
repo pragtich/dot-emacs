@@ -19,8 +19,9 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
 *** Initializing use-package u
 Use-package should be placed in the lisp/use-package folder by 
 #+BEGIN_SRC 
-cd lisp
-git clone https://github.com/jwiegley/use-package.git
+#cd lisp
+# git clone https://github.com/jwiegley/use-package.git
+git submodule add https://github.com/jwiegley/use-package.git 
 #+END_SRC
 Load the use-package macro:
 #+BEGIN_SRC emacs-lisp
