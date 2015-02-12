@@ -39,7 +39,7 @@ Initialize the package.el locations and load a list of packages if not available
 
 #+END_SRC
 Make all packages be auto-compiled; Load Dash first as a requirement for auto-compile. TODO: Check for other issues to be done [[Here][https://github.com/tarsius/auto-compile]].
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package dash
     :ensure t)
   (use-package auto-compile
@@ -442,7 +442,7 @@ From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
 #+END_SRC
 *** Undo tree
 Use the undo-tree package to simplify Undoing. I have never really understood the default way op undoing anyway. Tips: C-_ to undo, M-_ to redo, C-x u to see the tree. Configuration from Sacha Chua:
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp 
 (use-package undo-tree
   :defer t
   :ensure t
