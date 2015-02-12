@@ -1,3 +1,4 @@
+
 #+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
@@ -55,56 +56,63 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+END_SRC
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :commands magit-status
-    :bind (("C-x g" . magit-status) 
-           ("<f12>" . magit-status))
-    :config (eval-after-load "magit-commit-mode"
-              '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
-    :ensure t
-    :pin melpa
-  )
+    (use-package magit
+      :commands magit-status
+      :bind (("C-x g" . magit-status) 
+             ("<f12>" . magit-status))
+      :config (eval-after-load "magit-commit-mode"
+                '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
+      :ensure t
+      :pin melpa
+    )
 
-  (use-package ido-vertical-mode
-    :ensure t
-    :init
-      (progn (ido-mode 1) 
-	 (ido-vertical-mode 1))
+    (use-package ido-vertical-mode
+      :ensure t
+      :init
+        (progn (ido-mode 1) 
+           (ido-vertical-mode 1))
 
-    :config 
-      (progn
-	 (setq ido-enable-flex-matching t)
-	 (setq ido-everywhere t)
-	 (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
-	 (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
-      ))
-  (use-package ido-ubiquitous
-    :ensure t
-    :init
-      (ido-ubiquitous-mode 1)
+      :config 
+        (progn
+           (setq ido-enable-flex-matching t)
+           (setq ido-everywhere t)
+           (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+           (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+        ))
+    (use-package ido-ubiquitous
+      :ensure t
+      :init
+        (ido-ubiquitous-mode 1)
 
-    :config 
-      (progn
-         (setq ido-ubiquitous-command-overrides
-           (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+      :config 
+        (progn
+           (setq ido-ubiquitous-command-overrides
+             (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
       
-  )
+    )
 
-  (use-package cl-lib
-    :ensure t)
-  (use-package zenburn-theme
-     :ensure t
-     :defer t
-  )
-;  (use-package git-modes
-;    :ensure t)
-;  (use-package versions)
+    (use-package cl-lib
+      :ensure t)
+    ;; (use-package zenburn-theme
+    ;;    :ensure t
+    ;;    :defer t
+    ;;    :config   (load-theme 'zenburn t)
+    ;; )
 
-  (use-package benchmark-init
-    :ensure t)
-  (use-package markdown-mode
-    :ensure t
-    :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
+    (use-package color-theme-sanityinc-solarized
+       :ensure t
+       :config   (load-theme 'sanityinc-solarized-dark t)
+    )
+
+  ;  (use-package git-modes
+  ;    :ensure t)
+  ;  (use-package versions)
+
+    (use-package benchmark-init
+      :ensure t)
+    (use-package markdown-mode
+      :ensure t
+      :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
 #+END_SRC
 
 * Magit configuration
@@ -498,7 +506,7 @@ Expand-region is great!
 ;;    (require 'color-theme)
 ;;    (color-theme-initialize)
 ;;    (color-theme-kingsajz)
-  (load-theme 'zenburn t)
+;;  (load-theme 'zenburn t)
    #+End_src
 * Backups and History
 ** Backups
