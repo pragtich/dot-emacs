@@ -1,3 +1,4 @@
+;;; init.el --- user init file      -*- no-byte-compile: t -*-
 ;; Profiling of emacs init process (see https://github.com/dholm/benchmark-init-el)
 ;(add-to-list 'load-path "~/.emacs.d/el-get/benchmark-init/")
 ;(require 'benchmark-init)
@@ -25,4 +26,3 @@
 
 ;; load up the main file
 (org-babel-load-file (expand-file-name "emacs.org" dotfiles-dir))
- 
