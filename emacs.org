@@ -93,7 +93,9 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
   (use-package cl-lib
     :ensure t)
   (use-package zenburn-theme
-     :ensure t)
+     :ensure t
+     :defer t
+  )
 ;  (use-package git-modes
 ;    :ensure t)
 ;  (use-package versions)
@@ -479,6 +481,15 @@ As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/2
   (if (= prefix 1) (switch-to-next-buffer)))
 (bind-key "C-x 2" 'my/vsplit-last-buffer)
 (bind-key "C-x 3" 'my/hsplit-last-buffer)
+#+END_SRC
+*** Expand region
+Expand-region is great!
+#+BEGIN_SRC emacs-lisp
+(use-package expand-region
+  :ensure t
+  :bind ("C-=" . er/expand-region)
+)
+
 #+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
