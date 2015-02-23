@@ -108,6 +108,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	   '(cursor ((t (:background "blue1")))))
 	   )
 	 (setq-default cursor-type 'bar)
+	 (global-hl-line-mode t)
 	  )
 
   ;  (use-package git-modes
