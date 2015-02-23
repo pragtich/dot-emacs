@@ -102,8 +102,13 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 
     (use-package color-theme-sanityinc-solarized
        :ensure t
-       :config   (load-theme 'sanityinc-solarized-dark t)
-    )
+       :config   (progn
+         (load-theme 'sanityinc-solarized-dark t)
+	 (custom-set-faces
+	   '(cursor ((t (:background "blue1")))))
+	   )
+	 (setq cursor-type 'bar)
+	  )
 
   ;  (use-package git-modes
   ;    :ensure t)
