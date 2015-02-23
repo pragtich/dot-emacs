@@ -621,11 +621,11 @@ Run through a list of preferred fonts and set the first available as
 default.
 #+begin_src emacs-lisp :tangle no
   (condition-case nil
-      (set-default-font "Ubuntu Mono 16")
+      (set-default-font "Ubuntu Mono 16" t)
     (error (condition-case nil
-               (set-default-font "Cousine")
+               (set-default-font "Cousine" t)
              (error (condition-case nil
-                        (set-default-font "Monaco")
+                        (set-default-font "Consolas 11" t)
                       (error nil))))))
 #+end_src
 ** Updating Org
