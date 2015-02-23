@@ -576,7 +576,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
   #+end_src
 * Voice recognition (VR-mode)
 Voice recognition mode should help using DNS in Emacs (http://emacs-vr-mode.sourceforge.net/)
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
  (if (eq system-type 'windows-nt)
     (progn (add-to-list 'load-path (substitute-in-file-name "C:/Users/jpg/Documents/Progs/VR-mode/"))
 
