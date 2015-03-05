@@ -318,6 +318,12 @@ See https://github.com/jwiegley/dot-emacs/blob/master/org-settings.el
 (setq org-ellipsis "\u2026")    ;" \u22bf" )
 ;(setq org-ellipsis (quote org-tag))
 #+END_SRC
+** No empty lines
+I do not much enjoy the empty lines that org-mode can sometimes inject based on the auto settings. Switch off empty lines for =C-RET= and =M-RET=. [[http://orgmode.org/worg/org-faq.html#blank-line-after-headlines-and-list-items][Org-mode FAQ]].
+#+BEGIN_SRC emacs-lisp
+(setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
@@ -509,6 +515,13 @@ As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/2
   (if (= prefix 1) (switch-to-next-buffer)))
 (bind-key "C-x 2" 'my/vsplit-last-buffer)
 (bind-key "C-x 3" 'my/hsplit-last-buffer)
+#+END_SRC
+*** Visual line mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
 #+END_SRC
 *** Expand region
 Expand-region is great!
