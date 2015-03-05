@@ -318,6 +318,12 @@ See https://github.com/jwiegley/dot-emacs/blob/master/org-settings.el
 (setq org-ellipsis "\u2026")    ;" \u22bf" )
 ;(setq org-ellipsis (quote org-tag))
 #+END_SRC
+** No empty lines
+I do not much enjoy the empty lines that org-mode can sometimes inject based on the auto settings. Switch off empty lines for =C-RET= and =M-RET=. [[http://orgmode.org/worg/org-faq.html#blank-line-after-headlines-and-list-items][Org-mode FAQ]].
+#+BEGIN_SRC emacs-lisp
+(setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
+
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
