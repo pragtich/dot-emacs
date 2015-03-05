@@ -516,6 +516,13 @@ As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/2
 (bind-key "C-x 2" 'my/vsplit-last-buffer)
 (bind-key "C-x 3" 'my/hsplit-last-buffer)
 #+END_SRC
+*** Visual line mode
+#+BEGIN_SRC emacs-lisp
+(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+
+#+END_SRC
 *** Expand region
 Expand-region is great!
 #+BEGIN_SRC emacs-lisp
