@@ -562,7 +562,6 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 * Startup
 ** Maximize window 
 #+BEGIN_SRC emacs-lisp
-
  (when (eq system-type 'windows-nt)
    (tool-bar-mode 1)
    (w32-send-sys-command 61488) ; Does not work with toolbar diabled, so put that on a hook above
