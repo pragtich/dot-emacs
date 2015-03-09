@@ -482,6 +482,12 @@ Use the undo-tree package to simplify Undoing. I have never really understood th
 
 #+END_SRC
 *** Pop To Mark
+A great little tool to find previous locations. Configuration from Sacha Chua.
+#+BEGIN_SRC emacs-lisp
+(bind-key "C-x p" 'pop-to-mark-command)
+(setq set-mark-command-repeat-pop t)
+
+#+END_SRC
 *** Insert matched brace pairs
 The default ~M-(~ binding is really nice and deserves a parallel for the braces that I use a lot. Taken from [[http://stackoverflow.com/questions/2951797/wrapping-selecting-text-in-enclosing-characters-in-emacs][a nice stackoverflow discussion]].
 #+BEGIN_SRC emacs-lisp
@@ -490,12 +496,6 @@ The default ~M-(~ binding is really nice and deserves a parallel for the braces 
 (global-set-key (kbd "M-\"") 'insert-pair)
 
 (global-set-key (kbd "M-)") 'delete-pair)
-#+END_SRC
-A great little tool to find previous locations. Configuration from Sacha Chua.
-#+BEGIN_SRC emacs-lisp
-(bind-key "C-x p" 'pop-to-mark-command)
-(setq set-mark-command-repeat-pop t)
-
 #+END_SRC
 *** Split windows open prev window
 As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][a Reddit post]]:
