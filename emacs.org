@@ -587,6 +587,13 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 (when (eq system-type 'darwin)
 (run-with-idle-timer 0.1 nil 'toggle-frame-maximized))
 #+END_SRC
+** Relocate custom file
+Emacs customize uses this file, but it annoys me. [[http://emacsblog.org/2008/12/06/quick-tip-detaching-the-custom-file/][This tip]] really helps:
+#+BEGIN_SRC emacs-lisp
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
+
+#+END_SRC
 ** Open a file with agenda on startup 
   #+begin_src emacs-lisp  :tangle no
     ;    (find-file "~/personal/organizer.org")
