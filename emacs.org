@@ -124,6 +124,13 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
     (use-package markdown-mode
       :ensure t
       :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
+    (use-package headlong
+        :ensure t)
+    (use-package hydra
+        :pin melpa
+        :ensure t)
+    (use-package key-chord
+        :ensure t)
 #+END_SRC
 
 * Magit configuration
