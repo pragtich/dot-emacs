@@ -165,6 +165,10 @@ Start server on Windows
 
 #+END_SRC
 **** TODO Change GIT_ASKPASS item in emacs.org to only act on Windows (test on OSX)
+*** Latest magit config note
+#+BEGIN_SRC emacs-lisp
+(setq magit-last-seen-setup-instructions "1.4.0")
+#+END_SRC
 * Darwin specific
 ** Start emacs server when on OS X
 I was having some problems with Emacs server not finding the correct pipe in OS X. So I hacked this. it combines with the following in .bash_profile:
