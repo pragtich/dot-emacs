@@ -681,6 +681,7 @@ default.
 ** Updating Org
 - Git submodule update (nog op te zoeken)
 - Recompile van hier: [[http://orgmode.org/worg/org-hacks.html#compiling-org-without-make][Compiling without make]]
+Easier is to use git bash, and just run make!
 ** yasnippet
 #+begin_src emacs-lisp :tangle no
   (require 'yasnippet)
