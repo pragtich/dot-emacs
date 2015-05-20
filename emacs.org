@@ -1,4 +1,4 @@
-#+TITLE: Emacs Configuration
+\#+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
@@ -369,6 +369,13 @@ I do not much enjoy the empty lines that org-mode can sometimes inject based on 
 (setq org-blank-before-new-entry '((heading . nil) (plain-list-item . nil)))
 
 #+END_SRC
+** Org-clock logging worked time
+From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time logging]]: make sure the clock log is persistent so that an aborted session gets recovered correctly.
+#+BEGIN_SRC emacs-lisp
+(setq org-clock-persist 'history)
+(org-clock-persistence-insinuate)
+
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
@@ -398,6 +405,10 @@ When using S-RET, open a new line below and jump to it
   (end-of-line)
   (comment-indent-new-line))
 (global-set-key (kbd "<S-return>") 'end-of-line-and-indented-new-line)
+(defun org-take-back-bindings ()
+  (define-key org-mode-map [remap open-line] nil)
+)
+(eval-after-load "org" '(org-take-back-bindings))
 
 #+END_SRC
 *** Sentences end with a single space
@@ -708,6 +719,7 @@ default.
 ** Updating Org
 - Git submodule update (nog op te zoeken)
 - Recompile van hier: [[http://orgmode.org/worg/org-hacks.html#compiling-org-without-make][Compiling without make]]
+Easier is to use git bash, and just run make!
 ** yasnippet
 #+begin_src emacs-lisp :tangle no
   (require 'yasnippet)
