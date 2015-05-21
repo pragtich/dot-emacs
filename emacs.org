@@ -1,4 +1,4 @@
-\#+TITLE: Emacs Configuration
+#+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
@@ -340,7 +340,7 @@ From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time
 #+BEGIN_SRC emacs-lisp
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
-
+(setq org-clock-mode-line-total 'today)
 #+END_SRC
 * Look and feel
 ** Behavior
