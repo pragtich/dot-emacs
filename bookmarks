@@ -1,0 +1,17 @@
+;;;; Emacs Bookmark Format Version 1 ;;;;
+;;; This format is meant to be slightly human-readable;
+;;; nevertheless, you probably don't want to edit it.
+;;; -*- End Of Bookmark File Format Version Stamp -*-
+(("org-refile-last-stored"
+ (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
+ (front-context-string . "** Check for str")
+ (rear-context-string . "ion of plastics\n")
+ (position . 461))
+("(emacs) Bookmarks"
+ (front-context-string . "\n13.8 Bookmarks\n")
+ (rear-context-string . "  Up: Registers\n")
+ (position . 240612)
+ (filename . "c:/Users/JPG/Documents/Progs/Emacs/share/info/emacs")
+ (info-node . "Bookmarks")
+ (handler . Info-bookmark-jump))
+)
