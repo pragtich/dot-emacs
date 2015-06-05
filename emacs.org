@@ -134,6 +134,13 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+END_SRC
 
 * Magit configuration
+*** Magit general
+**** Last version release notes
+Really annoying that magit keeps interrupting me
+#+BEGIN_SRC emacs-lisp
+ (setq magit-last-seen-setup-instructions "1.4.0")
+
+#+END_SRC
 *** Windows specific
 GIT on Windows does not play nicely with EMACS. This is a hack to fix that and show a GUI password box instead of the normal one. Ugly.
  TODO Check if this works also in OS X
