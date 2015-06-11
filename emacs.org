@@ -297,7 +297,11 @@ But this will not checkout proper commits(the ones your master repository points
 To checkout proper commits in your submodules you should update them after pulling using
 git submodule update --recursive
 
+
 Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
+
+emacs -batch -Q -L lisp -l ../mk/org-fixup -f org-make-autoloads-compile
+
 ** Keybindings
 We need some keybindings for org-mode. These are the suggested defaults.
 #+BEGIN_SRC emacs-lisp
