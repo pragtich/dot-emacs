@@ -131,6 +131,16 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
         :ensure t)
     (use-package key-chord
         :ensure t)
+    (use-package ace-window
+        :ensure t
+	:bind (("C-x o" . ace-window) 
+	       ("M-o" . ace-window))
+	:init (progn
+	  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+	   ;(setq aw-background nil)
+	   ;(setq aw-dispatch-always t)
+	   ))
+
 #+END_SRC
 
 * Magit configuration
