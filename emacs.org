@@ -288,7 +288,16 @@ Need to set system-specific locations for org, as I keep everything in Dropbox a
 (setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
 #+END_SRC
 ** Notes on updating org
-I am using git, so org updating is something to do with =git submodule=. Google to find it. Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
+I am using git, so org updating is something to do with =git submodule=. Google to find it. 
+
+If you need to pull stuff for submodules into your submodule repositories use
+git pull --recurse-submodules
+    a feature git learned in 1.7.3.
+But this will not checkout proper commits(the ones your master repository points to) in submodules
+To checkout proper commits in your submodules you should update them after pulling using
+git submodule update --recursive
+
+Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
 ** Keybindings
 We need some keybindings for org-mode. These are the suggested defaults.
 #+BEGIN_SRC emacs-lisp
