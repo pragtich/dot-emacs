@@ -16,3 +16,4 @@ emacs.el
 /tramp
 /eshell/
 /recentf
+/org-clock-save.el
