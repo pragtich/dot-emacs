@@ -266,6 +266,17 @@ So (from https://korewanetadesu.com/emacs-on-os-x.html):
 
 #+END_SRC
 * Org-mode 
+** Release keybindings
+Org is quite aggressive at binding keys. Release keys that I want to use for other purposes [[http://emacs.stackexchange.com/questions/3998/how-to-remap-control-up-in-org-mode][see also SO]]
+#+BEGIN_SRC emacs-lisp
+(defun org-take-back-bindings ()
+  (define-key org-mode-map [remap open-line] nil)
+  (define-key org-mode-map [S-return] nil)
+)
+(eval-after-load "org" '(org-take-back-bindings))
+
+
+#+END_SRC
 ** Locations
 Need to set system-specific locations for org, as I keep everything in Dropbox and cannot do symlinks in Windows. So I set =org-directory= as a home location. I can then use this as a base for the file named in =org-agenda-files=, which lists files on each line relative to this folder.
 #+BEGIN_SRC emacs-lisp
@@ -383,6 +394,7 @@ From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time
 (org-clock-persistence-insinuate)
 (setq org-clock-mode-line-total 'today)
 #+END_SRC
+
 * Look and feel
 ** Behavior
 *** Small things
@@ -405,196 +417,194 @@ I almost always want to go to the right indentation on the next line. Disable af
    (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
 **** S-RET does not break line
-When using S-RET, open a new line below and jump to it
-#+BEGIN_SRC emacs-lisp
-(defun end-of-line-and-indented-new-line ()
-  (interactive)
-  (end-of-line)
-  (comment-indent-new-line))
-(global-set-key (kbd "<S-return>") 'end-of-line-and-indented-new-line)
-(defun org-take-back-bindings ()
-  (define-key org-mode-map [remap open-line] nil)
-)
-(eval-after-load "org" '(org-take-back-bindings))
+  When using S-RET, open a new line below and jump to it
+  Needs a released key because org sits on S-RET ([[*Release keybindings][Release keybindings]])
+  #+BEGIN_SRC emacs-lisp
+  (defun end-of-line-and-indented-new-line ()
+    (interactive)
+    (end-of-line)
+    (comment-indent-new-line))
+  (global-set-key (kbd "<S-return>") 'end-of-line-and-indented-new-line)
 
-#+END_SRC
-*** Sentences end with a single space
+  #+END_SRC
 
-In my world, sentences end with a single space. This makes
-sentence navigation commands work for me.
+***** Sentences end with a single space
 
-#+begin_src emacs-lisp
-  (setq sentence-end-double-space nil)
-#+end_src
-*** Prefer to split windows vertically
-#+BEGIN_SRC emacs-lisp
-(setq split-height-threshold 60)
-(setq split-width-threshold 90)
-#+END_SRC
-*** Delete current buffer file
-    Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
-#+BEGIN_SRC emacs-lisp
-(defun delete-current-buffer-file ()
-  "Removes file connected to current buffer and kills buffer."
-  (interactive)
-  (let ((filename (buffer-file-name))
-        (buffer (current-buffer))
-        (name (buffer-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (ido-kill-buffer)
-      (when (yes-or-no-p "Are you sure you want to remove this file? ")
-        (delete-file filename)
-        (kill-buffer buffer)
-        (message "File '%s' successfully removed" filename)))))
+  In my world, sentences end with a single space. This makes
+  sentence navigation commands work for me.
 
-(global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
-#+END_SRC
-*** Rename current buffer file
-As in the delete version, it's really nice to be able to rename the visited file easily. Whattheemacsd uses =C-x C-r=, which I find very reasonable.
-#+BEGIN_SRC emacs-lisp
-(defun rename-current-buffer-file ()
-  "Renames current buffer and file it is visiting."
-  (interactive)
-  (let ((name (buffer-name))
-        (filename (buffer-file-name)))
-    (if (not (and filename (file-exists-p filename)))
-        (error "Buffer '%s' is not visiting a file!" name)
-      (let ((new-name (read-file-name "New name: " filename)))
-        (if (get-buffer new-name)
-            (error "A buffer named '%s' already exists!" new-name)
-          (rename-file filename new-name 1)
-          (rename-buffer new-name)
-          (set-visited-file-name new-name)
-          (set-buffer-modified-p nil)
-          (message "File '%s' successfully renamed to '%s'"
-                   name (file-name-nondirectory new-name)))))))
+  #+begin_src emacs-lisp
+    (setq sentence-end-double-space nil)
+  #+end_src
+***** Prefer to split windows vertically
+  #+BEGIN_SRC emacs-lisp
+  (setq split-height-threshold 60)
+  (setq split-width-threshold 90)
+  #+END_SRC
+***** Delete current buffer file
+      Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
+  #+BEGIN_SRC emacs-lisp
+  (defun delete-current-buffer-file ()
+    "Removes file connected to current buffer and kills buffer."
+    (interactive)
+    (let ((filename (buffer-file-name))
+          (buffer (current-buffer))
+          (name (buffer-name)))
+      (if (not (and filename (file-exists-p filename)))
+          (ido-kill-buffer)
+	(when (yes-or-no-p "Are you sure you want to remove this file? ")
+          (delete-file filename)
+          (kill-buffer buffer)
+          (message "File '%s' successfully removed" filename)))))
 
-(global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
-#+END_SRC
-*** Delete to trash
-#+BEGIN_SRC emacs-lisp
-( setq delete-by-moving-to-trash t)
-#+END_SRC
-*** Join lines
-A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
+  (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
+  #+END_SRC
+***** Rename current buffer file
+  As in the delete version, it's really nice to be able to rename the visited file easily. Whattheemacsd uses =C-x C-r=, which I find very reasonable.
+  #+BEGIN_SRC emacs-lisp
+  (defun rename-current-buffer-file ()
+    "Renames current buffer and file it is visiting."
+    (interactive)
+    (let ((name (buffer-name))
+          (filename (buffer-file-name)))
+      (if (not (and filename (file-exists-p filename)))
+          (error "Buffer '%s' is not visiting a file!" name)
+	(let ((new-name (read-file-name "New name: " filename)))
+          (if (get-buffer new-name)
+              (error "A buffer named '%s' already exists!" new-name)
+            (rename-file filename new-name 1)
+            (rename-buffer new-name)
+            (set-visited-file-name new-name)
+            (set-buffer-modified-p nil)
+            (message "File '%s' successfully renamed to '%s'"
+                     name (file-name-nondirectory new-name)))))))
 
-#+BEGIN_SRC emacs-lisp
-  (global-set-key (kbd "M-j")
-  (lambda ()
-  (interactive)
-  (join-line -1)))
-#+END_SRC
-**** Minimize Emacs' chrome
-Hide a lot of default Emacs chrome, so that we just start with a
-vanilla ~*scratch*~ buffer.
+  (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
+  #+END_SRC
+***** Delete to trash
+  #+BEGIN_SRC emacs-lisp
+  ( setq delete-by-moving-to-trash t)
+  #+END_SRC
+***** Join lines
+  A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
 
-#+begin_src emacs-lisp
-  ;; Remove unused UI elements
- (add-hook 'window-setup-hook (lambda () (tool-bar-mode -1))) 
-;  (tool-bar-mode 0) Conflicts with maximization on windows, so need the hook above
-  (menu-bar-mode 1)
-  (scroll-bar-mode 0)
-  (setq inhibit-startup-message t)
+  #+BEGIN_SRC emacs-lisp
+    (global-set-key (kbd "M-j")
+    (lambda ()
+    (interactive)
+    (join-line -1)))
+  #+END_SRC
+****** Minimize Emacs' chrome
+  Hide a lot of default Emacs chrome, so that we just start with a
+  vanilla ~*scratch*~ buffer.
+
+  #+begin_src emacs-lisp
+    ;; Remove unused UI elements
+   (add-hook 'window-setup-hook (lambda () (tool-bar-mode -1))) 
+  ;  (tool-bar-mode 0) Conflicts with maximization on windows, so need the hook above
+    (menu-bar-mode 1)
+    (scroll-bar-mode 0)
+    (setq inhibit-startup-message t)
   
-  ;; shhht, give me some time to think, don't blink
-  (blink-cursor-mode 0)
+    ;; shhht, give me some time to think, don't blink
+    (blink-cursor-mode 0)
   
-#+end_src
-*** Prefix kills entire line
-Comes from http://endlessparentheses.com/kill-entire-line-with-prefix-argument.html?source=rss: why should we not be able to kill entire line without C-a C-k C-k?
-#+BEGIN_SRC emacs-lisp
-(defmacro bol-with-prefix (function)
-  "Define a new function which calls FUNCTION.
-Except it moves to beginning of line before calling FUNCTION when
-called with a prefix argument. The FUNCTION still receives the
-prefix argument."
-  (let ((name (intern (format "endless/%s-BOL" function))))
-    `(progn
-       (defun ,name (p)
-         ,(format 
-           "Call `%s', but move to BOL when called with a prefix argument."
-           function)
-         (interactive "P")
-         (when p
-           (forward-line 0))
-         (call-interactively ',function))
-       ',name)))
-(global-set-key [remap org-kill-line] (bol-with-prefix org-kill-line))
-(global-set-key [remap kill-line] (bol-with-prefix kill-line))
+  #+end_src
+***** Prefix kills entire line
+  Comes from http://endlessparentheses.com/kill-entire-line-with-prefix-argument.html?source=rss: why should we not be able to kill entire line without C-a C-k C-k?
+  #+BEGIN_SRC emacs-lisp
+  (defmacro bol-with-prefix (function)
+    "Define a new function which calls FUNCTION.
+  Except it moves to beginning of line before calling FUNCTION when
+  called with a prefix argument. The FUNCTION still receives the
+  prefix argument."
+    (let ((name (intern (format "endless/%s-BOL" function))))
+      `(progn
+	 (defun ,name (p)
+           ,(format 
+             "Call `%s', but move to BOL when called with a prefix argument."
+             function)
+           (interactive "P")
+           (when p
+             (forward-line 0))
+           (call-interactively ',function))
+	 ',name)))
+  (global-set-key [remap org-kill-line] (bol-with-prefix org-kill-line))
+  (global-set-key [remap kill-line] (bol-with-prefix kill-line))
 
-#+END_SRC
-*** Meta bindings for forward and backward sexp, and delete-other-windows
-From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
-#+BEGIN_SRC emacs-lisp
-(global-set-key "\M-9" 'backward-sexp)
-(global-set-key "\M-0" 'forward-sexp)
-(global-set-key "\M-1" 'delete-other-windows)
-#+END_SRC
-*** Undo tree
-Use the undo-tree package to simplify Undoing. I have never really understood the default way op undoing anyway. Tips: C-_ to undo, M-_ to redo, C-x u to see the tree. Configuration from Sacha Chua:
-#+BEGIN_SRC emacs-lisp 
-(use-package undo-tree
-  :defer t
-  :ensure t
-  :diminish undo-tree-mode
-  :idle
-  (progn
-    (global-undo-tree-mode)
-    (setq undo-tree-visualizer-timestamps t)
-    (setq undo-tree-visualizer-diff t)))
+  #+END_SRC
+***** Meta bindings for forward and backward sexp, and delete-other-windows
+  From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key "\M-9" 'backward-sexp)
+  (global-set-key "\M-0" 'forward-sexp)
+  (global-set-key "\M-1" 'delete-other-windows)
+  #+END_SRC
+***** Undo tree
+  Use the undo-tree package to simplify Undoing. I have never really understood the default way op undoing anyway. Tips: C-_ to undo, M-_ to redo, C-x u to see the tree. Configuration from Sacha Chua:
+  #+BEGIN_SRC emacs-lisp 
+  (use-package undo-tree
+    :defer t
+    :ensure t
+    :diminish undo-tree-mode
+    :idle
+    (progn
+      (global-undo-tree-mode)
+      (setq undo-tree-visualizer-timestamps t)
+      (setq undo-tree-visualizer-diff t)))
 
-#+END_SRC
-*** Pop To Mark
-A great little tool to find previous locations. Configuration from Sacha Chua.
-#+BEGIN_SRC emacs-lisp
-(bind-key "C-x p" 'pop-to-mark-command)
-(setq set-mark-command-repeat-pop t)
+  #+END_SRC
+***** Pop To Mark
+  A great little tool to find previous locations. Configuration from Sacha Chua.
+  #+BEGIN_SRC emacs-lisp
+  (bind-key "C-x p" 'pop-to-mark-command)
+  (setq set-mark-command-repeat-pop t)
 
-#+END_SRC
-*** Insert matched brace pairs
-The default ~M-(~ binding is really nice and deserves a parallel for the braces that I use a lot. Taken from [[http://stackoverflow.com/questions/2951797/wrapping-selecting-text-in-enclosing-characters-in-emacs][a nice stackoverflow discussion]].
-#+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "M-[") 'insert-pair)
-; (global-set-key (kbd "M-{") 'insert-pair) ; disable bacause of clash with existing binding
-(global-set-key (kbd "M-\"") 'insert-pair)
+  #+END_SRC
+***** Insert matched brace pairs
+  The default ~M-(~ binding is really nice and deserves a parallel for the braces that I use a lot. Taken from [[http://stackoverflow.com/questions/2951797/wrapping-selecting-text-in-enclosing-characters-in-emacs][a nice stackoverflow discussion]].
+  #+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "M-[") 'insert-pair)
+  ; (global-set-key (kbd "M-{") 'insert-pair) ; disable bacause of clash with existing binding
+  (global-set-key (kbd "M-\"") 'insert-pair)
 
-(global-set-key (kbd "M-)") 'delete-pair)
-#+END_SRC
-*** Split windows open prev window
-As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][a Reddit post]]:
-#+BEGIN_SRC emacs-lisp
-(defun my/vsplit-last-buffer (prefix)
-  "Split the window vertically and display the previous buffer."
-  (interactive "p")
-  (split-window-vertically)
-  (other-window 1 nil)
-  (if (= prefix 1)
-    (switch-to-next-buffer)))
-(defun my/hsplit-last-buffer (prefix)
-  "Split the window horizontally and display the previous buffer."
-  (interactive "p")
-  (split-window-horizontally)
-  (other-window 1 nil)
-  (if (= prefix 1) (switch-to-next-buffer)))
-(bind-key "C-x 2" 'my/vsplit-last-buffer)
-(bind-key "C-x 3" 'my/hsplit-last-buffer)
-#+END_SRC
-*** Visual line mode
-#+BEGIN_SRC emacs-lisp
-(add-hook 'text-mode-hook 'turn-on-visual-line-mode)
-(add-hook 'org-mode-hook 'turn-on-visual-line-mode)
-(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+  (global-set-key (kbd "M-)") 'delete-pair)
+  #+END_SRC
+***** Split windows open prev window
+  As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][a Reddit post]]:
+  #+BEGIN_SRC emacs-lisp
+  (defun my/vsplit-last-buffer (prefix)
+    "Split the window vertically and display the previous buffer."
+    (interactive "p")
+    (split-window-vertically)
+    (other-window 1 nil)
+    (if (= prefix 1)
+      (switch-to-next-buffer)))
+  (defun my/hsplit-last-buffer (prefix)
+    "Split the window horizontally and display the previous buffer."
+    (interactive "p")
+    (split-window-horizontally)
+    (other-window 1 nil)
+    (if (= prefix 1) (switch-to-next-buffer)))
+  (bind-key "C-x 2" 'my/vsplit-last-buffer)
+  (bind-key "C-x 3" 'my/hsplit-last-buffer)
+  #+END_SRC
+***** Visual line mode
+  #+BEGIN_SRC emacs-lisp
+  (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
+  (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
+  (setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 
-#+END_SRC
-*** Expand region
-Expand-region is great!
-#+BEGIN_SRC emacs-lisp
-(use-package expand-region
-  :ensure t
-  :bind ("C-=" . er/expand-region)
-)
+  #+END_SRC
+***** Expand region
+  Expand-region is great!
+  #+BEGIN_SRC emacs-lisp
+  (use-package expand-region
+    :ensure t
+    :bind ("C-=" . er/expand-region)
+  )
 
-#+END_SRC
+  #+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
    Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
