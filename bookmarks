@@ -3,10 +3,10 @@
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (("org-refile-last-stored"
- (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
- (front-context-string . "** Check for str")
- (rear-context-string . "ion of plastics\n")
- (position . 461))
+ (filename . "~/.emacs.d/emacs.org")
+ (front-context-string . "** S-RET does no")
+ (rear-context-string . "oday)\n#+END_SRC\n")
+ (position . 14089))
 ("(emacs) Bookmarks"
  (front-context-string . "\n13.8 Bookmarks\n")
  (rear-context-string . "  Up: Registers\n")
