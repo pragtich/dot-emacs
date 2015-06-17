@@ -132,6 +132,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
       :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
     (use-package headlong
         :ensure t)
+    (use-package avy
+        :ensure t)
     (use-package hydra
         :pin melpa
         :ensure t)
