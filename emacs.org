@@ -20,7 +20,13 @@ Use-package should be placed in the lisp/use-package folder by
 #+BEGIN_SRC 
 #cd lisp
 # git clone https://github.com/jwiegley/use-package.git
+cd lisp
 git submodule add https://github.com/jwiegley/use-package.git 
+git submodule init
+git submodule update
+
+# Update:
+git submodule update --init --recursive
 #+END_SRC
 Load the use-package macro:
 #+BEGIN_SRC emacs-lisp
