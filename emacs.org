@@ -24,7 +24,8 @@ cd lisp
 git submodule add https://github.com/jwiegley/use-package.git 
 git submodule init
 git submodule update
-
+cd lisp/org-mode
+make # or use fixup tricks
 # Update:
 git submodule update --init --recursive
 #+END_SRC
