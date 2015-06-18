@@ -34,7 +34,8 @@ Load the use-package macro:
 
 (add-to-list 'load-path "~/.emacs.d/lisp/use-package")
 (setq use-package-verbose t)
-(require 'use-package)
+(eval-when-compile (require 'use-package))
+(require 'bind-key)
 
 #+END_SRC
 Initialize the package.el locations and load a list of packages if not available, so that use-package will not fail.
