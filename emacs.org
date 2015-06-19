@@ -439,6 +439,13 @@ I almost always want to go to the right indentation on the next line. Disable af
 (when (version< emacs-version "24.4")
    (global-set-key (kbd "RET") 'newline-and-indent))
 #+end_src
+**** Truncate comint buffers
+From emacs manual, prevents running out of memory when loads printed
+#+BEGIN_SRC emacs-lisp
+(add-hook 'comint-output-filter-functions
+          'comint-truncate-buffer)
+
+#+END_SRC
 **** S-RET does not break line
   When using S-RET, open a new line below and jump to it
   Needs a released key because org sits on S-RET ([[*Release keybindings][Release keybindings]])
