@@ -20,14 +20,22 @@ Use-package should be placed in the lisp/use-package folder by
 #+BEGIN_SRC 
 #cd lisp
 # git clone https://github.com/jwiegley/use-package.git
+cd lisp
 git submodule add https://github.com/jwiegley/use-package.git 
+git submodule init
+git submodule update
+cd lisp/org-mode
+make # or use fixup tricks
+# Update:
+git submodule update --init --recursive
 #+END_SRC
 Load the use-package macro:
 #+BEGIN_SRC emacs-lisp
 
 (add-to-list 'load-path "~/.emacs.d/lisp/use-package")
 (setq use-package-verbose t)
-(require 'use-package)
+(eval-when-compile (require 'use-package))
+(require 'bind-key)
 
 #+END_SRC
 Initialize the package.el locations and load a list of packages if not available, so that use-package will not fail.
@@ -37,6 +45,7 @@ Initialize the package.el locations and load a list of packages if not available
 ;(package-refresh-contents)
 (package-initialize)
 (when (not package-archive-contents) (package-refresh-contents))
+
 
 #+END_SRC
 Make all packages be auto-compiled; Load Dash first as a requirement for auto-compile. TODO: Check for other issues to be done [[Here][https://github.com/tarsius/auto-compile]].
@@ -125,6 +134,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
       :ensure t
       :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
     (use-package headlong
+        :ensure t)
+    (use-package avy
         :ensure t)
     (use-package hydra
         :pin melpa
