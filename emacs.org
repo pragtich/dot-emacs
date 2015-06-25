@@ -151,7 +151,10 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	   ;(setq aw-background nil)
 	   ;(setq aw-dispatch-always t)
 	   ))
-
+     (use-package windmove
+        :ensure t)
+     (use-package transpose-frame
+       :ensure t)
 #+END_SRC
 
 * Magit configuration
@@ -229,6 +232,39 @@ _~_: modified
   ("q" quit-window "quit" :color blue))
 
 (define-key Buffer-menu-mode-map "." 'hydra-buffer-menu/body)
+
+#+END_SRC
+** Windowing code
+As taken from abo-abo's blog, a useful way to navigate both menus and windows. Uses ace-window, windmove and headlong, ido, among others. Documented [[http://oremacs.com/2015/02/07/hydra-on-youtubes/][in abo-abo's blog here.]]
+#+BEGIN_SRC emacs-lisp
+(global-set-key
+ (kbd "C-M-o")
+ (defhydra hydra-window (:color red)
+   "window"
+   ("h" windmove-left)
+   ("j" windmove-down)
+   ("k" windmove-up)
+   ("l" windmove-right)
+   ("v" (lambda ()
+          (interactive)
+          (split-window-right)
+          (windmove-right))
+        "vert")
+   ("x" (lambda ()
+          (interactive)
+          (split-window-below)
+          (windmove-down))
+        "horz")
+   ("t" transpose-frame "'")
+   ("o" delete-other-windows "one" :color blue)
+   ("a" ace-window "ace")
+   ("s" ace-swap-window "swap")
+   ("d" ace-delete-window "del")
+   ("i" ace-maximize-window "ace-one" :color blue)
+   ("b" ido-switch-buffer "buf")
+   ("m" headlong-bookmark-jump "bmk")
+   ("q" nil "cancel")))
+
 
 #+END_SRC
 * Darwin specific
