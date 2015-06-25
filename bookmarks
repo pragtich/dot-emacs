@@ -2,7 +2,18 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("org-refile-last-stored"
+(("e: emacs.org"
+ (filename . "~/.emacs.d/emacs.org")
+ (front-context-string . "\n* Look and feel")
+ (rear-context-string . "oday)\n#+END_SRC\n")
+ (position . 15424))
+("j: jpg.org"
+ (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
+ (front-context-string . "#+TAGS: NEXT(n) ")
+ (rear-context-string)
+ (position . 1)
+ (annotation . ""))
+("org-refile-last-stored"
  (filename . "~/.emacs.d/emacs.org")
  (front-context-string . "** S-RET does no")
  (rear-context-string . "oday)\n#+END_SRC\n")
