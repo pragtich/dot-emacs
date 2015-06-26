@@ -236,7 +236,10 @@ _~_: modified
 #+END_SRC
 ** Windowing code
 As taken from abo-abo's blog, a useful way to navigate both menus and windows. Uses ace-window, windmove and headlong, ido, among others. Documented [[http://oremacs.com/2015/02/07/hydra-on-youtubes/][in abo-abo's blog here.]]
+
 #+BEGIN_SRC emacs-lisp
+(defun pragtich/bmklist () (interactive (progn (call-interactively 'bookmark-bmenu-list) (call-interactively 'headlong-bookmark-jump))))
+
 (global-set-key
  (kbd "C-M-o")
  (defhydra hydra-window (:color red)
@@ -262,7 +265,7 @@ As taken from abo-abo's blog, a useful way to navigate both menus and windows. U
    ("d" ace-delete-window "del")
    ("i" ace-maximize-window "ace-one" :color blue)
    ("b" ido-switch-buffer "buf")
-   ("m" headlong-bookmark-jump "bmk")
+   ("m" pragtich/bmklist "bmk")
    ("q" nil "cancel")))
 
 
