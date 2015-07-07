@@ -2,7 +2,12 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("e: emacs.org"
+(("Dp: Dropbox (PC)"
+ (filename . "c:/Users/JPG/Dropbox/")
+ (front-context-string . ".dropbox\n  drwxr")
+ (rear-context-string . " 34 06-16 10:37 ")
+ (position . 235))
+("e: emacs.org"
  (filename . "~/.emacs.d/emacs.org")
  (front-context-string . "\n* Look and feel")
  (rear-context-string . "oday)\n#+END_SRC\n")
