@@ -638,7 +638,7 @@ From emacs manual, prevents running out of memory when loads printed
     :defer t
     
     :diminish undo-tree-mode
-    :idle
+    :config
     (progn
       (global-undo-tree-mode)
       (setq undo-tree-visualizer-timestamps t)
