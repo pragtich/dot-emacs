@@ -52,9 +52,9 @@ Initialize the package.el locations and load a list of packages if not available
 Make all packages be auto-compiled; Load Dash first as a requirement for auto-compile. TODO: Check for other issues to be done [[Here][https://github.com/tarsius/auto-compile]].
 #+BEGIN_SRC emacs-lisp :tangle no
   (use-package dash
-    :ensure t)
+    )
   (use-package auto-compile
-    :ensure t
+    
     :init (auto-compile-on-load-mode))
   (setq load-prefer-newer t)
 #+END_SRC
@@ -67,7 +67,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
     (use-package helm
-      :ensure t
+      
       :config (progn 
                      (require 'helm-config) 
                      (setq helm-mode-fuzzy-match t) 
@@ -80,17 +80,17 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
              ("<f12>" . magit-status))
       :config (eval-after-load "magit-commit-mode"
                 '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
-      :ensure t
+      
       :pin melpa
     )
     (use-package git-gutter-fringe
-      :ensure t
+      
       :config (global-git-gutter-mode +1))
 
 
     (use-package ido-vertical-mode
       :disabled t
-      :ensure t
+      
       :init
         (progn (ido-mode 1) 
            (ido-vertical-mode 1))
@@ -104,7 +104,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
         ))
     (use-package ido-ubiquitous
       :disabled t
-      :ensure t
+      
       :init
         (ido-ubiquitous-mode 1)
 
@@ -116,15 +116,15 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
     )
 
     (use-package cl-lib
-      :ensure t)
+      )
     ;; (use-package zenburn-theme
-    ;;    :ensure t
+    ;;    
     ;;    :defer t
     ;;    :config   (load-theme 'zenburn t)
     ;; )
 
     (use-package color-theme-sanityinc-solarized
-       :ensure t
+       
        :config   (progn
          (load-theme 'sanityinc-solarized-dark t)
 	 (custom-set-faces
@@ -136,25 +136,25 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	  )
 
   ;  (use-package git-modes
-  ;    :ensure t)
+  ;    )
   ;  (use-package versions)
 
     (use-package benchmark-init
-      :ensure t)
+      )
     (use-package markdown-mode
-      :ensure t
+      
       :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
     (use-package headlong
-        :ensure t)
+        )
     (use-package avy
-        :ensure t)
+        )
     (use-package hydra
         :pin melpa
-        :ensure t)
+        )
     (use-package key-chord
-        :ensure t)
+        )
     (use-package ace-window
-        :ensure t
+        
 	:bind (("C-x o" . ace-window) 
 	       ("M-o" . ace-window))
 	:init (progn
@@ -163,9 +163,9 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	   ;(setq aw-dispatch-always t)
 	   ))
      (use-package windmove
-        :ensure t)
+        )
      (use-package transpose-frame
-       :ensure t)
+       )
 #+END_SRC
 
 * Magit configuration
@@ -636,7 +636,7 @@ From emacs manual, prevents running out of memory when loads printed
   #+BEGIN_SRC emacs-lisp 
   (use-package undo-tree
     :defer t
-    :ensure t
+    
     :diminish undo-tree-mode
     :idle
     (progn
@@ -691,7 +691,7 @@ From emacs manual, prevents running out of memory when loads printed
   Expand-region is great!
   #+BEGIN_SRC emacs-lisp
   (use-package expand-region
-    :ensure t
+    
     :bind ("C-=" . er/expand-region)
   )
 
