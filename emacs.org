@@ -128,7 +128,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
        :config   (progn
          (load-theme 'sanityinc-solarized-dark t)
 	 (custom-set-faces
-	   '(cursor ((t (:background "blue1")))))
+	   '(cursor ((t (:background "blue1"))))
+	   '(helm-source-header ((t (:inherit source :foreground "#b58900")))))
 	   )
 	 (setq-default cursor-type 'bar)
 	 (global-hl-line-mode t)
