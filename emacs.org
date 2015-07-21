@@ -72,6 +72,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
                      (require 'helm-config) 
                      (setq helm-mode-fuzzy-match t) 
 		     (helm-mode 1))
+      :bind ("C-x C-f" . helm-find-files)
 ) 
 
     (use-package magit
