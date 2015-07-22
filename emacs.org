@@ -338,6 +338,14 @@ So (from https://korewanetadesu.com/emacs-on-os-x.html):
     (ns-raise-emacs)))
 
 #+END_SRC
+* Python mode
+** Comint mode scrolling
+   It is annoying when I hit C-c C-c, that I have to scroll to the bottom, while I usually just want to see the new output. Best way should be to hook the C-c C-c, but this is easier:
+#+BEGIN_SRC emacs-lisp
+(setq comint-scroll-to-bottom-on-input t)
+(setq comint-scroll-to-bottom-on-output t)
+(setq comint-prompt-readonly t)
+#+END_SRC
 * Org-mode 
 ** Release keybindings
 Org is quite aggressive at binding keys. Release keys that I want to use for other purposes [[http://emacs.stackexchange.com/questions/3998/how-to-remap-control-up-in-org-mode][see also SO]]
