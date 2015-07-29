@@ -66,6 +66,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+END_SRC
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
+
     (use-package helm
       
       :config (progn 
@@ -168,6 +169,9 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
         )
      (use-package transpose-frame
        )
+     (use-package swiper-helm
+        :bind (("\C-s". swiper)
+	        ("\C-r" . swiper)))  
 #+END_SRC
 
 * Magit configuration
