@@ -2,32 +2,45 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Dp: Dropbox (PC)"
- (filename . "c:/Users/JPG/Dropbox/")
- (front-context-string . ".dropbox\n  drwxr")
- (rear-context-string . " 34 06-16 10:37 ")
- (position . 235))
-("e: emacs.org"
- (filename . "~/.emacs.d/emacs.org")
- (front-context-string . "\n* Look and feel")
- (rear-context-string . "oday)\n#+END_SRC\n")
- (position . 15424))
-("j: jpg.org"
- (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
- (front-context-string . "#+TAGS: NEXT(n) ")
- (rear-context-string)
- (position . 1)
- (annotation . ""))
-("org-refile-last-stored"
- (filename . "~/.emacs.d/emacs.org")
- (front-context-string . "** S-RET does no")
- (rear-context-string . "oday)\n#+END_SRC\n")
- (position . 14089))
-("(emacs) Bookmarks"
- (front-context-string . "\n13.8 Bookmarks\n")
- (rear-context-string . "  Up: Registers\n")
- (position . 240612)
- (filename . "c:/Users/JPG/Documents/Progs/Emacs/share/info/emacs")
- (info-node . "Bookmarks")
- (handler . Info-bookmark-jump))
+(#1=(#("E: project Euler find-file" 0 26
+      (bmkp-full-record #1#))
+    (time 21946 9581 501000 0)
+    (visits . 1)
+    (filename . "   - no file -")
+    (position . 0)
+    (function . pragtich/Euler-find-file)
+    (handler . bmkp-jump-function))
+#1=(#("Dp: Dropbox (PC)" 0 16
+      (bmkp-full-record #1#))
+    (filename . "c:/Users/JPG/Dropbox/")
+    (front-context-string . ".dropbox\n  drwxr")
+    (rear-context-string . " 34 06-16 10:37 ")
+    (position . 235))
+#1=(#("e: emacs.org" 0 12
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/emacs.org")
+    (front-context-string . "\n* Look and feel")
+    (rear-context-string . "oday)\n#+END_SRC\n")
+    (position . 15424))
+#1=(#("j: jpg.org" 0 10
+      (bmkp-full-record #1#))
+    (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
+    (front-context-string . "#+TAGS: NEXT(n) ")
+    (rear-context-string)
+    (position . 1)
+    (annotation . ""))
+#1=(#("org-refile-last-stored" 0 22
+      (bmkp-full-record #1#))
+    (filename . "~/.emacs.d/emacs.org")
+    (front-context-string . "** S-RET does no")
+    (rear-context-string . "oday)\n#+END_SRC\n")
+    (position . 14089))
+#1=(#("(emacs) Bookmarks" 0 17
+      (bmkp-full-record #1#))
+    (front-context-string . "\n13.8 Bookmarks\n")
+    (rear-context-string . "  Up: Registers\n")
+    (position . 240612)
+    (filename . "c:/Users/JPG/Documents/Progs/Emacs/share/info/emacs")
+    (info-node . "Bookmarks")
+    (handler . Info-bookmark-jump))
 )

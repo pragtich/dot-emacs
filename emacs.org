@@ -751,6 +751,38 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
         search-ring
         regexp-search-ring))
 #+end_src
+* Bookmarks
+** Install bookmark+
+TODO: Installing bookmark+ steals loads of keymaps. I specifically want my C-x p back!
+#+BEGIN_SRC emacs-lisp
+(use-package bookmark+
+  )
+
+#+END_SRC
+** Call find-file with a given dir as starting point
+First, define the function. Usage may be as follows. Really nice as Bookmarks+ function bookmark (use bmkp-make-function-bookmark).
+#+BEGIN_SRC :tangle no
+(pragtich/find-file-folder "c:/Users/JPG/Dropbox/Euler/")
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+
+  (defun pragtich/find-file-folder (startdir)
+    "Calls find-file at a certain starting folder.
+
+    Make sure to finish with / if you want the files in the folder to show"
+    (interactive)
+    (when startdir (let ((default-directory startdir))
+      (call-interactively 'find-file ))))
+
+
+#+END_SRC
+** Specific functions with bookmark loctions:
+#+BEGIN_SRC emacs-lisp
+(defun pragtich/Euler-find-file ()
+(interactive)
+(pragtich/find-file-folder "c:/Users/JPG/Dropbox/Euler/"))
+
+#+END_SRC
 * Startup
 ** Maximize window 
 #+BEGIN_SRC emacs-lisp
@@ -867,3 +899,4 @@ completion. This should fix it:
   ;;             (define-key yas/keymap [tab] 'yas/next-field)))
   
 #+end_src
+
