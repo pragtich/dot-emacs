@@ -663,7 +663,7 @@ From emacs manual, prevents running out of memory when loads printed
 ***** Pop To Mark
   A great little tool to find previous locations. Configuration from Sacha Chua.
   #+BEGIN_SRC emacs-lisp
-  (bind-key "C-x p" 'pop-to-mark-command)
+  (bind-key "C-c p" 'pop-to-mark-command)
   (setq set-mark-command-repeat-pop t)
 
   #+END_SRC
