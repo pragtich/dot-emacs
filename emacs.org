@@ -68,7 +68,6 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+BEGIN_SRC emacs-lisp
 
     (use-package helm
-      
       :config (progn 
                      (require 'helm-config) 
                      (setq helm-mode-fuzzy-match t) 
@@ -772,7 +771,7 @@ First, define the function. Usage may be as follows. Really nice as Bookmarks+ f
     Make sure to finish with / if you want the files in the folder to show"
     (interactive)
     (when startdir (let ((default-directory startdir))
-      (call-interactively 'find-file ))))
+      (call-interactively 'helm-find-files ))))
 
 
 #+END_SRC

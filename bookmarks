@@ -4,8 +4,8 @@
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
 (#1=(#("E: project Euler find-file" 0 26
       (bmkp-full-record #1#))
-    (time 21946 9581 501000 0)
-    (visits . 1)
+    (time 21946 13742 423000 0)
+    (visits . 3)
     (filename . "   - no file -")
     (position . 0)
     (function . pragtich/Euler-find-file)
@@ -18,13 +18,13 @@
     (position . 235))
 #1=(#("e: emacs.org" 0 12
       (bmkp-full-record #1#))
-    (end-position . 17370)
-    (time 21946 10924 226000 0)
-    (visits . 1)
+    (end-position . 17399)
+    (time 21946 13752 781000 0)
+    (visits . 3)
     (filename . "~/.emacs.d/emacs.org")
     (front-context-string . "\n* Look and feel")
     (rear-context-string . "oday)\n#+END_SRC\n")
-    (position . 17370))
+    (position . 17399))
 #1=(#("j: jpg.org" 0 10
       (bmkp-full-record #1#))
     (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
