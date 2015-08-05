@@ -69,6 +69,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
     (use-package guide-key
       :config (progn
         (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+	(setq guide-key/popup-window-position 'bottom)
+	(setq guide-key/idle-delay 0.5)
 	(guide-key-mode 1)))
     (use-package helm
       :config (progn 
