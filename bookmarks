@@ -2,7 +2,17 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(("Dp: Dropbox (PC)"
+(("E: Euler (on mac)"
+ (filename . "~/Dropbox/Euler/")
+ (front-context-string . ".DS_Store\n  drwx")
+ (rear-context-string . "48 Nov 26  2014 ")
+ (position . 258))
+("Da: Dropbox on apple"
+ (filename . "~/Dropbox/")
+ (front-context-string . ".DS_Store\n  -rw-")
+ (rear-context-string . "40 Apr 12 18:41 ")
+ (position . 256))
+("Dp: Dropbox (PC)"
  (filename . "c:/Users/JPG/Dropbox/")
  (front-context-string . ".dropbox\n  drwxr")
  (rear-context-string . " 34 06-16 10:37 ")
