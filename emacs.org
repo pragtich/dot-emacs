@@ -34,6 +34,7 @@ Load the use-package macro:
 
 (add-to-list 'load-path "~/.emacs.d/lisp/use-package")
 (setq use-package-verbose t)
+(setq use-package-always-ensure t)
 (eval-when-compile (require 'use-package))
 (require 'bind-key)
 
@@ -51,9 +52,9 @@ Initialize the package.el locations and load a list of packages if not available
 Make all packages be auto-compiled; Load Dash first as a requirement for auto-compile. TODO: Check for other issues to be done [[Here][https://github.com/tarsius/auto-compile]].
 #+BEGIN_SRC emacs-lisp :tangle no
   (use-package dash
-    :ensure t)
+    )
   (use-package auto-compile
-    :ensure t
+    
     :init (auto-compile-on-load-mode))
   (setq load-prefer-newer t)
 #+END_SRC
@@ -65,22 +66,38 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+END_SRC
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
+    (use-package guide-key
+      :config (progn
+        (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+	(setq guide-key/popup-window-position 'bottom)
+	(setq guide-key/idle-delay 0.5)
+	(guide-key-mode 1)))
+    (use-package helm
+      :config (progn 
+                     (require 'helm-config) 
+                     (setq helm-mode-fuzzy-match t) 
+		     (helm-mode 1))
+      :bind (("C-x C-f" . helm-find-files)
+             ("C-x b" . helm-mini))
+) 
+
     (use-package magit
       :commands magit-status
       :bind (("C-x g" . magit-status) 
              ("<f12>" . magit-status))
       :config (eval-after-load "magit-commit-mode"
                 '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
-      :ensure t
+      
       :pin melpa
     )
     (use-package git-gutter-fringe
-      :ensure t
+      
       :config (global-git-gutter-mode +1))
 
 
     (use-package ido-vertical-mode
-      :ensure t
+      :disabled t
+      
       :init
         (progn (ido-mode 1) 
            (ido-vertical-mode 1))
@@ -93,7 +110,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
            (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
         ))
     (use-package ido-ubiquitous
-      :ensure t
+      :disabled t
+      
       :init
         (ido-ubiquitous-mode 1)
 
@@ -105,45 +123,46 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
     )
 
     (use-package cl-lib
-      :ensure t)
+      )
     ;; (use-package zenburn-theme
-    ;;    :ensure t
+    ;;    
     ;;    :defer t
     ;;    :config   (load-theme 'zenburn t)
     ;; )
 
     (use-package color-theme-sanityinc-solarized
-       :ensure t
+       
        :config   (progn
          (load-theme 'sanityinc-solarized-dark t)
 	 (custom-set-faces
-	   '(cursor ((t (:background "blue1")))))
+	   '(cursor ((t (:background "blue1"))))
+	   '(helm-source-header ((t (:inherit source :foreground "#b58900" :weight bold :height 1))))
 	   )
 	 (setq-default cursor-type 'bar)
 	 (global-hl-line-mode t)
 	 (set-face-background hl-line-face "#042028") ; Base03 from solarized
-	  )
+	  ))
 
   ;  (use-package git-modes
-  ;    :ensure t)
+  ;    )
   ;  (use-package versions)
 
     (use-package benchmark-init
-      :ensure t)
+      )
     (use-package markdown-mode
-      :ensure t
+      
       :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
     (use-package headlong
-        :ensure t)
+        )
     (use-package avy
-        :ensure t)
+        )
     (use-package hydra
         :pin melpa
-        :ensure t)
+        )
     (use-package key-chord
-        :ensure t)
+        )
     (use-package ace-window
-        :ensure t
+        
 	:bind (("C-x o" . ace-window) 
 	       ("M-o" . ace-window))
 	:init (progn
@@ -152,9 +171,12 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	   ;(setq aw-dispatch-always t)
 	   ))
      (use-package windmove
-        :ensure t)
+        )
      (use-package transpose-frame
-       :ensure t)
+       )
+     (use-package swiper-helm
+        :bind (("\C-s". swiper)
+	        ("\C-r" . swiper)))  
 #+END_SRC
 
 * Magit configuration
@@ -325,7 +347,30 @@ So (from https://korewanetadesu.com/emacs-on-os-x.html):
     (ns-raise-emacs)))
 
 #+END_SRC
+* Python mode
+** Comint mode scrolling
+   It is annoying when I hit C-c C-c, that I have to scroll to the bottom, while I usually just want to see the new output. Best way should be to hook the C-c C-c, but this is easier:
+#+BEGIN_SRC emacs-lisp
+(setq comint-scroll-to-bottom-on-input t)
+(setq comint-scroll-to-bottom-on-output t)
+(setq comint-prompt-readonly t)
+#+END_SRC
 * Org-mode 
+** Notes on updating org
+I am using git, so org updating is something to do with =git submodule=. Google to find it. 
+
+If you need to pull stuff for submodules into your submodule repositories use
+git pull --recurse-submodules
+    a feature git learned in 1.7.3.
+But this will not checkout proper commits(the ones your master repository points to) in submodules
+To checkout proper commits in your submodules you should update them after pulling using
+git submodule update --recursive
+
+
+Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
+
+emacs -batch -Q -L lisp -l ../mk/org-fixup -f org-make-autoloads-compile
+
 ** Release keybindings
 Org is quite aggressive at binding keys. Release keys that I want to use for other purposes [[http://emacs.stackexchange.com/questions/3998/how-to-remap-control-up-in-org-mode][see also SO]]
 #+BEGIN_SRC emacs-lisp
@@ -347,21 +392,6 @@ Need to set system-specific locations for org, as I keep everything in Dropbox a
 
 (setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
 #+END_SRC
-** Notes on updating org
-I am using git, so org updating is something to do with =git submodule=. Google to find it. 
-
-If you need to pull stuff for submodules into your submodule repositories use
-git pull --recurse-submodules
-    a feature git learned in 1.7.3.
-But this will not checkout proper commits(the ones your master repository points to) in submodules
-To checkout proper commits in your submodules you should update them after pulling using
-git submodule update --recursive
-
-
-Anyway, this is important: http://orgmode.org/worg/org-hacks.html#compiling-org-without-make
-
-emacs -batch -Q -L lisp -l ../mk/org-fixup -f org-make-autoloads-compile
-
 ** Keybindings
 We need some keybindings for org-mode. These are the suggested defaults.
 #+BEGIN_SRC emacs-lisp
@@ -625,9 +655,9 @@ From emacs manual, prevents running out of memory when loads printed
   #+BEGIN_SRC emacs-lisp 
   (use-package undo-tree
     :defer t
-    :ensure t
+    
     :diminish undo-tree-mode
-    :idle
+    :config
     (progn
       (global-undo-tree-mode)
       (setq undo-tree-visualizer-timestamps t)
@@ -637,7 +667,7 @@ From emacs manual, prevents running out of memory when loads printed
 ***** Pop To Mark
   A great little tool to find previous locations. Configuration from Sacha Chua.
   #+BEGIN_SRC emacs-lisp
-  (bind-key "C-x p" 'pop-to-mark-command)
+  (bind-key "C-c p" 'pop-to-mark-command)
   (setq set-mark-command-repeat-pop t)
 
   #+END_SRC
@@ -680,7 +710,7 @@ From emacs manual, prevents running out of memory when loads printed
   Expand-region is great!
   #+BEGIN_SRC emacs-lisp
   (use-package expand-region
-    :ensure t
+    
     :bind ("C-=" . er/expand-region)
   )
 
@@ -725,6 +755,38 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
         search-ring
         regexp-search-ring))
 #+end_src
+* Bookmarks
+** Install bookmark+
+TODO: Installing bookmark+ steals loads of keymaps. I specifically want my C-x p back!
+#+BEGIN_SRC emacs-lisp
+(use-package bookmark+
+  )
+
+#+END_SRC
+** Call find-file with a given dir as starting point
+First, define the function. Usage may be as follows. Really nice as Bookmarks+ function bookmark (use bmkp-make-function-bookmark).
+#+BEGIN_SRC :tangle no
+(pragtich/find-file-folder "c:/Users/JPG/Dropbox/Euler/")
+#+END_SRC
+#+BEGIN_SRC emacs-lisp
+
+  (defun pragtich/find-file-folder (startdir)
+    "Calls find-file at a certain starting folder.
+
+    Make sure to finish with / if you want the files in the folder to show"
+    (interactive)
+    (when startdir (let ((default-directory startdir))
+      (call-interactively 'helm-find-files ))))
+
+
+#+END_SRC
+** Specific functions with bookmark loctions:
+#+BEGIN_SRC emacs-lisp
+(defun pragtich/Euler-find-file ()
+(interactive)
+(pragtich/find-file-folder "c:/Users/JPG/Dropbox/Euler/"))
+
+#+END_SRC
 * Startup
 ** Maximize window 
 #+BEGIN_SRC emacs-lisp
@@ -841,3 +903,4 @@ completion. This should fix it:
   ;;             (define-key yas/keymap [tab] 'yas/next-field)))
   
 #+end_src
+

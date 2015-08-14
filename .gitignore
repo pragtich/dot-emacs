@@ -10,7 +10,6 @@
 !/el-get/el-get
 .DS_Store
 \#*
-/lisp/python-mode-orig/
 emacs.el
 /emacs.el
 /tramp
