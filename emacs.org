@@ -1,4 +1,4 @@
-#+TITLE: Emacs Configuration
+he#+TITLE: Emacs Configuration
 #+OPTIONS:   H:4 num:nil toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
@@ -79,6 +79,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 		     (helm-mode 1))
       :bind (("C-x C-f" . helm-find-files)
              ("C-x b" . helm-mini))
+:ensure t
 ) 
 
     (use-package magit
@@ -176,7 +177,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
        )
      (use-package swiper-helm
         :bind (("\C-s". swiper)
-	        ("\C-r" . swiper)))  
+	        ("\C-r" . swiper))
+:ensure t)  
 #+END_SRC
 
 * Magit configuration
