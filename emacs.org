@@ -789,8 +789,10 @@ First, define the function. Usage may be as follows. Really nice as Bookmarks+ f
 #+BEGIN_SRC emacs-lisp
 (defun pragtich/Euler-find-file ()
 (interactive)
+(if (eq system-type 'darwin)
+ (pragtich/find-file-folder "~/Dropbox/Euler/")
 (pragtich/find-file-folder "c:/Users/JPG/Dropbox/Euler/"))
-
+)
 #+END_SRC
 * Startup
 ** Maximize window 
