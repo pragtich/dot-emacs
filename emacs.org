@@ -81,6 +81,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
                      (define-key helm-map (kbd "C-z") 'helm-select-action)
 )
       :bind (("C-x C-f" . helm-find-files)
+             ("C-c C-f" . helm-recentf)
              ("C-x b" . helm-mini))
 :ensure t
 ) 
@@ -765,6 +766,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 TODO: Installing bookmark+ steals loads of keymaps. I specifically want my C-x p back!
 #+BEGIN_SRC emacs-lisp
 (use-package bookmark+
+ :config (setq bmkp-last-as-first-bookmark-file nil)
   )
 
 #+END_SRC
