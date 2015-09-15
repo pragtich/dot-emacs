@@ -554,10 +554,17 @@ From emacs manual, prevents running out of memory when loads printed
     (setq sentence-end-double-space nil)
   #+end_src
 **** Prefer to split windows vertically
+     
   #+BEGIN_SRC emacs-lisp
   (setq split-height-threshold 60)
   (setq split-width-threshold 90)
   #+END_SRC
+**** Word (line) wrapping when split windows
+From [[http://www.stokebloke.com/wordpress/2008/04/24/emacs-line-wrapping/][a website.]]
+#+BEGIN_SRC emacs-lisp
+(setq truncate-partial-width-windows nil)
+
+#+END_SRC
 **** Delete current buffer file
       Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
   #+BEGIN_SRC emacs-lisp
