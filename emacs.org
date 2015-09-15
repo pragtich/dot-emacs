@@ -545,7 +545,7 @@ From emacs manual, prevents running out of memory when loads printed
 
   #+END_SRC
 
-***** Sentences end with a single space
+**** Sentences end with a single space
 
   In my world, sentences end with a single space. This makes
   sentence navigation commands work for me.
@@ -553,12 +553,12 @@ From emacs manual, prevents running out of memory when loads printed
   #+begin_src emacs-lisp
     (setq sentence-end-double-space nil)
   #+end_src
-***** Prefer to split windows vertically
+**** Prefer to split windows vertically
   #+BEGIN_SRC emacs-lisp
   (setq split-height-threshold 60)
   (setq split-width-threshold 90)
   #+END_SRC
-***** Delete current buffer file
+**** Delete current buffer file
       Deleting current buffer and the file it is visiting using the very logical =C-x C-k=(http://whattheemacsd.com/).
   #+BEGIN_SRC emacs-lisp
   (defun delete-current-buffer-file ()
@@ -576,7 +576,7 @@ From emacs manual, prevents running out of memory when loads printed
 
   (global-set-key (kbd "C-x C-k") 'delete-current-buffer-file)
   #+END_SRC
-***** Rename current buffer file
+**** Rename current buffer file
   As in the delete version, it's really nice to be able to rename the visited file easily. Whattheemacsd uses =C-x C-r=, which I find very reasonable.
   #+BEGIN_SRC emacs-lisp
   (defun rename-current-buffer-file ()
@@ -598,11 +598,11 @@ From emacs manual, prevents running out of memory when loads printed
 
   (global-set-key (kbd "C-x C-r") 'rename-current-buffer-file)
   #+END_SRC
-***** Delete to trash
+**** Delete to trash
   #+BEGIN_SRC emacs-lisp
   ( setq delete-by-moving-to-trash t)
   #+END_SRC
-***** Join lines
+**** Join lines
   A tip from http://whattheemacsd.com/: use =M-j= to join two lines. Loses a =comment-indent-new-line=, which I will not miss.
 
   #+BEGIN_SRC emacs-lisp
@@ -627,7 +627,7 @@ From emacs manual, prevents running out of memory when loads printed
     (blink-cursor-mode 0)
   
   #+end_src
-***** Prefix kills entire line
+**** Prefix kills entire line
   Comes from http://endlessparentheses.com/kill-entire-line-with-prefix-argument.html?source=rss: why should we not be able to kill entire line without C-a C-k C-k?
   #+BEGIN_SRC emacs-lisp
   (defmacro bol-with-prefix (function)
@@ -650,14 +650,14 @@ From emacs manual, prevents running out of memory when loads printed
   (global-set-key [remap kill-line] (bol-with-prefix kill-line))
 
   #+END_SRC
-***** Meta bindings for forward and backward sexp, and delete-other-windows
+**** Meta bindings for forward and backward sexp, and delete-other-windows
   From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
   #+BEGIN_SRC emacs-lisp
   (global-set-key "\M-9" 'backward-sexp)
   (global-set-key "\M-0" 'forward-sexp)
   (global-set-key "\M-1" 'delete-other-windows)
   #+END_SRC
-***** Undo tree
+**** Undo tree
   Use the undo-tree package to simplify Undoing. I have never really understood the default way op undoing anyway. Tips: C-_ to undo, M-_ to redo, C-x u to see the tree. Configuration from Sacha Chua:
   #+BEGIN_SRC emacs-lisp 
   (use-package undo-tree
@@ -671,14 +671,14 @@ From emacs manual, prevents running out of memory when loads printed
       (setq undo-tree-visualizer-diff t)))
 
   #+END_SRC
-***** Pop To Mark
+**** Pop To Mark
   A great little tool to find previous locations. Configuration from Sacha Chua.
   #+BEGIN_SRC emacs-lisp
   (bind-key "C-c p" 'pop-to-mark-command)
   (setq set-mark-command-repeat-pop t)
 
   #+END_SRC
-***** Insert matched brace pairs
+**** Insert matched brace pairs
   The default ~M-(~ binding is really nice and deserves a parallel for the braces that I use a lot. Taken from [[http://stackoverflow.com/questions/2951797/wrapping-selecting-text-in-enclosing-characters-in-emacs][a nice stackoverflow discussion]].
   #+BEGIN_SRC emacs-lisp
   (global-set-key (kbd "M-[") 'insert-pair)
@@ -687,7 +687,7 @@ From emacs manual, prevents running out of memory when loads printed
 
   (global-set-key (kbd "M-)") 'delete-pair)
   #+END_SRC
-***** Split windows open prev window
+**** Split windows open prev window
   As used by Sacha Chua and copied from [[http://www.reddit.com/r/emacs/comments/25v0eo/you_emacs_tips_and_tricks/chldury][a Reddit post]]:
   #+BEGIN_SRC emacs-lisp
   (defun my/vsplit-last-buffer (prefix)
@@ -706,7 +706,7 @@ From emacs manual, prevents running out of memory when loads printed
   (bind-key "C-x 2" 'my/vsplit-last-buffer)
   (bind-key "C-x 3" 'my/hsplit-last-buffer)
   #+END_SRC
-***** Visual line mode
+**** Visual line mode
   #+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
   (add-hook 'org-mode-hook 'turn-on-visual-line-mode)
