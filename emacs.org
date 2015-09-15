@@ -82,7 +82,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 )
       :bind (("C-x C-f" . helm-find-files)
              ("C-c C-f" . helm-recentf)
-             ("C-x b" . helm-mini))
+             ("C-x b" . helm-mini)
+             ("M-x" . helm-M-x))
 :ensure t
 ) 
 
