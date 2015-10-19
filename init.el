@@ -24,6 +24,12 @@
 (require 'org)
 (require 'ob-tangle)
 
+;; Correct exec path before loading the rest (only on Mac)
+;; Fails the first time round because we do not yet have exec-path-from-shell installed
+;; This is installed through use-package in the emacs.org
+(when (memq window-system '(mac ns))
+  (exec-path-from-shell-initialize))
+
 ;; load up the main file
 (org-babel-load-file (expand-file-name "emacs.org" dotfiles-dir))
 (custom-set-variables

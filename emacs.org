@@ -66,6 +66,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 #+END_SRC
 *** Defining my customized packages and keybindings
 #+BEGIN_SRC emacs-lisp
+(use-package exec-path-from-shell)
     (use-package guide-key
       :config (progn
         (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
