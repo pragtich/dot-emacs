@@ -504,6 +504,7 @@ From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time
 (setq org-clock-persist 'history)
 (org-clock-persistence-insinuate)
 (setq org-clock-mode-line-total 'today)
+(setq org-clock-idle-time 15)
 #+END_SRC
 
 * Look and feel
