@@ -181,7 +181,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
         )
      (use-package transpose-frame
        )
-     (use-package swiper-helm
+     (use-package swiper
         :bind (("\C-s". swiper)
 	        ("\C-r" . swiper))
 :ensure t)  
