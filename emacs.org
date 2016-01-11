@@ -184,6 +184,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
      (use-package swiper
         :bind (("\C-s". swiper)
 	        ("\C-r" . swiper))
+	:config (setq ivy-wrap t)
 :ensure t)  
 #+END_SRC
 
