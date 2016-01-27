@@ -86,6 +86,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
              ("C-x b" . helm-mini)
              ("M-x" . helm-M-x))
 :ensure t
+:demand t
 ) 
 
     (use-package magit
