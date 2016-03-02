@@ -65,6 +65,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
   (git-commit-commit))
 #+END_SRC
 *** Defining my customized packages and keybindings
+
 #+BEGIN_SRC emacs-lisp
 (use-package exec-path-from-shell)
     (use-package guide-key
@@ -88,7 +89,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 :ensure t
 :demand t
 ) 
-
+(use-package diminish)
     (use-package magit
       :commands magit-status
       :bind (("C-x g" . magit-status) 
@@ -100,7 +101,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
     )
     (use-package git-gutter-fringe
       
-      :config (global-git-gutter-mode +1))
+      :config (global-git-gutter-mode +1)
+      :diminish git-gutter-mode )
 
 
     (use-package ido-vertical-mode
