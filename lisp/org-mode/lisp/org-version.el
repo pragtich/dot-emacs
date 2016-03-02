@@ -14,7 +14,7 @@
    (let ((org-git-version "8.3.4-dist"))
      org-git-version))
 ;;;###autoload
-(defvar org-odt-data-dir "/usr/share/emacs/etc/org"
+(defvar org-odt-data-dir "c:/Users/JPG/AppData/Roaming/.emacs.d/lisp/org-mode/lisp/../etc/"
   "The location of ODT styles.")
 
 (provide 'org-version)
