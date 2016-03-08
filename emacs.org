@@ -41,6 +41,7 @@ Load the use-package macro:
 #+END_SRC
 Initialize the package.el locations and load a list of packages if not available, so that use-package will not fail.
 #+BEGIN_SRC emacs-lisp
+(require 'package)
 (setq package-archives '(("melpa" . "http://melpa.milkbox.net/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 ;(package-refresh-contents)
