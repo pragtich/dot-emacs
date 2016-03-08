@@ -747,6 +747,15 @@ From [[http://www.stokebloke.com/wordpress/2008/04/24/emacs-line-wrapping/][a we
   )
 
   #+END_SRC
+** Frame appearance
+*** Frame title
+Set frame title to filename or buffer name
+#+BEGIN_SRC emacs-lisp
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+#+END_SRC
 ** Theming
    (Obsolete) Make use of color-theme to make it pretty.
    Now switched to zenburn (does not require color-theme) because it better supports Org-mode. More info here: https://github.com/bbatsov/zenburn-emacs. Other options would be found here: http://orgmode.org/worg/org-color-themes.html
