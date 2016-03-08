@@ -505,10 +505,10 @@ I do not much enjoy the empty lines that org-mode can sometimes inject based on 
 ** Org-clock logging worked time
 From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time logging]]: make sure the clock log is persistent so that an aborted session gets recovered correctly.
 #+BEGIN_SRC emacs-lisp
-(setq org-clock-persist 'history)
+(setq org-clock-persist t)
 (org-clock-persistence-insinuate)
 (setq org-clock-mode-line-total 'today)
-(setq org-clock-idle-time 15)
+;(setq org-clock-idle-time 15)
 #+END_SRC
 
 * Look and feel
