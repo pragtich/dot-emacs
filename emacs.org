@@ -12,7 +12,13 @@ All lisp files needed to run this configuration are either installed
 by system packages. Or found in the same directory where this
 configuration file lives. The path to this configuration directory is
 bound to ~dotfiles-dir~ in the main ~init.el~.
-
+* Emacs behind the scenes
+** Garbage Collection
+Reduce frequence of GC
+#+BEGIN_SRC emacs-lisp
+(setq gc-cons-threshold 50000000)
+#+END_SRC
+** Large files
 * Packages
 ** Install packages using use-package
 *** Initializing use-package u
