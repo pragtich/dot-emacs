@@ -731,6 +731,11 @@ From [[http://www.stokebloke.com/wordpress/2008/04/24/emacs-line-wrapping/][a we
   (bind-key "C-x 2" 'my/vsplit-last-buffer)
   (bind-key "C-x 3" 'my/hsplit-last-buffer)
   #+END_SRC
+**** Scroll margin
+#+BEGIN_SRC emacs-lisp
+(setq scroll-margin 3)
+
+#+END_SRC
 **** Visual line mode
   #+BEGIN_SRC emacs-lisp
   (add-hook 'text-mode-hook 'turn-on-visual-line-mode)
