@@ -79,7 +79,13 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 *** Defining my customized packages and keybindings
 
 #+BEGIN_SRC emacs-lisp
+
 (use-package exec-path-from-shell)
+(use-package beacon
+:config (progn 
+(setq beacon-color "gold1" )
+(beacon-mode 1)
+))
     (use-package guide-key
       :config (progn
         (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
@@ -101,7 +107,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 :ensure t
 :demand t
 ) 
-(use-package diminish)
+(Use-package diminish)
     (use-package magit
       :commands magit-status
       :bind (("C-x g" . magit-status) 
