@@ -107,7 +107,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 :ensure t
 :demand t
 ) 
-(Use-package diminish)
+(use-package diminish)
     (use-package magit
       :commands magit-status
       :bind (("C-x g" . magit-status) 
