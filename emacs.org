@@ -490,10 +490,19 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 ** Custom TODO headers
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" "|" "CANCELLED(x)" ))) 
+        '((sequence "A(a)"  "B(b)" "C(c)" "WAITING(w)" "|" "DONE(d)" "|" "CANCELLED(x)" ))) 
   (setq org-todo-keyword-faces
         '(("A" . "yellow")
           ("WAITING". "orange")))
+#+END_SRC
+** Agenda sorting
+*** Sort agenda of todo items in TODO order
+#+BEGIN_SRC emacs-lisp
+(setq org-agenda-sorting-strategy '((agenda habit-down time-up priority-down category-keep)
+ (todo priority-down todo-state-up category-keep)
+ (tags priority-down category-keep)
+ (search category-keep)))
+
 #+END_SRC
 ** Fast TAGS selection
 Using +TAGS: NEXT(n) format helps greatly
