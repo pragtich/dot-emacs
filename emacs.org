@@ -498,10 +498,16 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 ** Agenda sorting
 *** Sort agenda of todo items in TODO order
 #+BEGIN_SRC emacs-lisp
-(setq org-agenda-sorting-strategy '((agenda habit-down time-up priority-down category-keep)
- (todo priority-down todo-state-up category-keep)
- (tags priority-down category-keep)
- (search category-keep)))
+
+  ;; (setq org-agenda-sorting-strategy '((agenda habit-down time-up priority-down category-keep)
+  ;;  (todo priority-down todo-state-up category-keep)
+  ;;  (tags priority-down category-keep)
+  ;;  (search category-keep)))
+  (defun pragtich/org-agenda-init () 
+           (add-to-list 'org-agenda-sorting-strategy 
+	   '(todo priority-down todo-state-up category-keep) ))
+
+(eval-after-load "org-agenda" '(pragtich/org-agenda-init))
 
 #+END_SRC
 ** Fast TAGS selection
