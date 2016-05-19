@@ -79,7 +79,13 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 *** Defining my customized packages and keybindings
 
 #+BEGIN_SRC emacs-lisp
+
 (use-package exec-path-from-shell)
+(use-package beacon
+:config (progn 
+(setq beacon-color "gold1" )
+(beacon-mode 1)
+))
     (use-package guide-key
       :config (progn
         (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
@@ -484,10 +490,25 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 ** Custom TODO headers
 #+BEGIN_SRC emacs-lisp
   (setq org-todo-keywords
-        '((sequence "B(b)" "A(a)" "C(c)" "WAITING(w)" "|" "DONE(d)" ))) 
+        '((sequence "A(a)"  "B(b)" "C(c)" "WAITING(w)" "|" "DONE(d)" "|" "CANCELLED(x)" ))) 
   (setq org-todo-keyword-faces
         '(("A" . "yellow")
           ("WAITING". "orange")))
+#+END_SRC
+** Agenda sorting
+*** Sort agenda of todo items in TODO order
+#+BEGIN_SRC emacs-lisp
+
+  ;; (setq org-agenda-sorting-strategy '((agenda habit-down time-up priority-down category-keep)
+  ;;  (todo priority-down todo-state-up category-keep)
+  ;;  (tags priority-down category-keep)
+  ;;  (search category-keep)))
+  (defun pragtich/org-agenda-init () 
+           (add-to-list 'org-agenda-sorting-strategy 
+	   '(todo priority-down todo-state-up category-keep) ))
+
+(eval-after-load "org-agenda" '(pragtich/org-agenda-init))
+
 #+END_SRC
 ** Fast TAGS selection
 Using +TAGS: NEXT(n) format helps greatly
