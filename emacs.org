@@ -544,6 +544,13 @@ From [[http://orgmode.org/manual/Clocking-work-time.html][the org manual on time
 ;(setq org-clock-idle-time 15)
 #+END_SRC
 
+** Org clock time display
+Org clock by default shows hours above 24h as days. That does not match with my perception of a work day (typically 8 hours, not 24). Remove the days stuff:
+
+#+BEGIN_SRC emacs-lisp
+(setq org-time-clocksum-format '(:hours "%d" :require-hours t :minutes ":%02d" :require-minutes t))
+;; Original value: (:days "%dd " :hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Small things
