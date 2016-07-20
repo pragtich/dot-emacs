@@ -415,13 +415,13 @@ Org is quite aggressive at binding keys. Release keys that I want to use for oth
 ** Locations
 Need to set system-specific locations for org, as I keep everything in Dropbox and cannot do symlinks in Windows. So I set =org-directory= as a home location. I can then use this as a base for the file named in =org-agenda-files=, which lists files on each line relative to this folder.
 #+BEGIN_SRC emacs-lisp
-(if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
-  (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
-  (setq org-directory "~/org/")
-)
+  (if (eq system-type 'windows-nt) ; Actually trying to detect my work pc, may need to change this later on
+    (setq org-directory (substitute-in-file-name "$USERPROFILE/Dropbox/org/"))
+    (setq org-directory "~/org/")
+  )
 
-(setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
-(setq pragtich/org-todo-file (car (org-agenda-files)))
+  (setq org-agenda-files "~/.emacs.d/org-agenda-files") ; Use a single file name, so lookup agenda files in that file (see help on org-agenda-files)
+  (setq pragtich/org-todo-file (car (org-agenda-files))) ;Set pragtich/org-todo-file to the first element of org-agenda-files, which is in the current implementation the first element in the file org-agenda-files. This is the place where I want to capture stuff using capture templates.
 #+END_SRC
 ** Keybindings
 We need some keybindings for org-mode. These are the suggested defaults.
@@ -553,7 +553,7 @@ Org clock by default shows hours above 24h as days. That does not match with my 
 ;; Original value: (:days "%dd " :hours "%d" :require-hours t :minutes ":%02d" :require-minutes t)
 #+END_SRC
 ** Org capture for simple TODOs
-A simple capture template from [[http://pragmaticemacs.com/emacs/org-mode-basics-vi-a-simple-todo-list/][Pragmatic emacs]]. Let's try it.
+A simple capture template from [[http://pragmaticemacs.com/emacs/org-mode-basics-vi-a-simple-todo-list/][Pragmatic emacs]]. Let's try it. I am capturing to =pragtich/org-todo-file=, which is defined earlier.
 #+BEGIN_SRC emacs-lisp
 
 ;;capture todo items using C-c c t
