@@ -565,6 +565,17 @@ A simple capture template from [[http://pragmaticemacs.com/emacs/org-mode-basics
 
 * Look and feel
 ** Behavior
+*** Tab key
+**** Complete upon tab
+From [[http://emacsredux.com/blog/2016/01/31/use-tab-to-indent-or-complete/][Emacs Redux]]:
+#+BEGIN_SRC emacs-lisp
+
+	
+
+(setq tab-always-indent 'complete)
+
+
+#+END_SRC
 *** Small things
 These lines configure Emacs' general behavior at certain aspects.
 **** Show matching parentheses
