@@ -79,7 +79,7 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 *** Defining my customized packages and keybindings
 
 #+BEGIN_SRC emacs-lisp
-
+(use-package which-key :config (which-key-mode))
 (use-package exec-path-from-shell)
 (use-package beacon
 :config (progn 
