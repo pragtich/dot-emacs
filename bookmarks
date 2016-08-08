@@ -2,7 +2,21 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("E: project Euler find-file" 0 26
+(#1=(#("org-capture-last-stored" 0 23
+      (bmkp-full-record #1#))
+    (annotation)
+    (tags)
+    (filename . "c:/Users/JPG/Dropbox/org/NG2.org")
+    (buffer-name . "NG2.org")
+    (front-context-string . "** B test org to")
+    (rear-context-string . " \n\n\n\n  \n* Tasks\n")
+    (front-context-region-string)
+    (rear-context-region-string)
+    (visits . 0)
+    (time . #2=(22415 13505 450151 700000))
+    (created . #2#)
+    (position . 62621))
+#1=(#("E: project Euler find-file" 0 26
       (bmkp-full-record #1#))
     (time 21995 3699 875441 0)
     (visits . 6)

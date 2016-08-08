@@ -729,8 +729,7 @@ From [[http://www.stokebloke.com/wordpress/2008/04/24/emacs-line-wrapping/][a we
 **** Meta bindings for forward and backward sexp, and delete-other-windows
   From http://endlessparentheses.com/Meta-Binds-Part-1%253A-Drunk-in-the-Dark.html
   #+BEGIN_SRC emacs-lisp
-  (global-set-key "\M-9" 'backward-sexp)
-  (global-set-key "\M-0" 'forward-sexp)
+  (global-set-key "\M-0" 'delete-window)
   (global-set-key "\M-1" 'delete-other-windows)
   #+END_SRC
 **** Undo tree
