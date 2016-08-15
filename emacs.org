@@ -581,6 +581,14 @@ A simple capture template from [[http://pragmaticemacs.com/emacs/org-mode-basics
       '(("t" "todo" entry (file+headline pragtich/org-todo-file "Tasks")
          "** B %?")))
 #+END_SRC
+** Refile setup
+I like to refile, but the default is not my favorite. At least allow me to refile to all levels:
+#+BEGIN_SRC emacs-lisp
+(setq org-refile-targets '((org-agenda-files :maxlevel . 4)))
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps nil)
+
+#+END_SRC
 * Look and feel
 ** Behavior
 *** Tab key

@@ -32,13 +32,13 @@
     (position . 235))
 #1=(#("e: emacs.org" 0 12
       (bmkp-full-record #1#))
-    (end-position . 20149)
-    (time 22440 22149 557513 300000)
-    (visits . 23)
+    (end-position . 20836)
+    (time 22449 51665 74914 600000)
+    (visits . 26)
     (filename . "~/.emacs.d/emacs.org")
     (front-context-string . "\n* Look and feel")
     (rear-context-string . "oday)\n#+END_SRC\n")
-    (position . 20149))
+    (position . 20836))
 #1=(#("j: jpg.org" 0 10
       (bmkp-full-record #1#))
     (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
