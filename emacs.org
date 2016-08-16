@@ -469,7 +469,8 @@ I hate it when =<M-RET>= splits a line in the middle, something I never do.
 #+END_SRC
 
 ** Use IDO mode for org
-#+BEGIN_SRC emacs-lisp
+   Is not compatible with what I want, I think.
+#+BEGIN_SRC emacs-lisp :tangle no
 (setq org-completion-use-ido t)
 #+END_SRC
 
@@ -583,12 +584,15 @@ A simple capture template from [[http://pragmaticemacs.com/emacs/org-mode-basics
          "** B %?")))
 #+END_SRC
 ** Refile setup
-I like to refile, but the default is not my favorite. At least allow me to refile to all levels:
+I like to refile, but the default is not my favorite. At least allow me to refile to enough levels, let me select in steps and disable customized (ivy-mode) completion.
+
+I did not like ivy's completing read for this function, as it shows you all the possible endpoints. This makes it such, that I only see the first heading and I find it unclear. I do not want to memorize the headings that I want to refile to. So, roll back to the default behaviour, which is fine.
 #+BEGIN_SRC emacs-lisp
 (setq org-refile-targets '((org-agenda-files :maxlevel . 4)))
 (setq org-refile-use-outline-path t)
-(setq org-outline-path-complete-in-steps nil)
-
+(setq org-outline-path-complete-in-steps t)
+(defadvice org-refile (around original-completing-read-only activate)
+      (let ((completing-read-function #'completing-read-default)) ad-do-it)) 
 #+END_SRC
 * Look and feel
 ** Behavior
