@@ -226,7 +226,9 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
         :bind (("\C-s". swiper)
 	        ("\C-r" . swiper))
 	:config (setq ivy-wrap t)
-:ensure t)  
+:ensure t)
+;(use-package projectile)
+(use-package platformio-mode)
 #+END_SRC
 
 * Magit configuration

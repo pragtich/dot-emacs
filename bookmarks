@@ -2,21 +2,7 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("org-capture-last-stored" 0 23
-      (bmkp-full-record #1#))
-    (annotation)
-    (tags)
-    (filename . "c:/Users/JPG/Dropbox/org/NG2.org")
-    (buffer-name . "NG2.org")
-    (front-context-string . "** B Test\n   SCH")
-    (rear-context-string . "ND:\n* \n\n* Tasks\n")
-    (front-context-region-string)
-    (rear-context-region-string)
-    (visits . 0)
-    (time . #2=(22449 25568 360508 500000))
-    (created . #2#)
-    (position . 63062))
-#1=(#("E: project Euler find-file" 0 26
+(#1=(#("E: project Euler find-file" 0 26
       (bmkp-full-record #1#))
     (time 21995 3699 875441 0)
     (visits . 6)
@@ -32,13 +18,13 @@
     (position . 235))
 #1=(#("e: emacs.org" 0 12
       (bmkp-full-record #1#))
-    (end-position . 20836)
-    (time 22449 51665 74914 600000)
-    (visits . 26)
+    (end-position . 21623)
+    (time 22560 50462 478880 0)
+    (visits . 23)
     (filename . "~/.emacs.d/emacs.org")
     (front-context-string . "\n* Look and feel")
     (rear-context-string . "oday)\n#+END_SRC\n")
-    (position . 20836))
+    (position . 21623))
 #1=(#("j: jpg.org" 0 10
       (bmkp-full-record #1#))
     (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
@@ -52,14 +38,14 @@
     (tags)
     (filename . "c:/Users/JPG/Dropbox/org/NG2.org")
     (buffer-name . "NG2.org")
-    (front-context-string . "** DONE Vraag Oh")
-    (rear-context-string . "ermostaat hebt)\n")
+    (front-context-string . "** A Elbi's FMEA")
+    (rear-context-string . "heel belangrijk\n")
     (front-context-region-string)
     (rear-context-region-string)
     (visits . 0)
-    (time . #2=(22449 31253 266024 500000))
+    (time . #2=(22332 28816 724218 600000))
     (created . #2#)
-    (position . 37750))
+    (position . 48592))
 #1=(#("(emacs) Bookmarks" 0 17
       (bmkp-full-record #1#))
     (time 21995 3696 819331 0)
