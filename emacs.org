@@ -227,10 +227,45 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 	        ("\C-r" . swiper))
 	:config (setq ivy-wrap t)
 :ensure t)
-;(use-package projectile)
-(use-package platformio-mode)
 #+END_SRC
 
+*** Install programming related stuff
+https://github.com/ZachMassia/PlatformIO-Mode
+    #+BEGIN_SRC emacs-lisp
+    ;(use-package projectile)
+
+(use-package irony)
+(use-package company
+ :config (add-to-list 'company-backends 'company-irony)
+ :init (add-hook 'after-init-hook 'global-company-mode)
+)
+
+(use-package flycheck
+:init (progn
+ (global-flycheck-mode)
+ (add-hook 'flycheck-mode-hook 'flycheck-irony-setup)))
+(use-package flycheck-irony)
+(use-package platformio-mode
+:init (progn
+;; Enable irony for all c++ files, and platformio-mode only
+;; when needed (platformio.ini present in project root).
+(add-hook 'c++-mode-hook (lambda ()
+                           (irony-mode)
+                           (irony-eldoc)
+                           (platformio-conditionally-enable)))
+;; Use irony's completion functions.
+(add-hook 'irony-mode-hook
+          (lambda ()
+            (define-key irony-mode-map [remap completion-at-point]
+              'irony-completion-at-point-async)
+
+            (define-key irony-mode-map [remap complete-symbol]
+              'irony-completion-at-point-async)
+
+            (irony-cdb-autosetup-compile-options))))
+)
+
+    #+END_SRC
 * Magit configuration
 *** Magit general
 **** Last version release notes
