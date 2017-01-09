@@ -48,8 +48,8 @@
     (position . 48592))
 #1=(#("(emacs) Bookmarks" 0 17
       (bmkp-full-record #1#))
-    (time 21995 3696 819331 0)
-    (visits . 0)
+    (time 22630 12139 293689 304000)
+    (visits . 3)
     (front-context-string . "\n13.8 Bookmarks\n")
     (rear-context-string . "  Up: Registers\n")
     (position . 240612)

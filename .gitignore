@@ -16,3 +16,4 @@ emacs.el
 /eshell/
 /recentf
 /org-clock-save.el
+irony/*
