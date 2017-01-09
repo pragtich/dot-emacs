@@ -243,6 +243,7 @@ https://github.com/ZachMassia/PlatformIO-Mode
     ;(use-package projectile)
 
 (use-package irony)
+(use-package flycheck-irony)
 (use-package company
  :config (add-to-list 'company-backends 'company-irony)
  :init (add-hook 'after-init-hook 'global-company-mode)
