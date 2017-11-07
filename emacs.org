@@ -411,7 +411,7 @@ function ew()
 #+END_SRC
 #+BEGIN_SRC emacs-lisp
 
-(when (eq system-type 'darwin)
+(when (or (eq system-type 'darwin) (eq system-type 'gnu/linux))
   ; Start the emacs server with a predictable pipe name
   (setq server-socket-dir (format "/tmp/emacs%d" (user-uid)))
   (server-start))
