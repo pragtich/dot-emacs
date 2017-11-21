@@ -241,7 +241,8 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 https://github.com/ZachMassia/PlatformIO-Mode
     #+BEGIN_SRC emacs-lisp
     ;(use-package projectile)
-
+(use-package yaml-mode
+  :mode "\\.yaml\\'")
 (use-package irony)
 (use-package forth-mode)
 (use-package flycheck-irony)
