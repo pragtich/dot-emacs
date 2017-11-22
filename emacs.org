@@ -275,7 +275,8 @@ https://github.com/ZachMassia/PlatformIO-Mode
 
             (irony-cdb-autosetup-compile-options))))
 )
-
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(add-to-list 'auto-mode-alist '("\\.ino\\'" . c++-mode))
     #+END_SRC
 * Magit configuration
 *** Magit general
