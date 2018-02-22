@@ -274,6 +274,7 @@ https://github.com/ZachMassia/PlatformIO-Mode
             (irony-cdb-autosetup-compile-options))))
 )
 
+(use-package arduino-mode)
     #+END_SRC
 * Magit configuration
 *** Magit general
