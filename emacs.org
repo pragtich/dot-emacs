@@ -170,8 +170,6 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
       
     )
 
-    (use-package cl-lib
-      )
     ;; (use-package zenburn-theme
     ;;    
     ;;    :defer t
