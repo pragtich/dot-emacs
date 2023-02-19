@@ -1,27 +1,24 @@
-;;; ob-sed.el --- org-babel functions for sed scripts
+;;; ob-sed.el --- Babel Functions for Sed Scripts    -*- lexical-binding: t; -*-
 
-;; Copyright (C) 2015-2016 Free Software Foundation, Inc.
+;; Copyright (C) 2015-2023 Free Software Foundation, Inc.
 
 ;; Author: Bjarte Johansen
 ;; Keywords: literate programming, reproducible research
-;; Version: 0.1.0
 
 ;; This file is part of GNU Emacs.
 
-;;; License:
-
-;; This program is free software; you can redistribute it and/or modify
+;; GNU Emacs is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
-;; the Free Software Foundation; either version 3, or (at your option)
-;; any later version.
-;;
-;; This program is distributed in the hope that it will be useful,
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+
+;; GNU Emacs is distributed in the hope that it will be useful,
 ;; but WITHOUT ANY WARRANTY; without even the implied warranty of
 ;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 ;; GNU General Public License for more details.
-;;
+
 ;; You should have received a copy of the GNU General Public License
-;; along with GNU Emacs. If not, see <http://www.gnu.org/licenses/>.
+;; along with GNU Emacs.  If not, see <https://www.gnu.org/licenses/>.
 
 ;;; Commentary:
 
@@ -38,11 +35,15 @@
 ;; In addition to the normal header arguments, ob-sed also provides
 ;; :cmd-line and :in-file. :cmd-line allows one to pass other flags to
 ;; the sed command like the "--in-place" flag which makes sed edit the
-;; file pass to it instead of outputting to standard out or to a
+;; file passed to it instead of outputting to standard out or to a
 ;; different file. :in-file is a header arguments that allows one to
 ;; tell Org Babel which file the sed script to act on.
 
 ;;; Code:
+
+(require 'org-macs)
+(org-assert-version)
+
 (require 'ob)
 
 (defvar org-babel-sed-command "sed"
@@ -64,24 +65,25 @@
 BODY is the source inside a sed source block and PARAMS is an
 association list over the source block configurations.  This
 function is called by `org-babel-execute-src-block'."
-  (message "executing sed source code block")
+  (message "Executing sed source code block")
   (let* ((result-params (cdr (assq :result-params params)))
          (cmd-line (cdr (assq :cmd-line params)))
          (in-file (cdr (assq :in-file params)))
 	 (code-file (let ((file (org-babel-temp-file "sed-")))
                       (with-temp-file file
-			(insert body)) file))
+			(insert body))
+		      file))
 	 (stdin (let ((stdin (cdr (assq :stdin params))))
-		   (when stdin
-		     (let ((tmp (org-babel-temp-file "sed-stdin-"))
-			   (res (org-babel-ref-resolve stdin)))
-		       (with-temp-file tmp
-			 (insert res))
-		       tmp))))
+		  (when stdin
+		    (let ((tmp (org-babel-temp-file "sed-stdin-"))
+			  (res (org-babel-ref-resolve stdin)))
+		      (with-temp-file tmp
+			(insert res))
+		      tmp))))
          (cmd (mapconcat #'identity
 			 (remq nil
 			       (list org-babel-sed-command
-				     (format "--file=\"%s\"" code-file)
+				     (format "-f \"%s\"" code-file)
 				     cmd-line
 				     in-file))
 			 " ")))
@@ -104,4 +106,5 @@ function is called by `org-babel-execute-src-block'."
       (cdr (assq :rowname-names params)) (cdr (assq :rownames params))))))
 
 (provide 'ob-sed)
+
 ;;; ob-sed.el ends here
