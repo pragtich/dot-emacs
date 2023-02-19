@@ -9,7 +9,7 @@
  '(nil nil t)
  '(package-selected-packages
    (quote
-    (company-irony which-key undo-tree transpose-frame swiper-helm platformio-mode markdown-mode magit key-chord ivy-hydra headlong guide-key git-gutter-fringe expand-region exec-path-from-shell diminish counsel company color-theme-sanityinc-solarized bookmark+ benchmark-init beacon ace-window))))
+    (json-mode arduino-mode forth-mode company-irony which-key undo-tree transpose-frame swiper-helm platformio-mode markdown-mode magit key-chord ivy-hydra headlong guide-key git-gutter-fringe expand-region exec-path-from-shell diminish counsel company color-theme-sanityinc-solarized bookmark+ benchmark-init beacon ace-window))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

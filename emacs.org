@@ -56,7 +56,7 @@ Initialize the package.el locations and load a list of packages if not available
 (setq package-archives '(("melpa" . "http://melpa.org/packages/")
                          ("gnu" . "http://elpa.gnu.org/packages/")))
 ;(package-refresh-contents)
-(package-initialize)
+;;(package-initialize) ; Commented out because also in init.el
 (when (not package-archive-contents) (package-refresh-contents))
 
 

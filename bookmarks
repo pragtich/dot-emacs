@@ -2,14 +2,13 @@
 ;;; This format is meant to be slightly human-readable;
 ;;; nevertheless, you probably don't want to edit it.
 ;;; -*- End Of Bookmark File Format Version Stamp -*-
-(#1=(#("E: project Euler find-file" 0 26
-      (bmkp-full-record #1#))
-    (time 21995 3699 875441 0)
-    (visits . 6)
-    (filename . "   - no file -")
-    (position . 0)
-    (function . pragtich/Euler-find-file)
-    (handler . bmkp-jump-function))
+(("E: project Euler find-file"
+ (time 21995 3699 875441 0)
+ (visits . 6)
+ (filename . "   - no file -")
+ (position . 0)
+ (function . pragtich/Euler-find-file)
+ (handler . bmkp-jump-function))
 #1=(#("Dp: Dropbox (PC)" 0 16
       (bmkp-full-record #1#))
     (filename . "c:/Users/JPG/Dropbox/")
@@ -18,13 +17,13 @@
     (position . 235))
 #1=(#("e: emacs.org" 0 12
       (bmkp-full-record #1#))
-    (end-position . 21793)
-    (time 22643 52829 909050 0)
-    (visits . 25)
+    (end-position . 23144)
+    (time 23211 64685 746687 0)
+    (visits . 28)
     (filename . "~/.emacs.d/emacs.org")
     (front-context-string . "\n* Look and feel")
     (rear-context-string . "oday)\n#+END_SRC\n")
-    (position . 21793))
+    (position . 23144))
 #1=(#("j: jpg.org" 0 10
       (bmkp-full-record #1#))
     (filename . "c:/Users/JPG/Dropbox/org/jpg.org")
