@@ -1082,4 +1082,19 @@ completion. This should fix it:
 
 * Geiser
 ** Install geiser-guile
+#+begin_src emacs-lisp
+  (use-package geiser-guile)
+#+end_src
 
+** Configure a guile binary using Guix
+In order to get a reproducible environment, I am running guile in a guix environment. Using a simple wrapper script as a start:
+#+begin_src shell tangle: no
+  #!/bin/bash
+  # https://unix.stackexchange.com/questions/761784/how-to-get-guix-perfect-setup-to-work
+  guix shell guile guile-readline guile-colorized -- guix repl "$@"
+
+#+end_src
+
+#+begin_src emacs-lisp
+  (setq geiser-guile-binary "~/src/guile-repl/guix-repl.sh")
+#+end_src
