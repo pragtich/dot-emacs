@@ -504,11 +504,7 @@ Somewhat superfluous since recent Emacsen have this as default, but just in case
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 #+END_SRC
-** Org mode easy templates: source code with emacs list tag. 
-This is primarily to ease editing of this single file: enter =<S= and hit =TAB= to make a source template with the =emacs-lisp= language.
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-structure-template-alist (list "S" "#+BEGIN_SRC emacs-lisp?\n\n#+END_SRC" "<src lang=\"?\">\n\n</src>" ))
-#+END_SRC
+
 
 ** Prevent M-RET from splitting lines
 I hate it when =<M-RET>= splits a line in the middle, something I never do.
@@ -1083,4 +1079,7 @@ completion. This should fix it:
   ;;             (define-key yas/keymap [tab] 'yas/next-field)))
   
 #+end_src
+
+* Geiser
+** Install geiser-guile
 
