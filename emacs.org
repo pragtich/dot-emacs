@@ -933,7 +933,7 @@ From http://www.wisdomandwonder.com/wordpress/wp-content/uploads/2014/03/C3F.htm
 * Bookmarks
 ** Install bookmark+
 TODO: Installing bookmark+ steals loads of keymaps. I specifically want my C-x p back!
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
 (use-package bookmark+
  :config (setq bmkp-last-as-first-bookmark-file nil)
   )
