@@ -16,12 +16,12 @@ bound to ~dotfiles-dir~ in the main ~init.el~.
 ** Garbage Collection
 Reduce frequence of GC
 #+BEGIN_SRC emacs-lisp
-(setq gc-cons-threshold 50000000)
+  (setq gc-cons-threshold 50000000)
 #+END_SRC
 ** Large files
 Warn only when files are really large
 #+BEGIN_SRC emacs-lisp
-(setq large-file-warning-threshold 100000000)
+  (setq large-file-warning-threshold 100000000)
 
 #+END_SRC
 * Packages
@@ -43,21 +43,21 @@ git submodule update --init --recursive
 Load the use-package macro:
 #+BEGIN_SRC emacs-lisp
 
-(add-to-list 'load-path "~/.emacs.d/lisp/use-package")
-(setq use-package-verbose t)
-(setq use-package-always-ensure t)
-(eval-when-compile (require 'use-package))
-(require 'bind-key)
+  (add-to-list 'load-path "~/.emacs.d/lisp/use-package")
+  (setq use-package-verbose t)
+  (setq use-package-always-ensure t)
+  (eval-when-compile (require 'use-package))
+  (require 'bind-key)
 
 #+END_SRC
 Initialize the package.el locations and load a list of packages if not available, so that use-package will not fail.
 #+BEGIN_SRC emacs-lisp
-(require 'package)
-(setq package-archives '(("melpa" . "http://melpa.org/packages/")
-                         ("gnu" . "http://elpa.gnu.org/packages/")))
-;(package-refresh-contents)
-;;(package-initialize) ; Commented out because also in init.el
-(when (not package-archive-contents) (package-refresh-contents))
+  (require 'package)
+  (setq package-archives '(("melpa" . "http://melpa.org/packages/")
+                           ("gnu" . "http://elpa.gnu.org/packages/")))
+  					;(package-refresh-contents)
+  ;;(package-initialize) ; Commented out because also in init.el
+  (when (not package-archive-contents) (package-refresh-contents))
 
 
 #+END_SRC
@@ -73,166 +73,168 @@ Make all packages be auto-compiled; Load Dash first as a requirement for auto-co
 *** Defining functions needed for package config
 #+BEGIN_SRC emacs-lisp
   (defun pragtich/magit-commit-save ()
-  (interactive)
-  (git-commit-commit))
+    (interactive)
+    (git-commit-commit))
 #+END_SRC
 *** Defining my customized packages and keybindings
 
 #+BEGIN_SRC emacs-lisp
-(use-package which-key :config (which-key-mode))
-(use-package exec-path-from-shell)
-(use-package beacon
-:config (progn 
-(setq beacon-color "gold1" )
-(beacon-mode 1)
-))
-    (use-package guide-key
-      :config (progn
-        (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
-	(setq guide-key/popup-window-position 'bottom)
-	(setq guide-key/idle-delay 0.5)
-	(guide-key-mode 1)))
-(use-package counsel)
-(use-package ivy-hydra)
-    (use-package ivy
-    :config (progn 
-    (setq ivy-use-virtual-buffers t)
-    (setq ivy-height 10)
-    (setq ivy-count-format "(%d/%d) ")
-    (setq completing-read-function #'ivy-completing-read))
-    :bind (("C-s" . swiper) 
-           ("M-x" . counsel-M-x)
-	   ("C-x C-f" . counsel-find-file)
-	   ("C-x b" . ivy-switch-buffer)
-	   ("C-h f" . counsel-describe-function )
-	   ("C-h v" . counsel-describe-variable )
-	   ("C-h i" . counsel-info-lookup-symbol )
-	   ("C-h u" . counsel-unicode-char )
-	   ("C-c C-r" . ivy-resume )
-))
-; Helm is disabled
-    (use-package helm
-      :disabled t
+  (use-package which-key :config (which-key-mode))
+  (use-package exec-path-from-shell)
+  (use-package beacon
+  :config (progn 
+  (setq beacon-color "gold1" )
+  (beacon-mode 1)
+  ))
+      (use-package guide-key
+        :config (progn
+          (setq guide-key/guide-key-sequence '("C-x r" "C-x 4"))
+  	(setq guide-key/popup-window-position 'bottom)
+  	(setq guide-key/idle-delay 0.5)
+  	(guide-key-mode 1)))
+  (use-package counsel)
+  (use-package ivy-hydra)
+      (use-package ivy
       :config (progn 
-                     (require 'helm-config) 
-                     (setq helm-mode-fuzzy-match t) 
-		     (helm-mode 1)
-                     (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
-                     (define-key helm-map (kbd "C-z") 'helm-select-action)
-)
-      :bind (("C-x C-f" . helm-find-files)
-             ("C-c C-f" . helm-recentf)
-             ("C-x b" . helm-mini)
-             ("M-x" . helm-M-x))
-:ensure t
-:demand t
-) 
-(use-package diminish)
-    (use-package magit
-      :commands magit-status
-      :bind (("C-x g" . magit-status) 
-             ("<f12>" . magit-status))
-      :config (eval-after-load "magit-commit-mode"
-                '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
-      
-      :pin melpa
-    )
-    (use-package git-gutter-fringe
-      
-      :config (global-git-gutter-mode +1)
-      :diminish git-gutter-mode )
-
-
-    (use-package ido-vertical-mode
-      :disabled t
-      
-      :init
-        (progn (ido-mode 1) 
-           (ido-vertical-mode 1))
-
-      :config 
-        (progn
-           (setq ido-enable-flex-matching t)
-           (setq ido-everywhere t)
-           (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
-           (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
-        ))
-    (use-package ido-ubiquitous
-      :disabled t
-      
-      :init
-        (ido-ubiquitous-mode 1)
-
-      :config 
-        (progn
-           (setq ido-ubiquitous-command-overrides
-             (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
-      
-    )
-
-    ;; (use-package zenburn-theme
-    ;;    
-    ;;    :defer t
-    ;;    :config   (load-theme 'zenburn t)
-    ;; )
-
-    (use-package color-theme-sanityinc-solarized
-       
-       :config   (progn
-         (load-theme 'sanityinc-solarized-dark t)
-	 (custom-set-faces
-	   '(cursor ((t (:background "blue1"))))
-	   '(helm-source-header ((t (:inherit source :foreground "#b58900" :weight bold :height 1))))
-	   )
-	 (setq-default cursor-type 'bar)
-	 (global-hl-line-mode t)
-	 (set-face-background hl-line-face "#042028") ; Base03 from solarized
-	  ))
-
-  ;  (use-package git-modes
-  ;    )
-  ;  (use-package versions)
-
-    (use-package benchmark-init
-      )
-    (use-package markdown-mode
-      
-      :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
-    (use-package headlong
-        )
-    (use-package avy
-        )
-    (use-package hydra
-        :pin melpa
-        )
-    (use-package key-chord
-        )
-    (use-package ace-window
+      (setq ivy-use-virtual-buffers t)
+      (setq ivy-height 10)
+      (setq ivy-count-format "(%d/%d) ")
+      (setq completing-read-function #'ivy-completing-read))
+      :bind (("C-s" . swiper) 
+             ("M-x" . counsel-M-x)
+  	   ("C-x C-f" . counsel-find-file)
+  	   ("C-x b" . ivy-switch-buffer)
+  	   ("C-h f" . counsel-describe-function )
+  	   ("C-h v" . counsel-describe-variable )
+  	   ("C-h i" . counsel-info-lookup-symbol )
+  	   ("C-h u" . counsel-unicode-char )
+  	   ("C-c C-r" . ivy-resume )
+  ))
+  ; Helm is disabled
+      (use-package helm
+        :disabled t
+        :config (progn 
+                       (require 'helm-config) 
+                       (setq helm-mode-fuzzy-match t) 
+  		     (helm-mode 1)
+                       (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action)
+                       (define-key helm-map (kbd "C-z") 'helm-select-action)
+  )
+        :bind (("C-x C-f" . helm-find-files)
+               ("C-c C-f" . helm-recentf)
+               ("C-x b" . helm-mini)
+               ("M-x" . helm-M-x))
+  :ensure t
+  :demand t
+  ) 
+  (use-package diminish)
+      (use-package magit
+        :commands magit-status
+        :bind (("C-x g" . magit-status) 
+               ("<f12>" . magit-status))
+        :config (eval-after-load "magit-commit-mode"
+                  '(define-key git-commit-mode-map (kbd "C-c C-c") 'pragtich/magit-commit-save))
         
-	:bind (("C-x o" . ace-window) 
-	       ("M-o" . ace-window))
-	:init (progn
-	  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
-	   ;(setq aw-background nil)
-	   ;(setq aw-dispatch-always t)
-	   ))
-     (use-package windmove
-        )
-     (use-package transpose-frame
-       )
-     (use-package swiper
-        :bind (("\C-s". swiper)
-	        ("\C-r" . swiper))
-	:config (setq ivy-wrap t)
-	:ensure t)
-;(use-package projectile)
-(use-package company)
-(use-package company-irony)
-(use-package platformio-mode
-  :config (progn
-(require 'platformio-mode)
+        :pin melpa
+      )
+      (use-package git-gutter-fringe
+        
+        :config (global-git-gutter-mode +1)
+        :diminish git-gutter-mode )
 
-(add-to-list 'company-backends 'company-irony)))
+
+      (use-package ido-vertical-mode
+        :disabled t
+        
+        :init
+          (progn (ido-mode 1) 
+             (ido-vertical-mode 1))
+
+        :config 
+          (progn
+             (setq ido-enable-flex-matching t)
+             (setq ido-everywhere t)
+             (setq ido-create-new-buffer 'always)  ;Prevent IDO from asking when I just want to make a scratch buffer.
+             (setq ido-ignore-extensions t)        ;Ignore predefined useless extensions which are defined in =completion-ignored-extensions=.
+          ))
+      (use-package ido-ubiquitous
+        :disabled t
+        
+        :init
+          (ido-ubiquitous-mode 1)
+
+        :config 
+          (progn
+             (setq ido-ubiquitous-command-overrides
+               (cons '(enable exact "execute-extended-command") ido-ubiquitous-default-command-overrides)))
+        
+      )
+
+      ;; (use-package zenburn-theme
+      ;;    
+      ;;    :defer t
+      ;;    :config   (load-theme 'zenburn t)
+      ;; )
+
+    ;;   (use-package color-theme-sanityinc-solarizedzed
+         
+    ;;      :config   (progn
+    ;;        (load-theme 'sanityinc-solarized-dark t)
+    ;; 	 (custom-set-faces
+    ;; 	  '(helm-source-header ((t (:inherit source :foreground "#b58900" :weight bold :height 1))))
+    ;; 	   )
+    ;; 	 (setq-default cursor-type 'bar)
+    ;; 	 (global-hl-line-mode t)
+    ;; 	 (set-face-background hl-line-face "#042028") ; Base03 from solarized
+    ;; 	  ))
+
+    ;; ;  (use-package git-modes
+    ;    )
+    ;  (use-package versions)
+  (use-package solarized-theme
+    :defer t
+    :init (load-theme 'solarized-dark t))
+  
+      (use-package benchmark-init
+        )
+      (use-package markdown-mode
+        
+        :mode "\\.\\(m\\(ark\\)?down\\|md\\)$")
+      (use-package headlong
+          )
+      (use-package avy
+          )
+      (use-package hydra
+          :pin melpa
+          )
+      (use-package key-chord
+          )
+      (use-package ace-window
+          
+  	:bind (("C-x o" . ace-window) 
+  	       ("M-o" . ace-window))
+  	:init (progn
+  	  (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l))
+  	   ;(setq aw-background nil)
+  	   ;(setq aw-dispatch-always t)
+  	   ))
+       (use-package windmove
+          )
+       (use-package transpose-frame
+         )
+       (use-package swiper
+          :bind (("\C-s". swiper)
+  	        ("\C-r" . swiper))
+  	:config (setq ivy-wrap t)
+  	:ensure t)
+  ;(use-package projectile)
+  (use-package company)
+  (use-package company-irony)
+  (use-package platformio-mode
+    :config (progn
+  (require 'platformio-mode)
+
+  (add-to-list 'company-backends 'company-irony)))
 #+END_SRC
 
 *** Install programming related stuff
