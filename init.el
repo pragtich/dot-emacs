@@ -1,4 +1,5 @@
-;;; init.el --- user init file      -*- no-byte-compile: t -*-
+;;; init.el --- user init file    -*- no-byte-compile: t; lexical-binding: nil -*-
+;; 
 ;; Profiling of emacs init process (see https://github.com/dholm/benchmark-init-el)
 ;(add-to-list 'load-path "~/.emacs.d/el-get/benchmark-init/")
 ;(require 'benchmark-init)
@@ -30,6 +31,19 @@
 ;; Load up Org Mode and Babel
 (require 'org)
 (require 'ob-tangle)
+
+;; Add a lexical binding tag to the tangled emacs config
+;; https://emacs.stackexchange.com/questions/81540/lexical-binding-in-a-tangled-init-el-file
+(defun my-ensure-lexical-binding-cookie()
+  (when (derived-mode-p 'emacs-lisp-mode)
+    (goto-char(point-min)) ;; beginning of tangled code
+  (insert ";; -*- coding: utf-8; lexical-binding: nil -*-")
+  (newline)
+  (newline)
+  (let ((inhibit-message t)) ;; Don't show messages from these functions
+    (basic-save-buffer)
+    (kill-buffer) nil)))
+(add-hook 'org-babel-post-tangle-hook #'my-ensure-lexical-binding-cookie)
 
 ;; Correct exec path before loading the rest (only on Mac)
 ;; Fails the first time round because we do not yet have exec-path-from-shell installed
